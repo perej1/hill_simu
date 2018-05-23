@@ -10,19 +10,11 @@ from scipy.stats import cauchy
 import pandas as pd
 import argparse as arg
 
+
 '''
-Own definition for k, which is a parameter in Hill estimator
-kf(n) is such a function that k-> inf and k/n -> 0
-k is now quite large because we want to see some bias
-for small k variance is great but bias would be nonexistent.
+Function for the hill estimator. k(n) is such a function
+that k -> inf and k/n -> 0
 '''
-
-
-def kf(n):
-    return (np.ceil(np.power(n, 1/2))).astype(int)
-
-
-# Function for the hill estimator.
 
 
 def hill(sample, k):
@@ -32,26 +24,30 @@ def hill(sample, k):
 
 
 '''
-r amount of n sized samples are created
-from pareto and cauchy distributions.
+function for creating values for hill estimator.
+n = sample size
+r = number of estimates
+k = parameter for hill estimator
+f = file path for estimates
+d = specifies the distribution
 '''
 
 
-def sim(n, r):
-    hill_pareto = np.array([])
-    hill_cauchy = np.array([])
+def sim(n, r, k, f, d):
+    hill_est = np.array([])
 
-    for i in np.arange(0, r):
-        X1 = pareto.rvs(3, size=n)
-        X2 = cauchy.rvs(1, size=n)
-        hill_pareto = np.append(hill_pareto, hill(X1, kf(n)))
-        hill_cauchy = np.append(hill_cauchy, hill(X2, kf(n)))
+    if d == "pareto":
+        for i in np.arange(0, r):
+            X = pareto.rvs(3, size=n)
+            hill_est = np.append(hill_est, hill(X, k))
 
-    estimates = pd.DataFrame(
-            np.array([hill_pareto, hill_cauchy]).T,
-            columns=np.array(["pareto", "cauchy"])
-                             )
-    estimates.to_csv("hill_estimates.csv", sep=",", encoding="utf-8")
+    if d == "cauchy":
+        for i in np.arange(0, r):
+            X = cauchy.rvs(1, size=n)
+            hill_est = np.append(hill_est, hill(X, k))
+
+    estimates = pd.DataFrame(hill_est, columns=np.array([d]))
+    estimates.to_csv(f, sep=",", encoding="utf-8")
 
 
 def main():
@@ -61,8 +57,13 @@ def main():
                                 )
     parser.add_argument("-n", help="sample size", type=int)
     parser.add_argument("-r", help="number of samples", type=int)
+    parser.add_argument("-k", help="k for hill estimator", type=int)
+    parser.add_argument("-f", help="file path for csv", type=str)
+    parser.add_argument("-d", help="distribution", type=str,
+                        choices=("pareto", "cauchy")
+                        )
     args = parser.parse_args()
-    sim(args.n, args.r)
+    sim(args.n, args.r, args.k, args.f, args.d)
 
 
 main()

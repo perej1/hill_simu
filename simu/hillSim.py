@@ -43,7 +43,8 @@ def sim(n, r, k, f, d):
             hill_est = np.append(hill_est, hill(X, k))
 
     estimates = pd.DataFrame(hill_est, columns=np.array([d]))
-    estimates.to_csv(f, sep=",", encoding="utf-8")
+    estimates.to_csv("%s-%s-%s-%s.csv" % (n, r, k, d),
+                     sep=",", encoding="utf-8")
 
 
 def main():
@@ -60,6 +61,7 @@ def main():
                         )
     args = parser.parse_args()
     sim(args.n, args.r, args.k, args.f, args.d)
+
 
 if __name__ == "__main__":
     main()

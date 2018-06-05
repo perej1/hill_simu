@@ -43,7 +43,7 @@ def sim(n, r, k, f, d):
             hill_est = np.append(hill_est, hill(X, k))
 
     estimates = pd.DataFrame(hill_est, columns=np.array([d]))
-    estimates.to_csv("%s-%s-%s-%s.csv" % (n, r, k, d),
+    estimates.to_csv("%s/%s-%s-%s-%s.csv" % (f, n, r, k, d),
                      sep=",", encoding="utf-8")
 
 

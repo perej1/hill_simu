@@ -165,7 +165,13 @@
 \usepackage{graphicx}
 
 %% Math fonts, symbols, and formatting; these are usually needed
-\usepackage{amsfonts,amssymb,amsbsy}
+\usepackage{amsfonts,amssymb,amsbsy,amsmath}
+
+
+% Theorems, corollaries and lemmas
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
 
 %% Change the school field to specify your school if the automatically set name
 %% is wrong
@@ -184,7 +190,7 @@
 
 %% Major subject code
 %%
-\code{SCIjotainkai?}
+\code{SCI3025}
 %%
  
 %% Choose one of the three below
@@ -231,7 +237,7 @@
 %% slightly longer space follows, but what is desired is a regular interword
 %% space.
 %%
-\supervisor{Prof.  Pauliina Ilmonen}
+\supervisor{Ph.D  Pauliina Ilmonen}
 %%
 
 %% Advisor(s)---two at the most---of the thesis. Check with your supervisor how
@@ -399,36 +405,20 @@ Otaniemi, 24.4.2018
 \subsection*{Symbols}
 
 \begin{tabular}{ll}
-$\mathbf{B}$  & magnetic flux density  \\
-$c$              & speed of light in vacuum $\approx 3\times10^8$ [m/s]\\
-$\omega_{\mathrm{D}}$    & Debye frequency \\
-$\omega_{\mathrm{latt}}$ & average phonon frequency of lattice \\
-$\uparrow$       & electron spin direction up\\
-$\downarrow$     & electron spin direction down
+$x^*=sup\{x : F(x)<1\}$  & right endpoint of the distribution  \\
+$\gamma$ & extreme value index
 \end{tabular}
 
 \subsection*{Operators}
 
 \begin{tabular}{ll}
-$\nabla \times \mathbf{A}$              & curl of vectorin $\mathbf{A}$\\
-$\displaystyle\frac{\mbox{d}}{\mbox{d} t}$ & derivative with respect to 
-variable $t$\\[3mm]
-$\displaystyle\frac{\partial}{\partial t}$  & partial derivative with respect 
-to variable $t$ \\[3mm]
-$\sum_i $                       & sum over index $i$\\
-$\mathbf{A} \cdot \mathbf{B}$    & dot product of vectors $\mathbf{A}$ and 
-$\mathbf{B}$
 \end{tabular}
 
 \subsection*{Abbreviations}
 
 \begin{tabular}{ll}
-AC         & alternating current \\
-APLAC      & an object-oriented analog circuit simulator and design tool \\
-           & (originally Analysis Program for Linear Active Circuits) \\
-BCS        & Bardeen-Cooper-Schrieffer \\ %% dash between the names
-DC         & direct current \\
-TEM        & transverse eletromagnetic
+cdf         & cumulative distribution function \\
+i.d.d      & independent and identically distributed \\
 \end{tabular}
 
 
@@ -456,17 +446,52 @@ TEM        & transverse eletromagnetic
 %% In a thesis, every section starts a new page, hence \clearpage
 \clearpage
 
-\section{Theory}
+\section{Backround}
 
-This is the Fisher-Tipett-Gnedenko theorem \cite{EVTHaan}.
+\subsection{Extreme Value Theory}
+
+First approch to study behavior of extreme events would be to find limiting distribution of the sample maxima $M_n = max(X_1, X_2, ..., X_n)$. Here $X_1, X_2, ..., X_n$ are i.d.d random variables from cdf F. Function for the cdf of $M_n$ can be derived, because $X_1, X_2,..., X_3$ are i.d.d.
+\begin{gather*}
+P(max(X_1, X_2, ... , X_n) \leq x) = P(X_1 \leq x, X_2 \leq x,..., X_n \leq x) = \\
+P(X_1 \leq x) P(X_2 \leq x) ... P(X_n \leq x) =  F^n(x).
+\end{gather*}
+
+Now it can be shown that this approach is not very fruitful since
+
+\begin{gather*}
+\lim_{n\to\infty} F^n(x) = 
+\begin{cases}
+0, x < x^* \\
+1, x \geq x^*.
+\end{cases}
+\end{gather*}
+
+To achieve a nondegerate distribution it is necessary to normalize the sample maxima $M_n$. After normalization a nondegenate distribution is gained as stated in the Fisher-Tippett-Gnedenko Theorem \cite{EVTHaan}.
+
+\begin{theorem}
+There exists real constants $a_n>0$ and $b_n \in \mathbb{R}$ such that 
+
 \begin{equation}
-1+1 = 3
-\label{testi}
+\lim_{n\to\infty} F^n(a_nx + b_n) = G_{\gamma}(x) =
+\begin{cases}
+exp(-(1 + \gamma x)^{-\frac{1}{\gamma}}), \gamma \neq 0 \\
+exp(-e^{-x}), \gamma = 0,
+\end{cases}
+\label{mdaEq}
 \end{equation}
+for all x with $1+\gamma x > 0$ where $\gamma \in \mathbb{R}$.
 
-Tässä testataan linkkiä \ref{testi}
+\end{theorem}
+
+If cdf F satisfies the equation \ref{mdaEq} for some $\gamma \in \mathbb{R}$ it is said that F is in the maximum domain of attraction of $G_{\gamma}$ i.e $F \in D (G_{\gamma})$. Concerning the Hill estimator special interest lies in the case $F \in D (G_{\gamma > 0})$. 
+
+
+
+\subsection{Problem}
 
 \clearpage
+
+\section{Consistency of the Hill estimator}
 
 \section{Simulations} 
 

@@ -161,16 +161,16 @@
 %% two-sided printing: twoside (default is one-sided printing)
 %%
 
-
+\usepackage{bbm}
 \usepackage{graphicx}
 
 %% Math fonts, symbols, and formatting; these are usually needed
-\usepackage{amsfonts,amssymb,amsbsy,amsmath}
+\usepackage{amsfonts,amssymb,amsbsy,amsmath,amsthm}
 
 
 % Theorems, corollaries and lemmas
 \newtheorem{theorem}{Theorem}[section]
-\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{corollary}[theorem]{Corollary}
 \newtheorem{lemma}[theorem]{Lemma}
 
 %% Change the school field to specify your school if the automatically set name
@@ -352,26 +352,6 @@ text must be identical to the text on the abstract page.
 %	\abstracttext{}
 %\end{abstractpage}
 
-%% Force a new page so that the possible Finnish or Swedish abstract does not
-%% begin on the same page
-%%
-\newpage
-%%
-%% Abstract in Finnish.  Delete if you don't need it. 
-%%
-\thesistitle{Opinnäytteen otsikko}
-\advisor{TkT Alan Advisor}
-\degreeprogram{Elektroniikka ja sähkötekniikka}
-%\department{Elektroniikan ja nanotekniikan laitos}
-\major{Sopiva pääaine}
-%% The keywords need not be separated by \spc now.
-\keywords{Vastus, resistanssi, lämpötila}
-%% Abstract text
-\begin{abstractpage}[finnish]
-  Tiivistelmässä on lyhyt selvitys
-  kirjoituksen tärkeimmästä sisällöstä: mitä ja miten on tutkittu,
-  sekä mitä tuloksia on saatu. 
-\end{abstractpage}
 
 
 %\newpage
@@ -406,12 +386,14 @@ Otaniemi, 24.4.2018
 
 \begin{tabular}{ll}
 $x^*=sup\{x : F(x)<1\}$  & right endpoint of the distribution  \\
-$\gamma$ & extreme value index
-\end{tabular}
-
-\subsection*{Operators}
-
-\begin{tabular}{ll}
+$\gamma$ & extreme value index \\
+$F^{\leftarrow}(y) = \inf\{x:F(x) \geq y \}$ & left-continuous inverse \\
+U & left-continuous inverse of $\frac{1}{1-F}$ \\
+$1(p)=
+\begin{cases}
+1 , \textrm{if p is true}\\
+0, \textrm{otherwise}
+\end{cases}$ & indicator fuction
 \end{tabular}
 
 \subsection*{Abbreviations}
@@ -419,6 +401,7 @@ $\gamma$ & extreme value index
 \begin{tabular}{ll}
 cdf         & cumulative distribution function \\
 i.d.d      & independent and identically distributed \\
+a.s         & almost surely\\
 \end{tabular}
 
 
@@ -448,9 +431,9 @@ i.d.d      & independent and identically distributed \\
 
 \section{Backround}
 
-\subsection{Extreme Value Theory}
+\subsection{Fisher-Tippett-Gnedenko Theorem}
 
-First approch to study behavior of extreme events would be to find limiting distribution of the sample maxima $M_n = max(X_1, X_2, ..., X_n)$. Here $X_1, X_2, ..., X_n$ are i.d.d random variables from cdf F. Function for the cdf of $M_n$ can be derived, because $X_1, X_2,..., X_3$ are i.d.d.
+First approch to study behavior of extreme events would be to find limiting distribution of the sample maxima $M_n = max(X_1, X_2, ..., X_n)$. Here $X_1, X_2, ..., X_n$ are i.d.d random variables from cdf $F_X$. Function for the cdf of $M_n$ can be easily derived, since $X_1, X_2,..., X_3$ are i.d.d.
 \begin{gather*}
 P(max(X_1, X_2, ... , X_n) \leq x) = P(X_1 \leq x, X_2 \leq x,..., X_n \leq x) = \\
 P(X_1 \leq x) P(X_2 \leq x) ... P(X_n \leq x) =  F^n(x).
@@ -466,7 +449,7 @@ Now it can be shown that this approach is not very fruitful since
 \end{cases}
 \end{gather*}
 
-To achieve a nondegerate distribution it is necessary to normalize the sample maxima $M_n$. After normalization a nondegenate distribution is gained as stated in the Fisher-Tippett-Gnedenko Theorem \cite{EVTHaan}.
+To achieve a nondegerate distribution it is necessary to normalize the sample maxima $M_n$. After normalization a nondegenate distribution is gained as stated in the Fisher-Tippett-Gnedenko Theorem \cite{deHaan}.
 
 \begin{theorem}
 There exists real constants $a_n>0$ and $b_n \in \mathbb{R}$ such that 
@@ -483,17 +466,194 @@ for all x with $1+\gamma x > 0$ where $\gamma \in \mathbb{R}$.
 
 \end{theorem}
 
-If cdf F satisfies the equation \ref{mdaEq} for some $\gamma \in \mathbb{R}$ it is said that F is in the maximum domain of attraction of $G_{\gamma}$ i.e $F \in D (G_{\gamma})$. Concerning the Hill estimator special interest lies in the case $F \in D (G_{\gamma > 0})$. 
 
+\subsection{Regularly Varying Functions}
 
-
-\subsection{Problem}
+\subsection{Domain of Attraction: Case $\gamma>0$}
 
 \clearpage
 
-\section{Consistency of the Hill estimator}
+\section{Hill Estimator}
 
-\section{Simulations} 
+\subsection{Consistency}
+
+The following theorem states that Hill estimator is consistent i.e estimator converges in probability to extreme value index. \cite{deHaan}
+
+
+\begin{theorem}
+Let $X_1, X_2,...$ be i.d.d variables with cdf $F_X$. Suppose $F_X \in D(G_{\gamma})$ with $\gamma > 0$. Then as $n \rightarrow \infty$, $k=k(n)  \rightarrow \infty$, $\frac{k}{n} \rightarrow \infty$,
+
+\begin{equation*}
+\hat{\gamma}_H \xrightarrow{p} \gamma.
+\end{equation*}
+\label{hillcons}
+\end{theorem}
+
+For the proof of the above theorem following lemmas are needed, firstly the Renyi's representation \cite{renyi}.
+\begin{lemma}
+If $E_1, E_2,...$ are i.d.d random variables from the standard exponential distribution and $E_{1,n} \leq E_{1,n} \leq ... \leq E_{n,n}$ then for $k \leq n$ we have
+\begin{multline}
+%\begin{equation}
+%\begin{split}
+\big(E_{1,n}, E_{2,n}, ... , E_{k,n}\big) 
+\overset{d}{=} \Big(\frac{E_1^*}{n}, \frac{E_1^*}{n}+\frac{E_2^*}{n-1}, ... , \frac{E_1^*}{n}+\frac{E_2^*}{n-1}+...+ \frac{E_k^*}{n-k+1}\Big),
+%\end{split}
+%\end{equation}
+\end{multline}
+where $E_1^*,E_2^*,...$ are i.d.d random variables from standard exponential distribution.
+\label{renrep}
+\end{lemma}
+
+Secondly the lemma about the order statistics of Pareto distribution is necessary \cite{deHaan}.
+
+\begin{lemma}
+Let $Y_1, Y_2, ...$ be i.d.d random variables from Pareto distribution $F_Y(y)=1-\frac{1}{y}$, $y \geq 0$ and let $Y_{1,n} \geq Y_{2,n} \geq ... \geq Y_{n,n}$ be the nth order statistics. Then with such $k=k(n)$ that $k \rightarrow \infty$, $\frac{k}{n} \rightarrow 0$ as $n \rightarrow \infty$,
+
+\begin{equation}
+\lim_{n\to\infty} Y_{n-k,n} = \infty  \quad  \text{a.s}.
+\end{equation}
+\label{asconv}
+\end{lemma}
+
+Next we prove the lemma \ref{asconv}. Proof of the lemma \ref{renrep} is omitted here.
+
+\begin{proof}
+Let us assume that $Y_{n-k,n} < r$ for some $r > 0$ infinitely often. In other words
+\begin{equation}
+\frac{k}{n} = \frac{1}{n} \sum_{i=1}^{n} 1(Y_i>Y_{n-k,n}) > \sum_{i=1}^{n} 1(Y_i>r).
+\end{equation}
+
+Now the left side of the equation converges to zero, since
+\begin{equation}
+\lim_{n\to\infty} \frac{1}{n} \sum_{i=1}^{n} 1(Y_i>Y_{n-k,n}) = \lim_{n\to\infty} \frac{k}{n} =0.
+\end{equation}
+
+But the right side converges to $1/r$ almost surely, since
+
+\begin{equation}
+\frac{1}{n} \sum_{i=1}^{n} 1(Y_i>r) \xrightarrow{a.s} P(Y_i>r) = 1-F_Y(r) = \frac{1}{r}
+\end{equation}
+by the strong law of large numbers \cite{rosenthal}.
+So the assumption cannot hold which implies that
+
+\begin{equation}
+P(\lim_{n\to\infty} Y_{n-k,n} = \infty)=1.
+\end{equation}
+\end{proof}
+
+Now we are equipped to prove the theorem \ref{hillcons}.
+
+\begin{proof}
+
+$F \in D(G_{\gamma>0})$ is equivalent to the fact that $U \in RV_{\gamma}$ i.e
+
+\begin{equation}
+\lim_{t\to\infty} \frac{U(tx)}{U(t)} = x^{\gamma}.
+\end{equation}
+
+From the uniform convergence of the regularly varying functions follows that for $x>1$ and $t \geq t_0$,
+
+\begin{equation}
+(1-\varepsilon) x^{\gamma - \delta} < \frac{U(tx)}{U(t)} < (1+\varepsilon) x^{\gamma + \delta},
+\label{RVnoteq}
+\end{equation}
+
+for all $\varepsilon>0$ and $\delta>0$. By taking natural logarithm from both sides of the equation above can be written as
+
+\begin{equation}
+\begin{split}
+\log(1 - \varepsilon) + (\gamma - \delta) \log(x) < \log(U(tx)) - \log(U(t)) \\
+< \log(1 + \varepsilon) + (\gamma + \delta) \log(x).
+\end{split}
+\label{logRV}
+\end{equation}
+
+If $Y_1, Y_2,...$ are i.d.d random variables from Pareto distribution with cdf $F_Y(y) = 1 - \frac{1}{y}$ then $U(Y_i)  \overset{d}{=} X_i$, since
+
+
+
+\begin{equation*}
+\begin{split}
+F_{U(Y_i)} = P(U(Y_i) \leq x) = P\Big(Y_i \leq \frac{1}{1-F_X(x)}\Big) = F_Y\Big(\frac{1}{1-F_X(x)}\Big) \\
+= 1-\Big(\frac{1}{1-F_X(x)}\Big)^{-1} =F_X(x).
+\end{split}
+\end{equation*}
+
+Hence it is sufficient to prove result for $ \hat{\gamma}_H =  \frac{1}{k} \sum_{i=0}^{k-1} \log(U(Y_{n-i,n})) - \log(U(Y_{n-k,n})) $. For $t = Y_{n-k,n}$ and $x =\frac{Y_{n-i,n}}{Y_{n-k,n}}$ equation \ref{logRV} has the form
+
+\begin{equation}
+\begin{split}
+\log(1 - \varepsilon) + (\gamma - \delta) \log(\frac{Y_{n-i,n}}{Y_{n-k,n}}) < \log(U(Y_{n-i,n})) - \log(U(Y_{n-k,n})) \\
+< \log(1 + \varepsilon) + (\gamma + \delta) \log(\frac{Y_{n-i,n}}{Y_{n-k,n}}).
+\end{split}
+\label{log}
+\end{equation}
+
+Notice that we can replace t with $Y_{n-k,n}$ because we can always find some $n_0$ such that $Y_{n_0-k,n_0} \geq t_0$ according to lemma \ref{asconv}. Furthermore, $Y_{n-i,n}$ is greater than $Y_{n-k,n}$ always when $i<k$. Therefore x can be replaced with $\frac{Y_{n-i,n}}{Y_{n-k,n}}$.
+
+Equation \ref{log} applies for every $i = 0,1,2,..., k-1$. Thus we can write
+
+\begin{equation}
+\begin{split}
+\log(1 - \varepsilon) + (\gamma - \delta) \frac{1}{k} \sum_{i=0}^{k-1} \log(\frac{Y_{n-i,n}}{Y_{n-k,n}}) < \frac{1}{k} \sum_{i=0}^{k-1} \log(U(Y_{n-i,n})) - \log(U(Y_{n-k,n})) \\
+< \log(1 + \varepsilon) + (\gamma + \delta) \frac{1}{k} \sum_{i=0}^{k-1} \log(\frac{Y_{n-i,n}}{Y_{n-k,n}}).
+\end{split}
+\end{equation}
+
+The term in the middle is the hill estimator $\hat{\gamma}_H$, hence above becomes
+
+\begin{equation}
+\begin{split}
+\log(1 - \varepsilon) + (\gamma - \delta) \frac{1}{k} \sum_{i=0}^{k-1} \log(\frac{Y_{n-i,n}}{Y_{n-k,n}}) < \hat{\gamma}_H \\
+< \log(1 + \varepsilon) + (\gamma + \delta) \frac{1}{k} \sum_{i=0}^{k-1} \log(\frac{Y_{n-i,n}}{Y_{n-k,n}}).
+\end{split}
+\end{equation}
+
+Now it is sufficient to only prove that 
+
+\begin{equation}
+\frac{1}{k} \sum_{i=0}^{k-1} \log(\frac{Y_{n-i,n}}{Y_{n-k,n}}) \xrightarrow{p} 1.
+\end{equation}
+
+$\log(Y_i)$ has a standard exponential distribution, since 
+\begin{equation*}
+\begin{split}
+F_{\log(Y_i)}(x) = P(\log(Y_i) < x) = P(e^{\log(Y_i)} < e^x) = P(Y_i < e^x) = F_Y(e^x) = 1 - {e^{-x}}.
+\end{split}
+\end{equation*}
+
+Therefore we can write
+\begin{equation}
+\frac{1}{k} \sum_{i=0}^{k-1} \log(\frac{Y_{n-i,n}}{Y_{n-k,n}}) = \frac{1}{k} \sum_{i=0}^{k-1} E_{n-i,n} - E_{n-k,n},
+\label{kesk}
+\end{equation}
+where $E_1, E_2,...$ are i.d.d random variables from standard exponential distribution. Now Renyi's representation \ref{renrep} implies
+
+\begin{equation*}
+\begin{split}
+\big\{E_{n-i,n} - E_{n-k,n}\big\}_{i=0}^{k-1} =\\
+\bigg\{\Big( \frac{E_1^*}{n} + \frac{E_2^*}{n-1}+...+ \frac{E_{n-(i+1)}^*}{n-(n-(i+1))+1} + \frac{E_{n-i}^*}{n-(n-i)+1} \Big) \\
+- \Big(\frac{E_1^*}{n} + \frac{E_2^*}{n-1}+...+\frac{E_{n-k}^*}{n-(n-k)+1}\Big)\bigg\}_{i=0}^{k-1} \\
+= \bigg\{\frac{E_{n-i}^*}{i+1} + \frac{E_{n-(i+1)}^*}{i+2} +...+ \frac{E_{n-(k-2)}^*}{k-1} + \frac{E_{n-(k-1)}^*}{k}\bigg\}_{i=0}^{k-1} \\
+= \big\{E_{k-i,k}\big\}_{i=0}^{k-1}.
+\end{split}
+\end{equation*}
+
+Consequently we have
+
+\begin{equation}
+\frac{1}{k} \sum_{i=0}^{k-1} \log\Big(\frac{Y_{n-i,n}}{Y_{n-k,n}}\Big) = \frac{1}{k} \sum_{i=0}^{k-1} E_{k-i,k} = \frac{1}{k} \sum_{i=0}^{k-1} E_i \xrightarrow{p} E[E_i] = 1
+\end{equation}
+
+by the weak law of large numbers \cite{rosenthal}. Notice that the expected value of a standard exponential is one.
+
+
+
+\end{proof}
+
+
+
+\subsection{Simulations} 
 
 
 \clearpage

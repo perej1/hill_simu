@@ -520,7 +520,7 @@ Next we prove the lemma \ref{asconv}. Proof of the lemma \ref{renrep} is omitted
 \begin{proof}
 Let us assume that $Y_{n-k,n} < r$ for some $r > 0$ infinitely often. In other words
 \begin{equation}
-\frac{k}{n} = \frac{1}{n} \sum_{i=1}^{n} 1(Y_i>Y_{n-k,n}) > \sum_{i=1}^{n} 1(Y_i>r).
+\frac{k}{n} = \frac{1}{n} \sum_{i=1}^{n} 1(Y_i>Y_{n-k,n}) > \frac{1}{n} \sum_{i=1}^{n} 1(Y_i>r).
 \end{equation}
 
 Now the left side of the equation converges to zero, since
@@ -631,18 +631,18 @@ where $E_1, E_2,...$ are i.d.d random variables from standard exponential distri
 
 \begin{equation*}
 \begin{split}
-\big\{E_{n-i,n} - E_{n-k,n}\big\}_{i=0}^{k-1} =\\
-\bigg\{\Big( \frac{E_1^*}{n} + \frac{E_2^*}{n-1}+...+ \frac{E_{n-(i+1)}^*}{n-(n-(i+1))+1} + \frac{E_{n-i}^*}{n-(n-i)+1} \Big) \\
+\big\{E_{n-i,n} - E_{n-k,n}\big\}_{i=0}^{k-1} \\ 
+\overset{d}{=} \bigg\{\Big( \frac{E_1^*}{n} + \frac{E_2^*}{n-1}+...+ \frac{E_{n-(i+1)}^*}{n-(n-(i+1))+1} + \frac{E_{n-i}^*}{n-(n-i)+1} \Big) \\
 - \Big(\frac{E_1^*}{n} + \frac{E_2^*}{n-1}+...+\frac{E_{n-k}^*}{n-(n-k)+1}\Big)\bigg\}_{i=0}^{k-1} \\
 = \bigg\{\frac{E_{n-i}^*}{i+1} + \frac{E_{n-(i+1)}^*}{i+2} +...+ \frac{E_{n-(k-2)}^*}{k-1} + \frac{E_{n-(k-1)}^*}{k}\bigg\}_{i=0}^{k-1} \\
-= \big\{E_{k-i,k}\big\}_{i=0}^{k-1}.
+\overset{d}{=} \big\{E_{k-i,k}\big\}_{i=0}^{k-1}.
 \end{split}
 \end{equation*}
 
 Consequently we have
 
 \begin{equation}
-\frac{1}{k} \sum_{i=0}^{k-1} \log\Big(\frac{Y_{n-i,n}}{Y_{n-k,n}}\Big) = \frac{1}{k} \sum_{i=0}^{k-1} E_{k-i,k} = \frac{1}{k} \sum_{i=0}^{k-1} E_i \xrightarrow{p} E[E_i] = 1
+\frac{1}{k} \sum_{i=0}^{k-1} \log\Big(\frac{Y_{n-i,n}}{Y_{n-k,n}}\Big) \overset{d}{=} \frac{1}{k} \sum_{i=0}^{k-1} E_{k-i,k} = \frac{1}{k} \sum_{i=0}^{k-1} E_i \xrightarrow{p} E[E_i] = 1
 \end{equation}
 
 by the weak law of large numbers \cite{rosenthal}. Notice that the expected value of a standard exponential is one.

@@ -172,6 +172,7 @@
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{corollary}[theorem]{Corollary}
 \newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
 
 %% Change the school field to specify your school if the automatically set name
 %% is wrong
@@ -217,7 +218,7 @@
 %% argument in box brackets. This is done because the title is part of the 
 %% metadata in the pdf/a file, and the metadata cannot contain linebreaks.
 %%
-\thesistitle{Asymptotic Properties of the Hill estimator}
+\thesistitle{Asymptotic Properties of the Hill Estimator}
 %\thesistitle[Title of the thesis]{Title of\\ the thesis}
 %%
 
@@ -227,7 +228,7 @@
 
 %% The date for the bachelor's thesis is the day it is presented
 %%
-\date{xx.8.2018}
+\date{23.8.2018}
 %%
 
 %% Thesis supervisor
@@ -394,7 +395,12 @@ $\mathbbm{1}(p)=
 1 , \textrm{if p is true}\\
 0, \textrm{otherwise}
 \end{cases}$ & indicator fuction \\
-$X_{i,n}$ & ith order statistic
+$X_{i,n}$ & ith order statistic \\
+$\lambda$ & Lebesque measure \\
+$\lim \sup A_n = \bigcap_{k=1}^{\infty} \bigcup_{n=k}^{\infty} A_n$ & limit supremum of a sequence of sets $A_n$ \\
+$f \in RV_{\alpha}$ & f is an regularly varying function with index $\alpha$ \\
+$G$ & extreme value distribution \\
+$f \in D(G_{\gamma})$ & f is in the maximum domain of attraction of G
 \end{tabular}
 
 \subsection*{Abbreviations}
@@ -432,8 +438,8 @@ a.s.         & almost surely\\
 
 \section{Backround}
 
-\subsection{Fisher-Tippett-Gnedenko Theorem}
-
+\subsection{Fisher-Tippett-Gnedenko Theorem and Domains of Attraction}
+\label{domains}
 First approach to study the behavior of extreme events could be to find limiting distribution of the sample maxima $M_n = \max(X_1, X_2, ..., X_n)$. Here $X_1, X_2, ..., X_n$ are i.d.d. random variables from cdf $F_X$. Function for the cdf of $M_n$ can be easily derived, since $X_1, X_2,..., X_3$ are i.d.d.
 \begin{gather*}
 P(\max(X_1, X_2, ... , X_n) \leq x) = P(X_1 \leq x, X_2 \leq x,..., X_n \leq x) = \\
@@ -455,9 +461,10 @@ To achieve a nondegerate distribution it is necessary to normalize the sample ma
 \begin{theorem}
 There exists real constants $a_n>0$ and $b_n \in \mathbb{R}$ such that 
 
-\begin{equation*}
+\begin{equation}
 \lim_{n\to\infty} F^n(a_nx + b_n) = G_{\gamma}(ax+b),
-\end{equation*}
+\label{fisher}
+\end{equation}
 where
 \begin{equation*}
 G_{\gamma}(x)=
@@ -468,13 +475,183 @@ G_{\gamma}(x)=
 \label{mdaEq}
 \end{equation*}
 for all x with $1+\gamma x > 0$ where $\gamma \in \mathbb{R}$.
-
 \end{theorem}
+
+If F fullfills the equation \ref{fisher} for some $\gamma \in \mathbb{R}$ then it is said that F is in the maximum domain of attraction of $G_{\gamma}$ i.e. $F \in D(G_{\gamma})$. Considering the Hill estimator we are especially interested in the case $F \in D(G_{\gamma>0})$. It turns out that $F \in D(G_{\gamma>0})$ is equivalent to the fact that function $1-F$ is regularly varying with index $-\frac{1}{\gamma}$. \cite{deHaan} 
+
+\begin{theorem}
+Cdf F is in the maximum domain of attraction of the extreme value distribution $G_{\gamma}$ with $\gamma>0$ if and only if $x^*=\infty$ and
+\begin{equation}
+\lim_{t\rightarrow \infty} \frac{1-F(tx)}{1-F(t)} = x^{-\frac{1}{\gamma}}, x>0.
+\label{tail}
+\end{equation}
+\end{theorem}
+
+In addition, condition \ref{tail} can be written in different form with the $U$ function \cite{deHaan}.
+
+\begin{corollary}
+Condition \ref{tail} is equivalent to
+\begin{equation}
+\lim_{t \rightarrow \infty} \frac{U(tx)}{U(t)} = x^{\gamma}, x>0.
+\end{equation}
+\end{corollary}
+
+Above equation implies that U is regularly varying with index $\gamma$ if $F \in D(G_{\gamma>0})$ .
 
 
 \subsection{Regularly Varying Functions}
 
-\subsection{Domain of Attraction: Case $\gamma>0$}
+In section \ref{domains} we saw that if $F \in D(G_{\gamma>0})$ then U is regularly varying function. Regularly varying functions have some useful properties that are needed to prove the consistency of the Hill estimator. Let's define regularly varying functions properly \cite{deHaan}:
+\begin{definition}
+A Lebesque measurable function $f: \mathbb{R}^{+} \rightarrow \mathbb{R}$ that is eventually positive is regularly varying if for some index $\alpha \in \mathbb{R}$,
+\begin{equation}
+\lim_{x \rightarrow \infty} \frac{f(tx)}{f(t)} = x^{\alpha}, \quad x>0.
+\label{regular}
+\end{equation}
+\end{definition}
+
+If function $f$  is regularly varying with index $\alpha=0$ then f is called slowly varying. For a slowly varying function the limit relation \ref{regular} can be written in different form with function $F=\log f(e^x)$:
+\begin{equation}
+\lim_{t \rightarrow \infty} F(t+x)-F(x) = 0.
+\label{F}
+\end{equation}
+The above argument is true, since
+\begin{equation*}
+F(t+x)-F(t) = \log f(e^{t+x}) - \log f(e^{t}) = \log \left(\underbrace{\frac{f(e^te^x)}{f(e^t)}}_{\rightarrow 1}\right) \rightarrow 0
+\end{equation*}
+as $t \rightarrow \infty$. The alternative form for slow variation \ref{F} is used in the proof of the uniform convergence.
+
+
+\begin{theorem}
+If $f \in RV_{\alpha}$ then the convergence in the equation \ref{regular} is uniform .
+\begin{equation*}
+\lim_{t \rightarrow \infty} \sup_{x  \in [a,b]} \left| \frac{f(tx)}{f(t)} - x^{\alpha} \right| = 0,
+\end{equation*}
+for $0<a<b<\infty$.
+\label{uniform}
+\end{theorem}
+
+Furthermore, the lemma below is neccessary for the proof of the theorem \ref{uniform}.
+
+\begin{lemma}[Fatou's lemma for sets]
+For a sequence of Lebesque measurable sets $A_n$:
+\begin{equation*}
+\lambda(\lim \sup A_n) \geq \lim \sup \lambda(A_n)
+\end{equation*}
+if $\lambda(\bigcup_{n=k}^{\infty}A_n) < \infty$ for some $k \geq 1$.
+\label{fatou}
+\end{lemma}
+
+Here the lemma \ref{fatou} is called "Fatou's lemma for sets" because it is actually a special case of Fatou's lemma \cite{lahiri}. So the above lemma can be proved directly from the Fatou's lemma but we represent a different proof.
+
+\begin{proof}
+By the monotocity of measure we have $\lambda(\bigcup_{n=k}^{\infty}A_n) \geq \lambda(A_j), j \geq k$. This implies that
+
+\begin{equation*}
+\lambda(\bigcup_{n=k}^{\infty}A_n) \geq \sup_{j \geq k} \lambda(A_j)
+ \end{equation*}
+\begin{equation}
+\Rightarrow \lim_{n \rightarrow \infty} \lambda(\bigcup_{n=k}^{\infty}A_n) \geq  \lim_{n \rightarrow \infty} \sup_{j \geq k} \lambda(A_j).
+\label{eqtolim}
+\end{equation}
+The $\lim \sup A_n$ can be written as
+
+\begin{equation}
+\lambda(\lim \sup A_n) = \lambda(\bigcap_{k=1}^{\infty} \bigcup_{n=k}^{\infty} A_n) = \lim_{k \rightarrow \infty} \lambda(\bigcup_{n=k}^{\infty} A_n)
+\label{ls}
+\end{equation}
+by the downwards uniform convergence theorem \cite{lahiri}. Now by combining equations \ref{eqtolim} and \ref{ls} we get the result.
+\end{proof}
+
+
+\begin{proof}
+For the proof it can be assumed that $\alpha=0$. If this isn't the case replace $f(x)$ by $f(x)x^{-\alpha}$. Suppose there exists sequences $t_n \rightarrow \infty$, $x_n \rightarrow 0$ as $n \rightarrow \infty$ such that
+\begin{equation*}
+\left| \frac{f(t_nx_n)}{f(t_n)} - 1 \right| > \delta
+\end{equation*}
+for all $n \in \mathbb{N}$ and some $\delta>0$. An equivalent condition can be formulated with function $F(x) = \log f(e^x)$(see equation \ref{F}):
+\begin{equation}
+\left| F(t_n+x_n) - F(t_n) \right| > \delta
+\label{assumption}
+\end{equation}
+with possibly different $x_n$, $t_n$ and $\delta$. Let's define sets
+
+\begin{align*}
+Y_{1,n} = \left\{ \ y \in J: \left| F(t_n+y)-F(t_n) \right| > \frac{\delta}{2} \right\}, \\
+Y_{2,n} = \left\{ \ y \in J: \left| F(t_n+x_n)-F(t_n+y) \right| > \frac{\delta}{2} \right\} \quad  \textrm{and} \\
+Z_n = \left\{ \ z: \left| F(t_n+x_n)-F(t_n+x_n-z) \right| > \frac{\delta}{2}, x_n-z \in J \right\} \\
+= \left\{ z: x_n-z \in Y_{2,n} \right\}
+\end{align*}
+where $J \subset \mathbb{R}$ is a finite interval. Next we will prove that if the equation \ref{assumption} holds then pointwise convergence $\lim_{t \rightarrow \infty}F(t+x_0)-F(t)=0$ cannot hold. Pointwise convergence does not hold if some $x_0$ is included in infinitely many $Y_{1,n}$. Reason for this is that
+
+\begin{equation}
+n \geq n_{\varepsilon} \Rightarrow \left| F(t+x_0) - F(t) \right| < \varepsilon, \forall \varepsilon>0, \exists n_{\varepsilon} \in \mathbb{N}
+\label{limit}
+\end{equation}
+cannot hold if $x_0$ is included in infinitely many $Y_{1,n}$. This can be noticed by comparing equation \ref{limit} and the condition of $Y_{1,n}$. Similarly if $x_0$ is included in infinitely many $Z_n$ then pointwise convergence cannot hold, since the condition in $Z_{n}$ can be written as
+
+\begin{equation*}
+\begin{split}
+\left| F(\underbrace{t_n+x_n}_{=u_n})-F(\underbrace{t_n+x_n}_{=u_n}\overbrace{-z}^{=x_0}) \right| > \frac{\delta}{2} \\
+\Leftrightarrow \left| F(u_n+x_0)-F(u_n) \right| > \frac{\delta}{2}
+\end{split}
+\end{equation*}
+where $u_n \rightarrow \infty$.
+
+Notice that $Y_{1,n} \cup Y_{2,n}=J$, since by the equation \ref{assumption} and triangle inequality we have
+
+\begin{equation*}
+\begin{split}
+\delta < \left| F(t_n+x_n) - F(t_n) \right| = \left| (F(t_n+x_n)-F(t_n+y)) + (F(t_n+y)-F(t_n)) \right| \\
+\leq \left| (F(t_n+x_n)-F(t_n+y)) \right| + \left| (F(t_n+y)-F(t_n)) \right| \\
+\Rightarrow \left| (F(t_n+x_n)-F(t_n+y)) \right|>\frac{\delta}{2} \lor \left| (F(t_n+y)-F(t_n)) \right|>\frac{\delta}{2}.
+\end{split}
+\end{equation*}
+Additionally $Y_{1,n}$, $Y_{2,n}$ and $J$ are measurable sets. So by subadditivity of the Lebesque measure we have $\lambda(Y_{1,n}) \geq \frac{\lambda(J)}{2} \lor \lambda(Y_{2,n}) \geq \frac{\lambda(J)}{2}$. By the translation property of the Lebesque measure $\lambda(Z_n)=\lambda(Y_{2,n})$ holds. Thus $\lambda(Y_{1,n}) \geq \frac{\lambda(J)}{2} \lor \lambda(Z_n) \geq \frac{\lambda(J)}{2}$ infinitely often. All $Y_{1,n}$ are subsets of finite interval since $Y_{1,n} \subset J$ for all $n$. Similarly all $Z_n$ are subset of a finite interval since $x_n \rightarrow 0$. Now we can use lemma \ref{fatou}:
+\begin{equation*}
+\begin{split}
+\lambda(\lim \sup Y_{1,n}) \geq \lim \sup \lambda(Y_{1,n}) \geq \frac{\lambda(J)}{2}  \quad \lor \\
+\lambda(\lim \sup Z_{n}) \geq \lim \sup \lambda(Z_{n}) \geq \frac{\lambda(J)}{2}.
+\end{split}
+\label{fatouapply}
+\end{equation*}
+Since at least one of the measures $\lambda(\lim \sup Y_{1,n})$ or $\lambda(\lim \sup Z_{n})$ is greater than zero, we have some $x_0$ that is contained in infinitely many $Y_{1,n}$ or $Z_n$. This was the desired contradiction.
+\end{proof}
+
+With uniform convergence it can be proved that all the regularly varying functions are in certain form:
+
+\begin{theorem}[Karamata's representation theorem]
+If $f \in RV_{\alpha}$ then there exists measurable functions $a: \mathbb{R} \rightarrow \mathbb{R^+}$ and $c: \mathbb{R} \rightarrow \mathbb{R^+}$ with
+\begin{equation*}
+\lim_{t \rightarrow \infty} c(t) = c_0 \  \text{and} \  \lim_{t \rightarrow \infty} a(t) = \alpha
+\end{equation*}
+and $t_0 \in \mathbb{R^+}$ such that for $t > t_0$
+\begin{equation}
+f(t) = c(t) \exp \left(\int_{t_0}^{t}  \frac{a(s)}{s} ds \right)
+\label{karamata}
+\end{equation}
+Conversely, if \ref{karamata} holds, then $f \in RV_{\alpha}$.
+\end{theorem}
+
+For the proof of the above theorem following lemma is needed.
+
+\begin{lemma}
+Suppose $f \in RV_{\alpha}$. There exists $t_0 > 0$ such that $f(t)$ is positive and locally bounded for $t \geq t_0$. If $\alpha \geq -1$ then
+\begin{equation}
+\lim_{t \rightarrow \infty} \frac{tf(t)}{\int_{t_0}^{t}f(s)ds} = \alpha + 1.
+\label{>-1}
+\end{equation}
+If $\alpha<-1$ or $\alpha= -1$ and $\int_{0}^{\infty}ds<\infty$, then
+\begin{equation}
+\lim_{t \rightarrow \infty} \frac{tf(t)}{\int_{t}^{\infty} f(s) ds} = -\alpha - 1.
+\label{<-1}
+\end{equation}
+Conversely, if \ref{>-1} holds for $-1\leq \alpha < \infty$ or \ref{<-1} holds for $-\infty<\alpha<-1$, then $f \in RV_{\alpha}$.
+\end{lemma}
+
+Next we prove the above lemma.
+\begin{proof}
+\end{proof}
 
 \clearpage
 
@@ -486,7 +663,7 @@ The following theorem states that Hill estimator is consistent i.e. estimator co
 
 
 \begin{theorem}
-Let $X_1, X_2,...$ be i.d.d. variables with cdf $F_X$. Suppose $F_X \in D(G_{\gamma})$ with $\gamma > 0$. Then as $n \rightarrow \infty$, $k=k(n)  \rightarrow \infty$, $\frac{k}{n} \rightarrow \infty$,
+Let $X_1, X_2,...$ be i.d.d. variables with cdf $F_X$. Suppose $F_X \in D(G_{\gamma})$ with $\gamma > 0$. Then as $n \rightarrow \infty$, $k=k(n)  \rightarrow \infty$, $\frac{k}{n} \rightarrow 0$,
 
 \begin{equation*}
 \hat{\gamma}_H \xrightarrow{p} \gamma.
@@ -520,7 +697,7 @@ Let $Y_1, Y_2, ...$ be i.d.d. random variables from Pareto distribution $F_Y(y)=
 \label{asconv}
 \end{lemma}
 
-Last lemma that we need says that U(Y) is equal in distribution to X, where Y is random variable from pareto distribution and X is random variable from some distribution $F_X$.
+Last lemma we need says that U(Y) is equal in distribution to X, where Y is random variable from Pareto distribution and X is random variable from some distribution $F_X$.
 
 \begin{lemma}
 Let $Y$ be random variable from Pareto distribution $F_Y=1-\frac{1}{y}$, $y \geq 0$ Let X be random variable with cdf $F_X$ then $U(Y) \overset{d}{=} X$.
@@ -610,7 +787,7 @@ for all $\varepsilon>0$ and $\delta>0$. By taking natural logarithm from both si
 \label{logRV}
 \end{equation}
 
-If $Y_1, Y_2,...$ are i.d.d random variables from Pareto distribution with cdf $F_Y(y) = 1 - \frac{1}{y}$ then $U(Y_i)  \overset{d}{=} X_i$  as stated in theorem \ref{U}. Hence it is sufficient to prove the result for $ \hat{\gamma}_H =  \frac{1}{k} \sum_{i=0}^{k-1} \log(U(Y_{n-i,n})) - \log(U(Y_{n-k,n})) $. For $t = Y_{n-k,n}$ and $x =\frac{Y_{n-i,n}}{Y_{n-k,n}}$ equation \ref{logRV} has the form
+If $Y_1, Y_2,...$ are i.d.d random variables from Pareto distribution with cdf $F_Y(y) = 1 - \frac{1}{y}$ then $U(Y_i)  \overset{d}{=} X_i$  as stated in lemma \ref{U}. Hence it is sufficient to prove the result for $ \hat{\gamma}_H =  \frac{1}{k} \sum_{i=0}^{k-1} \log(U(Y_{n-i,n})) - \log(U(Y_{n-k,n})) $. For $t = Y_{n-k,n}$ and $x =\frac{Y_{n-i,n}}{Y_{n-k,n}}$ equation \ref{logRV} has the form
 
 
 \begin{equation}
@@ -688,6 +865,13 @@ by the weak law of large numbers \cite{rosenthal}. Notice that the expected valu
 
 
 \clearpage
+
+\section{Conclusions}
+
+
+\clearpage
+
+
 %% L\"ahdeluettelo
 
 \phantomsection

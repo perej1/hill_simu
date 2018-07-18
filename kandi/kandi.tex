@@ -531,38 +531,6 @@ for $0<a<b<\infty$.
 \label{uniform}
 \end{theorem}
 
-Furthermore, the lemma below is neccessary for the proof of the theorem \ref{uniform}.
-
-\begin{lemma}[Fatou's lemma for sets]
-For a sequence of Lebesque measurable sets $A_n$:
-\begin{equation*}
-\lambda(\lim \sup A_n) \geq \lim \sup \lambda(A_n)
-\end{equation*}
-if $\lambda(\bigcup_{n=k}^{\infty}A_n) < \infty$ for some $k \geq 1$.
-\label{fatou}
-\end{lemma}
-
-Here the lemma \ref{fatou} is called "Fatou's lemma for sets" because it is actually a special case of Fatou's lemma \cite{lahiri}. So the above lemma can be proved directly from the Fatou's lemma but we represent a different proof.
-
-\begin{proof}
-By the monotocity of measure we have $\lambda(\bigcup_{n=k}^{\infty}A_n) \geq \lambda(A_j), j \geq k$. This implies that
-
-\begin{equation*}
-\lambda(\bigcup_{n=k}^{\infty}A_n) \geq \sup_{j \geq k} \lambda(A_j)
- \end{equation*}
-\begin{equation}
-\Rightarrow \lim_{n \rightarrow \infty} \lambda(\bigcup_{n=k}^{\infty}A_n) \geq  \lim_{n \rightarrow \infty} \sup_{j \geq k} \lambda(A_j).
-\label{eqtolim}
-\end{equation}
-The $\lim \sup A_n$ can be written as
-
-\begin{equation}
-\lambda(\lim \sup A_n) = \lambda(\bigcap_{k=1}^{\infty} \bigcup_{n=k}^{\infty} A_n) = \lim_{k \rightarrow \infty} \lambda(\bigcup_{n=k}^{\infty} A_n)
-\label{ls}
-\end{equation}
-by the downwards uniform convergence theorem \cite{lahiri}. Now by combining equations \ref{eqtolim} and \ref{ls} we get the result.
-\end{proof}
-
 
 \begin{proof}
 For the proof it can be assumed that $\alpha=0$. If this isn't the case replace $f(x)$ by $f(x)x^{-\alpha}$. Suppose there exists sequences $t_n \rightarrow \infty$, $x_n \rightarrow 0$ as $n \rightarrow \infty$ such that
@@ -607,7 +575,7 @@ Notice that $Y_{1,n} \cup Y_{2,n}=J$, since by the equation \ref{assumption} and
 \Rightarrow \left| (F(t_n+x_n)-F(t_n+y)) \right|>\frac{\delta}{2} \lor \left| (F(t_n+y)-F(t_n)) \right|>\frac{\delta}{2}.
 \end{split}
 \end{equation*}
-Additionally $Y_{1,n}$, $Y_{2,n}$ and $J$ are measurable sets. So by subadditivity of the Lebesque measure we have $\lambda(Y_{1,n}) \geq \frac{\lambda(J)}{2} \lor \lambda(Y_{2,n}) \geq \frac{\lambda(J)}{2}$. By the translation property of the Lebesque measure $\lambda(Z_n)=\lambda(Y_{2,n})$ holds. Thus $\lambda(Y_{1,n}) \geq \frac{\lambda(J)}{2} \lor \lambda(Z_n) \geq \frac{\lambda(J)}{2}$ infinitely often. All $Y_{1,n}$ are subsets of finite interval since $Y_{1,n} \subset J$ for all $n$. Similarly all $Z_n$ are subset of a finite interval since $x_n \rightarrow 0$. Now we can use lemma \ref{fatou}:
+Additionally $Y_{1,n}$, $Y_{2,n}$ and $J$ are measurable sets. So by subadditivity of the Lebesque measure we have $\lambda(Y_{1,n}) \geq \frac{\lambda(J)}{2} \lor \lambda(Y_{2,n}) \geq \frac{\lambda(J)}{2}$. By the translation property of the Lebesque measure $\lambda(Z_n)=\lambda(Y_{2,n})$ holds. Thus $\lambda(Y_{1,n}) \geq \frac{\lambda(J)}{2} \lor \lambda(Z_n) \geq \frac{\lambda(J)}{2}$ infinitely often. All $Y_{1,n}$ are subsets of finite interval since $Y_{1,n} \subset J$ for all $n$. Similarly all $Z_n$ are subset of a finite interval since $x_n \rightarrow 0$. Hence by Fatou's lemma \cite{lahiri}:
 \begin{equation*}
 \begin{split}
 \lambda(\lim \sup Y_{1,n}) \geq \lim \sup \lambda(Y_{1,n}) \geq \frac{\lambda(J)}{2}  \quad \lor \\
@@ -628,9 +596,9 @@ If $f \in RV_{\alpha}$ then there exists measurable functions $a: \mathbb{R} \ri
 and $t_0 \in \mathbb{R^+}$ such that for $t > t_0$
 \begin{equation}
 f(t) = c(t) \exp \left(\int_{t_0}^{t}  \frac{a(s)}{s} ds \right)
-\label{karamata}
 \end{equation}
 Conversely, if \ref{karamata} holds, then $f \in RV_{\alpha}$.
+\label{karamata}
 \end{theorem}
 
 For the proof of the above theorem following lemma is needed.
@@ -647,11 +615,141 @@ If $\alpha<-1$ or $\alpha= -1$ and $\int_{0}^{\infty}ds<\infty$, then
 \label{<-1}
 \end{equation}
 Conversely, if \ref{>-1} holds for $-1\leq \alpha < \infty$ or \ref{<-1} holds for $-\infty<\alpha<-1$, then $f \in RV_{\alpha}$.
+\label{karamlemma}
 \end{lemma}
 
 Next we prove the above lemma.
 \begin{proof}
+First we prove the equation \ref{>-1}. Suppose that $f \in RV_{\alpha}$. Then by theorem \ref{uniform} there exists $t_0$ and $c$ such that $f(tx)/t<c$ when $t \geq t_0$, $x \in [1,2]$. Then for $t \in [2^nt_0, 2^{n+1}t_0]$ we have
+\begin{equation}
+\frac{t}{t_0}=\frac{f(t)}{f(2^{-1}t)}\frac{f(2^{-1}t)}{f(2^{-2}t)} ... \frac{f(2^{-n}t)}{f(t_0)} < c^{n+1}.
+\label{fracs}
+\end{equation}
+\label{fracs}
+Equation \ref{fracs} is true since every fraction can be written as $f(tx)/f(t)$. This implies that for $t\geq t_0$ $f(t)$ is both locally bounded and $\int_{t_0}^{t}f(s)ds<\infty$. Consider a function $F(t) = \int_{t_0}^{t}f(s)ds$.We start by proving that $F(t) = \infty$ as $t \rightarrow \infty$ when $\alpha>-1$. First notice that $f(2s) \geq 2^{-1}f(s)$ for sufficiently large $s$. For $n\geq n_0$
+\begin{equation*}
+\int_{2^n}^{2^{n+1}} f(s)ds = 2\int_{2^{n-1}}^{2^{n}} f(2s)ds \geq \int_{2^{n-1}}^{2^n} f(s)ds
+\end{equation*}
+by the change on variables. Then by induction we have
+\begin{equation*}
+\int_{2^n}^{2^{n+1}} f(s)ds \geq \int_{2^{n_0}}^{2^{n_0+1}} f(s)ds = C > 0.
+\end{equation*}
+Thus
+\begin{equation*}
+\int_{2^{n_0}}^{\infty} f(s)ds = \sum_{n=n_0}^{\infty} \int_{2^n}^{2^{n+1}} f(s)ds \geq \sum_{n=n_0}^{\infty} \int_{2^n_0}^{2^{n_0+1}} f(s)ds = \sum_{n=n_0}^{\infty} C = \infty
+\end{equation*}
+Next we prove that $F \in RV_{\alpha+1}$ for $\alpha>-1$. Let $\varepsilon>0$ and $t_1=t_1(\varepsilon)$. Then $f(xt)<(1+\varepsilon)x^{\alpha}f(t)$ for $t>t_1$. Since $\lim_{t \rightarrow \infty} F(t)=\infty$,
+\begin{equation*}
+\frac{F(tx)}{F(t)} = \frac{\int_{t_0}^{tx} f(s)ds}{\int_{t_0}^{t} f(t)ds} \sim \frac{\int_{t_1x}^{tx} f(s)ds}{\int_{t_1}^{t} f(t)ds}=\frac{x\int_{t_1}^{t} f(xs)ds}{\int_{t_1}^{t} f(t)ds} < \frac{x\int_{t_1}^{t}(1+\varepsilon)x^{\alpha} f(s)ds}{\int_{t_1}^{t} f(t)ds} = (1+ \varepsilon)x^{\alpha+1}
+\end{equation*}
+by the change of variables.A similar lower bound for $F(tx)/F(t)$ can be derived by using $f(xt)<(1-\varepsilon)x^{\alpha}f(t)$ as $t > t_1$. So we have that $F \in RV_{\alpha}$ for $\alpha>-1$. In the case $\alpha=-1$ same proof applies if $F(t) \rightarrow \infty$. If $F(t)$ has a finite limit then $F \in RV_0$. Now for all $\alpha$
+\begin{equation*}
+\begin{split}
+\frac{F(xt)-F(t)}{tf(t)} = \frac{1}{tf(t)} \int_{t}^{tx}f(u)du = \frac{t}{tf(t)} \int_{1}^{x} f(ut)du = \int_1^x \frac{f(ut)}{f(t)}du \\
+\rightarrow \int_1^x u^{\alpha}du = \frac{x^{\alpha+1}-1}{\alpha+1}, \quad t \rightarrow \infty
+\end{split}
+\end{equation*}
+by the theorem \ref{uniform} and change of variables. On the other hand 
+\begin{equation*}
+\begin{split}
+\frac{F(xt)-F(t)}{tf(t)} = \frac{F(t)}{tf(t)}\left(\underbrace{\frac{F(tx)}{F(t)}}_{\rightarrow x^{\alpha+1}} - 1\right) \rightarrow \frac{x^{\alpha+1}-1}{\alpha+1} \\
+\Rightarrow \lim_{t \rightarrow \infty} \frac{tf(t)}{F(t)}= \alpha + 1
+\end{split}
+\end{equation*}
+Now we have proven \ref{>-1}. Next we prove \ref{<-1}. Let's define
+\begin{equation*}
+G(t) = \int_{t}^{\infty} f(s)ds
+\end{equation*}
+In the case $\alpha<-1$ there exists $\delta>0$ such that $f(2s) \leq 2^{-1-\delta}f(s)$ for sufficiently large s. Now we can prove the finiteness of $lim_{t \rightarrow} G(t)$ in a similar way as the infinitess of $\lim_{t \rightarrow \infty F(t)}$ in equations \ref{varchange} and \ref{induction}. For sufficiently large $n_1$
+\begin{equation*}
+\begin{split}
+\int_{2^{n}}^{2^{n+1}} f(s)ds = 2 \int_{2^{n-1}}^{2^{n}} f(s)ds \leq 2^{-\delta} \int_{2^{n-1}}^{2^n} f(s)ds \leq \\ ... \leq 2^{-\delta(n-n_1)} \int_{2^{n_1}}^{2^{n_1+1}} f(s)ds = 2^{-\delta(n-n_1)} C'
+\end{split}
+\end{equation*}
+by induction and change of variables. Then
+\begin{equation*}
+\int_{2^{n_1}}^{\infty} f(s)ds = \sum_{n=n_1}^{\infty} \int_{2^{n}}^{2^{n+1}} f(s)ds \leq C' \sum_{n=n_1}^{\infty} 2^{-\delta(n-n_1)}<\infty,
+\end{equation*}
+since the sum in the last expression is geometric sum. Now rest of the proof is analogous. Next we prove the converse results. Suppose that equation \ref{>-1} holds. Let's define a function
+\begin{equation*}
+b(t) = t\frac{f(t)}{F(t)}
+\end{equation*}
+Without loss of generality we may suppose that $f(t)>0$ and $t>0$. Integrating both sides of $b(t)/t=f(t)/F(t)$ we obtain for some real $c_1$ and for all $x>0$
+\begin{equation}
+\int_{1}^{x} \frac{b(t)}{t}dt = \log F(x) + c_1
+\label{int b/t}
+\end{equation}
+since by change of variables
+\begin{equation*}
+\int_{1}^{x} \frac{f(t)}{F(t)}dt = \int_{F(1)}^{F(x)} \frac{1}{u}du = \log F(x) + \underbrace{\log F(1)}_{=c_1}
+\end{equation*}
+From the equation \ref{int b/t} we have
+\begin{equation*}
+F(t) = \exp \left( \int_1^x \frac{b(t)}{t}dt-c_1 \right) =\underbrace{\exp(-c_1)}_{=c} \exp \left( \int_1^x \frac{b(t)}{t}dt\right) =c \exp \left( \int_1^x \frac{b(t)}{t}dt\right)
+\end{equation*}
+Then by using the definition of f again
+\begin{equation}
+f(x)=x^{-1}b(x)F(x)=cb(x)\exp \left( -\int_1^x \frac{1}{t} \right) \exp \left( \int_1^x \frac{b(t)}{t} \right)=cb(x)\exp \left( \int_1^x \frac{b(t)-1}{t}dt\right),
+\label{frep}
+\end{equation}
+for all $x>0$. Hence for all $x,t>0$
+\begin{equation*}
+\begin{split}
+\frac{f(tx)}{f(t)}=\frac{b(tx)\exp \left( \int_1^{tx} \frac{b(s)-1}{s}ds\right)}{b(tx)\exp \left( \int_1^{t} \frac{b(s)-1}{s}ds\right)} = \frac{b(tx)}{b(t)} \exp \left( \int_1^{tx} \frac{b(s)-1}{s}ds - \int_1^{t} \frac{b(s)-1}{s}ds\right) \\
+= \frac{b(tx)}{b(t)} \exp \left( \int_{t}^{tx} \frac{b(s)-1}{s}ds\right)
+= \frac{b(tx)}{b(t)} \exp \left( \int_{1}^{x} \frac{b(ts)-1}{s}ds\right),
+\end{split}
+\end{equation*}
+by the change of variables. By the assumption (equation \ref{>-1}) $b(t) \rightarrow \alpha + 1$ so $b(tx)/b(t) \rightarrow 1$. For sufficiently large $t$
+\begin{equation*}
+\exp \left( \int_{1}^{x} \frac{b(ts)-1}{s}ds\right) \approx \exp \left( \int_{1}^{x} \frac{\alpha}{s}ds\right)=\exp \left(\alpha \log x \right) = x^{\alpha}
+\end{equation*}
+The last statement (equation \ref{<-1} implies that $F \in RV_{\alpha}$) can be proved in a similar way.
 \end{proof}
+
+Next we prove the theorem \ref{karamata}.
+\begin{proof}
+Suppose $f \in RV_{\alpha}$. The function $t^{-\alpha}f(t)$ is slowly varying and
+\begin{equation}
+t^{-\alpha}f(t) = cb(x) \exp \left( \int_{1}^{x} \frac{b(s)-1}{s}ds \right)
+\end{equation}
+by the equation \ref{frep}. Now by lemma \ref{karamlemma} $b(x) \rightarrow 0$ and function $t^{-\alpha}f(t)$ has the representation as in theorem \ref{karamata} with $a(t)=b(t)-1$ and $c(t)=cb(t)$. Then f has such a representation with $a(s)$ replaced by $a(s)+ \alpha$ and $c(t)$ replaced by $t_{0}^{\alpha}c(t)$.
+\end{proof}
+Next corollary will be crucial in the proof of the consistency of the Hill estimator.
+
+\begin{corollary}
+Suppose $f \in RV_{\alpha}$. If $\varepsilon, \delta>0$ are arbitrary, there exists $t_0=t_0(\varepsilon, \delta)$ such that for $t\geq t_0$, $tx \geq t_0$,
+\begin{equation*}
+(1-\varepsilon)x^{\alpha-\delta}<\frac{f(tx)}{f(t)}<(1+\varepsilon)x^{\alpha+\delta}
+\end{equation*}
+\end{corollary}
+
+Above corollary follows from the theorem \ref{karamata}.
+
+\begin{proof}
+By the theorem \ref{karamata}
+\begin{equation*}
+\frac{f(tx)}{f(t)}=\frac{c(tx)}{c(t)}\exp \left(\int_1^x \frac{a(st)}{s}ds \right)
+\end{equation*}
+The function c(t) converges to a constant. Hence $c \in RV_0$ so $\frac{c(tx)}{t}\rightarrow 1$ as $t \rightarrow \infty$. Furthermore, $a(s) \rightarrow \alpha$ as $t \rightarrow \infty$.Now we can choose $t_0$ such that $\alpha-\delta<a(st)<\alpha-\delta$ and $1-\varepsilon<\frac{c(tx)}{c(t)}<1+\varepsilon$. This implies that
+\begin{equation*}
+\begin{split}
+(1+\varepsilon)\int_1^x \frac{\alpha-\delta}{s}ds<\frac{f(tx)}{f(t)}<(1-\varepsilon)\int_1^x \frac{\alpha+\delta}{s}ds \\
+\Rightarrow (1+\varepsilon)\exp \left( \log \left( x^{\alpha+\delta} \right) \right)<\frac{f(tx)}{f(t)}<(1-\varepsilon)\exp \left( \log \left( x^{\alpha+\delta} \right) \right) \\
+\Rightarrow (1+\varepsilon)x^{\alpha-\delta}<\frac{f(tx)}{f(t)}<(1-\varepsilon)x^{\alpha-\delta}
+\end{split}
+\end{equation*}
+
+
+
+
+
+
+\end{proof}
+
+
+
+
 
 \clearpage
 

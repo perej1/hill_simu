@@ -6,11 +6,6 @@
 #SBATCH --job-name=simujob            # Name of the job
 #SBATCH --output=./output/simujob.%j.out
 
-# If modules aren't loaded, load them.
-# module load python
-# module load numpy
-# module load scipy
-
 cd $WRKDIR
 ki=$(srun python ksqrt.py -n $SLURM_ARRAY_TASK_ID)
 srun python hillSim.py -n $SLURM_ARRAY_TASK_ID -r 10 -k `echo ${ki}` -f ./data -d pareto

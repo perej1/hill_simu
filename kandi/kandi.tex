@@ -609,7 +609,7 @@ Suppose $f \in RV_{\alpha}$. There exists $t_0 > 0$ such that $f(t)$ is positive
 \lim_{t \rightarrow \infty} \frac{tf(t)}{\int_{t_0}^{t}f(s)ds} = \alpha + 1.
 \label{>-1}
 \end{equation}
-If $\alpha<-1$ or $\alpha= -1$ and $\int_{0}^{\infty}ds<\infty$, then
+If $\alpha<-1$ or $\alpha= -1$ and $\int_{0}^{\infty}f(s)ds<\infty$, then
 \begin{equation}
 \lim_{t \rightarrow \infty} \frac{tf(t)}{\int_{t}^{\infty} f(s) ds} = -\alpha - 1.
 \label{<-1}
@@ -622,27 +622,29 @@ Next we prove the above lemma.
 \begin{proof}
 First we prove the equation \ref{>-1}. Suppose that $f \in RV_{\alpha}$. Then by theorem \ref{uniform} there exists $t_0$ and $c$ such that $f(tx)/t<c$ when $t \geq t_0$, $x \in [1,2]$. Then for $t \in [2^nt_0, 2^{n+1}t_0]$ we have
 \begin{equation}
-\frac{t}{t_0}=\frac{f(t)}{f(2^{-1}t)}\frac{f(2^{-1}t)}{f(2^{-2}t)} ... \frac{f(2^{-n}t)}{f(t_0)} < c^{n+1}.
+\frac{f(t)}{f(t_0)}=\frac{f(t)}{f(2^{-1}t)}\frac{f(2^{-1}t)}{f(2^{-2}t)} ... \frac{f(2^{-n}t)}{f(t_0)} < c^{n+1}.
 \label{fracs}
 \end{equation}
-\label{fracs}
-Equation \ref{fracs} is true since every fraction can be written as $f(tx)/f(t)$. This implies that for $t\geq t_0$ $f(t)$ is both locally bounded and $\int_{t_0}^{t}f(s)ds<\infty$. Consider a function $F(t) = \int_{t_0}^{t}f(s)ds$.We start by proving that $F(t) = \infty$ as $t \rightarrow \infty$ when $\alpha>-1$. First notice that $f(2s) \geq 2^{-1}f(s)$ for sufficiently large $s$. For $n\geq n_0$
-\begin{equation*}
+Equation \ref{fracs} is true since every fraction can be written as $f(tx)/f(t)$. This implies that for $t\geq t_0$ $f(t)$ is both locally bounded and $\int_{t_0}^{t}f(s)ds<\infty$. Consider a function $F(t) = \int_{t_0}^{t}f(s)ds$.We start by proving that $\lim_{t \rightarrow \infty} F(t) = \infty$ when $\alpha>-1$. First notice that $f(2s) \geq 2^{-1}f(s)$ for sufficiently large $s$. For $n\geq n_0$
+\begin{equation}
 \int_{2^n}^{2^{n+1}} f(s)ds = 2\int_{2^{n-1}}^{2^{n}} f(2s)ds \geq \int_{2^{n-1}}^{2^n} f(s)ds
-\end{equation*}
+\label{varchange}
+\end{equation}
 by the change on variables. Then by induction we have
-\begin{equation*}
+\begin{equation}
 \int_{2^n}^{2^{n+1}} f(s)ds \geq \int_{2^{n_0}}^{2^{n_0+1}} f(s)ds = C > 0.
-\end{equation*}
+\label{induction}
+\end{equation}
 Thus
-\begin{equation*}
+\begin{equation}
 \int_{2^{n_0}}^{\infty} f(s)ds = \sum_{n=n_0}^{\infty} \int_{2^n}^{2^{n+1}} f(s)ds \geq \sum_{n=n_0}^{\infty} \int_{2^n_0}^{2^{n_0+1}} f(s)ds = \sum_{n=n_0}^{\infty} C = \infty
-\end{equation*}
+\label{infinite}
+\end{equation}
 Next we prove that $F \in RV_{\alpha+1}$ for $\alpha>-1$. Let $\varepsilon>0$ and $t_1=t_1(\varepsilon)$. Then $f(xt)<(1+\varepsilon)x^{\alpha}f(t)$ for $t>t_1$. Since $\lim_{t \rightarrow \infty} F(t)=\infty$,
 \begin{equation*}
 \frac{F(tx)}{F(t)} = \frac{\int_{t_0}^{tx} f(s)ds}{\int_{t_0}^{t} f(t)ds} \sim \frac{\int_{t_1x}^{tx} f(s)ds}{\int_{t_1}^{t} f(t)ds}=\frac{x\int_{t_1}^{t} f(xs)ds}{\int_{t_1}^{t} f(t)ds} < \frac{x\int_{t_1}^{t}(1+\varepsilon)x^{\alpha} f(s)ds}{\int_{t_1}^{t} f(t)ds} = (1+ \varepsilon)x^{\alpha+1}
 \end{equation*}
-by the change of variables.A similar lower bound for $F(tx)/F(t)$ can be derived by using $f(xt)<(1-\varepsilon)x^{\alpha}f(t)$ as $t > t_1$. So we have that $F \in RV_{\alpha}$ for $\alpha>-1$. In the case $\alpha=-1$ same proof applies if $F(t) \rightarrow \infty$. If $F(t)$ has a finite limit then $F \in RV_0$. Now for all $\alpha$
+by the change of variables. A similar lower bound for $F(tx)/F(t)$ can be derived by using $f(xt)<(1-\varepsilon)x^{\alpha}f(t)$ as $t > t_1$. So we have that $F \in RV_{\alpha+1}$ for $\alpha>-1$. In the case $\alpha=-1$ and $F(t) \rightarrow \infty$ same proof applies. If $\alpha=-1$ and $F(t)$ has a finite limit and $F \in RV_0$. Now for all $\alpha$
 \begin{equation*}
 \begin{split}
 \frac{F(xt)-F(t)}{tf(t)} = \frac{1}{tf(t)} \int_{t}^{tx}f(u)du = \frac{t}{tf(t)} \int_{1}^{x} f(ut)du = \int_1^x \frac{f(ut)}{f(t)}du \\
@@ -656,11 +658,11 @@ by the theorem \ref{uniform} and change of variables. On the other hand
 \Rightarrow \lim_{t \rightarrow \infty} \frac{tf(t)}{F(t)}= \alpha + 1
 \end{split}
 \end{equation*}
-Now we have proven \ref{>-1}. Next we prove \ref{<-1}. Let's define
+Now we have proven \ref{>-1}. Next we prove equation \ref{<-1}. Let's define
 \begin{equation*}
 G(t) = \int_{t}^{\infty} f(s)ds
 \end{equation*}
-In the case $\alpha<-1$ there exists $\delta>0$ such that $f(2s) \leq 2^{-1-\delta}f(s)$ for sufficiently large s. Now we can prove the finiteness of $lim_{t \rightarrow} G(t)$ in a similar way as the infinitess of $\lim_{t \rightarrow \infty F(t)}$ in equations \ref{varchange} and \ref{induction}. For sufficiently large $n_1$
+In the case $\alpha<-1$ there exists $\delta>0$ such that $f(2s) \leq 2^{-1-\delta}f(s)$ for sufficiently large s. Now we can prove the finiteness of $\lim_{t \rightarrow \infty} G(t)$ in a similar way as the infinitess of $\lim_{t \rightarrow \infty} F(t)$ in equations \ref{varchange}, \ref{induction} and \ref{infinite}. For sufficiently large $n_1$
 \begin{equation*}
 \begin{split}
 \int_{2^{n}}^{2^{n+1}} f(s)ds = 2 \int_{2^{n-1}}^{2^{n}} f(s)ds \leq 2^{-\delta} \int_{2^{n-1}}^{2^n} f(s)ds \leq \\ ... \leq 2^{-\delta(n-n_1)} \int_{2^{n_1}}^{2^{n_1+1}} f(s)ds = 2^{-\delta(n-n_1)} C'
@@ -668,29 +670,35 @@ In the case $\alpha<-1$ there exists $\delta>0$ such that $f(2s) \leq 2^{-1-\del
 \end{equation*}
 by induction and change of variables. Then
 \begin{equation*}
-\int_{2^{n_1}}^{\infty} f(s)ds = \sum_{n=n_1}^{\infty} \int_{2^{n}}^{2^{n+1}} f(s)ds \leq C' \sum_{n=n_1}^{\infty} 2^{-\delta(n-n_1)}<\infty,
+\begin{split}
+\int_{2^{n_1}}^{\infty} f(s)ds = \sum_{n=n_1}^{\infty} \int_{2^{n}}^{2^{n+1}} f(s)ds \leq C' \sum_{n=n_1}^{\infty} 2^{-\delta(n-n_1)} \\
+=C' \sum_{k=0}^{\infty} \left( \frac{1}{2^{\delta}}\right)^k = \frac{C'}{1-1/2^{\delta}}<\infty,
+\end{split}
 \end{equation*}
-since the sum in the last expression is geometric sum. Now rest of the proof is analogous. Next we prove the converse results. Suppose that equation \ref{>-1} holds. Let's define a function
+Now rest of the proof is analogous. Next we prove the converse results. Suppose that equation \ref{>-1} holds. Let's define a function
 \begin{equation*}
 b(t) = t\frac{f(t)}{F(t)}
 \end{equation*}
 Without loss of generality we may suppose that $f(t)>0$ and $t>0$. Integrating both sides of $b(t)/t=f(t)/F(t)$ we obtain for some real $c_1$ and for all $x>0$
 \begin{equation}
-\int_{1}^{x} \frac{b(t)}{t}dt = \log F(x) + c_1
+\int_{1}^{x} \frac{b(t)}{t}dt = \log F(x) + c_1,
 \label{int b/t}
 \end{equation}
 since by change of variables
 \begin{equation*}
-\int_{1}^{x} \frac{f(t)}{F(t)}dt = \int_{F(1)}^{F(x)} \frac{1}{u}du = \log F(x) + \underbrace{\log F(1)}_{=c_1}
+\int_{1}^{x} \frac{f(t)}{F(t)}dt = \int_{F(1)}^{F(x)} \frac{1}{u}du = \log F(x) + \underbrace{\log F(1)}_{=c_1}.
 \end{equation*}
 From the equation \ref{int b/t} we have
 \begin{equation*}
-F(t) = \exp \left( \int_1^x \frac{b(t)}{t}dt-c_1 \right) =\underbrace{\exp(-c_1)}_{=c} \exp \left( \int_1^x \frac{b(t)}{t}dt\right) =c \exp \left( \int_1^x \frac{b(t)}{t}dt\right)
+F(t) = \exp \left( \int_1^x \frac{b(t)}{t}dt-c_1 \right) =\underbrace{\exp(-c_1)}_{=c} \exp \left( \int_1^x \frac{b(t)}{t}dt\right) =c \exp \left( \int_1^x \frac{b(t)}{t}dt\right).
 \end{equation*}
 Then by using the definition of f again
 \begin{equation}
-f(x)=x^{-1}b(x)F(x)=cb(x)\exp \left( -\int_1^x \frac{1}{t} \right) \exp \left( \int_1^x \frac{b(t)}{t} \right)=cb(x)\exp \left( \int_1^x \frac{b(t)-1}{t}dt\right),
+\begin{split}
+f(x)=x^{-1}b(x)F(x)=cb(x)\exp \left( -\int_1^x \frac{1}{t} \right) \exp \left( \int_1^x \frac{b(t)}{t} \right)\\
+=cb(x)\exp \left( \int_1^x \frac{b(t)-1}{t}dt\right),
 \label{frep}
+\end{split}
 \end{equation}
 for all $x>0$. Hence for all $x,t>0$
 \begin{equation*}
@@ -710,10 +718,40 @@ The last statement (equation \ref{<-1} implies that $F \in RV_{\alpha}$) can be 
 Next we prove the theorem \ref{karamata}.
 \begin{proof}
 Suppose $f \in RV_{\alpha}$. The function $t^{-\alpha}f(t)$ is slowly varying and
+\begin{equation*}
+t^{-\alpha}f(t) = cb(t) \exp \left( \int_{1}^{t} \frac{b(s)-1}{s}ds \right)
+\end{equation*}
+by the equation \ref{frep}. Now by lemma \ref{karamlemma} $b(t) \rightarrow 1$ and function $t^{-\alpha}f(t)$ has the representation as in theorem \ref{karamata} with $a(t)=b(t)-1$ and $c(t)=cb(t)$. Then
+
+\begin{equation*}
+f(t) = c(t)t^{\alpha} \exp \left(  \int_{t_0}^{t} \frac{a(s)}{s}ds  \right)
+\end{equation*}
+Notice that we can write $t^{\alpha}$ as $\exp \left(  \int_{1}^{t} \frac{\alpha}{s}ds  \right)$. Then $f$ has the form
+\begin{equation*}
+\begin{split}
+f(t) = c(t) \exp \left(  \int_{t_0}^{t} \frac{a(s)}{s}ds + \int_{1}^{t} \frac{\alpha}{s}ds  \right) \\
+= c(t) \exp \left(  \int_{t_0}^{t} \frac{a(s)+\alpha}{s}ds + \int_{1}^{t_0} \frac{\alpha}{s}ds  \right)\\
+= c(t) \exp \left(  \int_{t_0}^{t} \frac{a(s)+\alpha}{s}ds \right) \exp \left( \log t_0^{\alpha}  \right)
+\end{split}
+\end{equation*}
 \begin{equation}
-t^{-\alpha}f(t) = cb(x) \exp \left( \int_{1}^{x} \frac{b(s)-1}{s}ds \right)
+= \underbrace{t_0^{\alpha}c(t)}_{=c'} \exp \left(  \int_{t_0}^{t} \frac{\overbrace{a(s)+\alpha}^{=a'}}{s}ds \right)
+\label{fkaramata}
 \end{equation}
-by the equation \ref{frep}. Now by lemma \ref{karamlemma} $b(x) \rightarrow 0$ and function $t^{-\alpha}f(t)$ has the representation as in theorem \ref{karamata} with $a(t)=b(t)-1$ and $c(t)=cb(t)$. Then f has such a representation with $a(s)$ replaced by $a(s)+ \alpha$ and $c(t)$ replaced by $t_{0}^{\alpha}c(t)$.
+From the equation \ref{fkaramata} it can be seen that $f(t)$ has the same representation as in the theorem \ref{karamata} when $a$ is replaced by $a'$ and $c$ is replaced by $c'$.
+
+
+
+
+
+
+
+
+
+
+
+
+
 \end{proof}
 Next corollary will be crucial in the proof of the consistency of the Hill estimator.
 
@@ -731,12 +769,12 @@ By the theorem \ref{karamata}
 \begin{equation*}
 \frac{f(tx)}{f(t)}=\frac{c(tx)}{c(t)}\exp \left(\int_1^x \frac{a(st)}{s}ds \right)
 \end{equation*}
-The function c(t) converges to a constant. Hence $c \in RV_0$ so $\frac{c(tx)}{t}\rightarrow 1$ as $t \rightarrow \infty$. Furthermore, $a(s) \rightarrow \alpha$ as $t \rightarrow \infty$.Now we can choose $t_0$ such that $\alpha-\delta<a(st)<\alpha-\delta$ and $1-\varepsilon<\frac{c(tx)}{c(t)}<1+\varepsilon$. This implies that
+The function c(t) converges to a constant. Hence $c \in RV_0$ so $c(tx)/c(t)\rightarrow 1$ as $t \rightarrow \infty$. Furthermore, $a(s) \rightarrow \alpha$ as $t \rightarrow \infty$. Now we can choose such a $t_0$ that $\alpha-\delta<a(st)<\alpha-\delta$ and $1-\varepsilon<\frac{c(tx)}{c(t)}<1+\varepsilon$. This implies that
 \begin{equation*}
 \begin{split}
-(1+\varepsilon)\int_1^x \frac{\alpha-\delta}{s}ds<\frac{f(tx)}{f(t)}<(1-\varepsilon)\int_1^x \frac{\alpha+\delta}{s}ds \\
-\Rightarrow (1+\varepsilon)\exp \left( \log \left( x^{\alpha+\delta} \right) \right)<\frac{f(tx)}{f(t)}<(1-\varepsilon)\exp \left( \log \left( x^{\alpha+\delta} \right) \right) \\
-\Rightarrow (1+\varepsilon)x^{\alpha-\delta}<\frac{f(tx)}{f(t)}<(1-\varepsilon)x^{\alpha-\delta}
+(1-\varepsilon)\int_1^x \frac{\alpha-\delta}{s}ds<\frac{f(tx)}{f(t)}<(1+\varepsilon)\int_1^x \frac{\alpha+\delta}{s}ds \\
+\Rightarrow (1-\varepsilon)\exp \left( \log \left( x^{\alpha-\delta} \right) \right)<\frac{f(tx)}{f(t)}<(1+\varepsilon)\exp \left( \log \left( x^{\alpha+\delta} \right) \right) \\
+\Rightarrow (1-\varepsilon)x^{\alpha-\delta}<\frac{f(tx)}{f(t)}<(1+\varepsilon)x^{\alpha+\delta}
 \end{split}
 \end{equation*}
 

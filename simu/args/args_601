@@ -1,0 +1,1 @@
+hillSim.py -n 15100 -r 2000 -k 122 -d cauchy -f ./data

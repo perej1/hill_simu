@@ -8,6 +8,7 @@ import numpy as np
 import pandas as pd
 import argparse as arg
 import matplotlib.pyplot as plt
+from matplotlib.ticker import ScalarFormatter, FormatStrFormatter
 
 
 def pplot(n1, n2, s, f1, f2, r, g, d):
@@ -36,15 +37,18 @@ def pplot(n1, n2, s, f1, f2, r, g, d):
         q_3 = np.append(q_3, data_i[d].quantile(0.75))
 
     fig, ax = plt.subplots()
-    plt.plot(n, q_1, label='1st quantile')
-    plt.plot(n, q_2, label='median')
-    plt.plot(n, q_3, label='3rd quantile')
-    plt.plot(n, val, label=r'$ \gamma $')
+    plt.rcParams['font.sans-serif'] = 'Times New Roman' 
+    plt.rcParams["font.family"] = 'Times New Roman'
+    ax.set_xlim(left=0, right=20000)
+    ax.plot(n, q_1, '-r', lw=1, label='1st quantile')
+    ax.plot(n, q_2, '-k', lw=1, label='median')
+    ax.plot(n, q_3, '-b', lw=1, label='3rd quantile')
+    ax.plot(n, val, '--g', alpha=0.75, lw=1, label=r'$ \gamma $')
     ax.set_ylabel(r'$\hat{\gamma}$')
     ax.set_xlabel('n')
     ax.legend()
-    ax.set_title('Asymptotic Convergence of the Hill Estimator')
-    plt.savefig(f2)
+    ax.set_title('Convergence of the Hill Estimator (%s)' % d.capitalize())
+    plt.savefig(f2, format='pdf', dpi=1000)
 
 
 def main():

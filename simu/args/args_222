@@ -1,0 +1,1 @@
+hillSim.py -n 5650 -r 2000 -k 75 -d pareto -f ./data

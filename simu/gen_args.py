@@ -2,6 +2,11 @@
 Created on July 20, 2018
 
 @author: perej1
+
+Script for creating input arguments for Triton simulation.
+one combination of arguments is saved in a single file.
+E.g. hillSim.py -n 500 -r 2000 -k 22 -d pareto -f ./data.
+Furthermore the free parameter k=o(n) is defined here.
 '''
 import numpy as np
 

@@ -8,18 +8,17 @@ import numpy as np
 import pandas as pd
 import argparse as arg
 import matplotlib.pyplot as plt
-from matplotlib.ticker import ScalarFormatter, FormatStrFormatter
 
 
 def pplot(n1, n2, s, f1, f2, r, g, d):
     '''
-    function for plotting gamma_h -> gamma convergence in probability.
-    n1 = smallest n
-    n2 = largest n
+    function for plotting Hill estimator convergence in probability.
+    n1 = smallest sample size
+    n2 = largest sample size
     s = step
     f1 = file path for data
     f2 = file path and name for the plot
-    r = sample size
+    r = number of estimates in one csv
     g = true value of the extreme value index
     d = distribution
     '''
@@ -37,7 +36,7 @@ def pplot(n1, n2, s, f1, f2, r, g, d):
         q_3 = np.append(q_3, data_i[d].quantile(0.75))
 
     fig, ax = plt.subplots()
-    plt.rcParams['font.sans-serif'] = 'Times New Roman' 
+    plt.rcParams['font.sans-serif'] = 'Times New Roman'
     plt.rcParams["font.family"] = 'Times New Roman'
     ax.set_xlim(left=0, right=20000)
     ax.plot(n, q_1, '-r', lw=1, label='1st quantile')
@@ -54,7 +53,7 @@ def pplot(n1, n2, s, f1, f2, r, g, d):
 def main():
 
     parser = arg.ArgumentParser(
-        description="Plots stuff"
+        description="Plots graphs about Hill estimator"
     )
     parser.add_argument("-n1", help="lower bound", type=int)
     parser.add_argument("-n2", help="upper bound", type=int)

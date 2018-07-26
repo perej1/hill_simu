@@ -39,9 +39,9 @@ def pplot(n1, n2, s, f1, f2, r, g, d):
     plt.rcParams['font.sans-serif'] = 'Times New Roman'
     plt.rcParams["font.family"] = 'Times New Roman'
     ax.set_xlim(left=0, right=20000)
-    ax.plot(n, q_1, '-r', lw=1, label='1st quantile')
+    ax.plot(n, q_1, '-r', lw=1, label='1st quartile')
     ax.plot(n, q_2, '-k', lw=1, label='median')
-    ax.plot(n, q_3, '-b', lw=1, label='3rd quantile')
+    ax.plot(n, q_3, '-b', lw=1, label='3rd quartile')
     ax.plot(n, val, '--g', alpha=0.75, lw=1, label=r'$ \gamma $')
     ax.set_ylabel(r'$\hat{\gamma}$')
     ax.set_xlabel('n')

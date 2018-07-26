@@ -164,6 +164,8 @@
 \usepackage{bbm}
 \usepackage{graphicx}
 \usepackage{float}
+\usepackage{chngcntr} % Appendixista etuliite figureihin
+\usepackage{ctable}
 
 %% Math fonts, symbols, and formatting; these are usually needed
 \usepackage{amsfonts,amssymb,amsbsy,amsmath,amsthm}
@@ -457,7 +459,7 @@ Now it can be shown that this approach is not very useful since
 \end{cases}
 \end{gather*}
 
-To achieve a nondegerate distribution it is necessary to normalize the sample maxima $M_n$. After normalization a nondegenate distribution is gained as stated in the Fisher-Tippett-Gnedenko Theorem \cite{deHaan}.
+To achieve a nondegerate distribution it is necessary to normalize the sample maxima $M_n$. After normalization a nondegenate distribution is gained as stated in the Fisher-Tippett-Gnedenko Theorem \cite{fisher}, \cite{gnedenko}.
 
 \begin{theorem}
 There exists real constants $a_n>0$ and $b_n \in \mathbb{R}$ such that 
@@ -494,6 +496,7 @@ In addition, condition \ref{tail} can be written in different form with the $U$ 
 Condition \ref{tail} is equivalent to
 \begin{equation}
 \lim_{t \rightarrow \infty} \frac{U(tx)}{U(t)} = x^{\gamma}, x>0.
+\label{Utail}
 \end{equation}
 \end{corollary}
 
@@ -1000,22 +1003,19 @@ by the weak law of large numbers \cite{rosenthal}. Notice that the expected valu
 \clearpage
 \section{Simulations}
 
-\begin{figure}[H]
-\begin{center}
-\includegraphics[width=\textwidth]{pareto.pdf}
-\caption{testi}
-\label{pareto}
-\end{center}
-\end{figure}
+The consistency of the Hill estimator is verified with simulations. We simulate from Pareto and Cauchy distributions. Cdf of the Pareto distribution is $F(x)=1-\left( \frac{1}{x} \right) ^3$ and the cdf of the Cauchy distribution is $F(x)=\frac{1}{\pi}\arctan(x)$. Corresponding extreme value indexes are 1/3 for Pareto distribution and 1 for Cauchy distribution. This can be checked with equation \ref{tail} or \ref{Utail}.We simulate $N$ sets of $n_i$ observations from both distributions where $n_i=100+50(i-1), i=1,2,...,399$. Hence the sample size is a vector from 100 to 20000 with steps of 50. We mark this vector with $\textbf{n}=(100,150,...,20000)$. The number of samples $N$ is set to 2000. So for each $n_i$ we calculate N number of estimates $\hat{\gamma}$ with $k=k(n)=o(n)$. For k we chose $k(n)=\sqrt{n}$, thus the condition $k=o(n)$ is fulfilled. Results are shown in figures \ref{pareto} and \ref{cauchy}. Below is a summary of simulation settings.
 
+\ctable[caption={Simulation settings.}, pos={H}, label={setup}, center]{cccccc}{}{
+\toprule
+Figure & Distribution & $\gamma$ & $n$ & $N$ & $k(n)$ \\
+\midrule
+\ref{pareto} & Pareto & 1/3 & \textbf{n} & 2000 & $\sqrt{n}$ \\
+\ref{cauchy} & Cauchy & 1 & \textbf{n} & 2000 & $\sqrt{n}$ \\
+\bottomrule
+}
 
-\begin{figure}[H]
-\begin{center}
-\includegraphics[width=\textwidth]{cauchy.pdf}
-\caption{testi}
-\label{cauchy}
-\end{center}
-\end{figure}
+Both resulting graphs are constructed in the same manner. Real value of the extreme value index $\gamma$  is plotted as a dashed line. Black curve represents the medians, red curve 1st quartiles and blue curve 3rd quartiles of the N sized samples. 
+
 
 
 \clearpage
@@ -1037,9 +1037,25 @@ by the weak law of large numbers \cite{rosenthal}. Notice that the expected valu
 \clearpage
 
 \thesisappendix
+\counterwithin{figure}{section}
 
-\section*{Appendix}
+\section{Figures}
 
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=\textwidth]{pareto.pdf}
+\caption{}
+\label{pareto}
+\end{center}
+\end{figure}
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=\textwidth]{cauchy.pdf}
+\caption{testi}
+\label{cauchy}
+\end{center}
+\end{figure}
 
 
 \end{document}

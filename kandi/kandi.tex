@@ -799,7 +799,7 @@ The function c(t) converges to a constant. Hence $c \in RV_0$ so $c(tx)/c(t)\rig
 
 \subsection{Consistency}
 
-The following theorem states that Hill estimator is consistent i.e. estimator converges in probability to extreme value index. \cite{deHaan}
+The following theorem states that Hill estimator is consistent i.e. estimator converges in probability to extreme value index. \cite{hill}
 
 
 \begin{theorem}
@@ -999,22 +999,31 @@ by the weak law of large numbers \cite{rosenthal}. Notice that the expected valu
 
 \end{proof}
 
+To note there is also converse version of the theorem \ref{hillcons} \cite{Mason}. Proof is omitted here.
+
+\begin{theorem}
+Let $X_1, X_2,...$ be i.i.d. variables from cdf F. Suppose that for some sequence of integers $k=k(n) \rightarrow \infty$, $k(n)/n \rightarrow 0$ and $k(n+1)/k(n) \rightarrow 1$ as $n \rightarrow \infty$
+\begin{equation*}
+\hat{\gamma}_H \rightarrow \gamma > 0.
+\end{equation*}
+Then $F \in D(G_{\gamma})$
+\end{theorem}
 
 \clearpage
 \section{Simulations}
 
-The consistency of the Hill estimator is verified with simulations. We simulate from Pareto and Cauchy distributions. Cdf of the Pareto distribution is $F(x)=1-\left( \frac{1}{x} \right) ^3$ and the cdf of the Cauchy distribution is $F(x)=\frac{1}{\pi}\arctan(x)$. Corresponding extreme value indexes are 1/3 for Pareto distribution and 1 for Cauchy distribution. This can be checked with equation \ref{tail} or \ref{Utail}.We simulate $N$ sets of $n_i$ observations from both distributions where $n_i=100+50(i-1), i=1,2,...,399$. Hence the sample size is a vector from 100 to 20000 with steps of 50. We mark this vector with $\textbf{n}=(100,150,...,20000)$. The number of samples $N$ is set to 2000. So for each $n_i$ we calculate N number of estimates $\hat{\gamma}$ with $k=k(n)=o(n)$. For k we chose $k(n)=\sqrt{n}$, thus the condition $k=o(n)$ is fulfilled. Results are shown in figures \ref{pareto} and \ref{cauchy}. Below is a summary of simulation settings.
+The consistency of the Hill estimator is tested with simulations. We simulate from Pareto and Cauchy distributions. Cdf of the Pareto distribution is $F(x)=1-\left( \frac{1}{x} \right) ^3$ and the cdf of the Cauchy distribution is $F(x)=\frac{1}{\pi}\arctan(x)$. Corresponding extreme value indexes are 1/3 for Pareto distribution and 1 for Cauchy distribution. This can be checked with equation \ref{tail} or \ref{Utail}.We simulate $N$ sets of $n_i$ observations from both distributions where $n_i=100+50(i-1), i=1,2,...,399$. Hence the sample size is a vector from 100 to 20000 with steps of 50. We mark this vector with $\textbf{n}=(100,150,...,20000)$. The number of samples $N$ is set to 2000. So for each $n_i$ we calculate N number of estimates $\hat{\gamma}$ with $k=k(n)=o(n)$. For k we chose $k(n)=\sqrt{n}$, thus the condition $k=o(n)$ is fulfilled. Results are shown in figures \ref{pareto} and \ref{cauchy}. Below is a summary of simulation settings.
 
-\ctable[caption={Simulation settings.}, pos={H}, label={setup}, center]{cccccc}{}{
+\ctable[caption={Simulation settings.}, pos={H}, label={setup}, center]{ccccccc}{}{
 \toprule
-Figure & Distribution & $\gamma$ & $n$ & $N$ & $k(n)$ \\
+Figure & Distribution & $\gamma$ & Estimator & $n$ & $N$ & $k(n)$ \\
 \midrule
-\ref{pareto} & Pareto & 1/3 & \textbf{n} & 2000 & $\sqrt{n}$ \\
-\ref{cauchy} & Cauchy & 1 & \textbf{n} & 2000 & $\sqrt{n}$ \\
+\ref{pareto} & Pareto & 1/3 & Hill & \textbf{n} & 2000 & $\sqrt{n}$ \\
+\ref{cauchy} & Cauchy & 1 & Hill & \textbf{n} & 2000 & $\sqrt{n}$ \\
 \bottomrule
 }
 
-Both resulting graphs are constructed in the same manner. Real value of the extreme value index $\gamma$  is plotted as a dashed line. Black curve represents the medians, red curve 1st quartiles and blue curve 3rd quartiles of the N sized samples. 
+Both resulting graphs are constructed in the same manner. Real value of the extreme value index $\gamma$  is plotted as a dashed line. Black curve represents the medians, red curve 1st quartiles and blue curve 3rd quartiles of the N sized samples of estimates. In both figures \ref{pareto} and \ref{cauchy} it is evident that estimates converge to the $\gamma$ as $n$ grows. Simulations were performed using computer resources within the Aalto University School of Science "Science-IT" project.
 
 
 

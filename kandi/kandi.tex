@@ -388,10 +388,10 @@ Otaniemi, 23.8.2018
 \subsection*{Symbols}
 
 \begin{tabular}{ll}
-$x^*=\sup\{x : F(x)<1\}$  & the right endpoint of the distribution  \\
+$x^*=\sup\{x : F(x)<1\}$  & the right endpoint of the distribution $F$ \\
 $\gamma$ & extreme value index \\
 $F^{\leftarrow}(y) = \inf\{x:F(x) \geq y \}$ & left-continuous inverse \\
-U & left-continuous inverse of $\frac{1}{1-F}$ \\
+U & the left-continuous inverse of $\frac{1}{1-F}$ \\
 $\mathbbm{1}(p)=
 \begin{cases}
 1 , \textrm{if p is true}\\
@@ -401,10 +401,8 @@ $X_{i,n}$ & $i$:th order statistic \\
 $\lambda$ & Lebesque measure \\
 $\lim \sup A_n = \bigcap_{k=1}^{\infty} \bigcup_{n=k}^{\infty} A_n$ & limit supremum of a sequence of sets $A_n$ \\
 $RV_{\alpha}$ & the set of regularly varying functions with index $\alpha$ \\
-$G_{\gamma}$ & extreme value distribution \\
-$f \in D(G_{\gamma})$ & f is in the maximum domain of attraction of G \\
+$D(G_{\gamma})$ & the maximum domain of attraction of $G_{\gamma}$ \\
 $f \sim g$ & $\lim_{x \rightarrow \infty} f(x)/g(x)=1$ \\
-$N(\mu, \sigma^2)$ & Normal distribution with expected value $\mu$ and variance $\sigma^2$
 \end{tabular}
 
 
@@ -414,7 +412,6 @@ $N(\mu, \sigma^2)$ & Normal distribution with expected value $\mu$ and variance 
 cdf         & cumulative distribution function \\
 i.d.d.     & independent and identically distributed \\
 a.s.         & almost surely\\
-EVT & extreme value theory
 \end{tabular}
 
 
@@ -430,9 +427,9 @@ EVT & extreme value theory
 %%
 \section{Introduction}
 
-Heavy-tailed distributions appear in many fields of science like insurance and finance. E.g. loss returns of a speculative asset or insurance are often heavy-tailed. One example of such a data set is danish fire insurance loss data \cite{mcneil}  \cite{resnickFire}. As in these articles often the focus is on risk evaluation and thus in the tail of the distribution. For examples see \cite{resnick}, \cite{deHaan} or \cite{embrechts}.
+Heavy-tailed distributions appear in many fields of science such as insurance and finance. For example the loss returns of a speculative asset or insurance are often heavy-tailed and in practice the focus is often on risk evaluation. One example of such data set is Danish fire insurance loss data \cite{mcneil}  \cite{resnickFire}, while \cite{resnick}, \cite{deHaan} and \cite{embrechts} contain further examples.
 
-Analyzing the tail presents a problem. Using classical methods such as empirical quantiles it is impossible to extrapolate beyond available data but still often there is only little data from extremes. This motivates the use of extreme value theory (EVT), that provides rigorous mathematical theory to study extremes.  In EVT there is a parameter called extreme value index $\gamma$, which characterizes the behaviour of the distribution's tail. Hence focus in tail estimation is often on $\gamma$. E.g. for heavy-tailed distribution extreme value index is always positive $\gamma>0$. To be able to estimate $\gamma$ it is necessary to develop an estimator $\hat{\gamma}$.
+Analyzing the tail is challenging since using classical methods, such as empirical quantiles, it is impossible to extrapolate beyond the available data. This motivates the use of Extreme Value Theory (EVT), that provides a rigorous mathematical framework to study extremes. EVT characterizes the behavior of the distribution's tail and tail estimation is often of high practical importance.
 
 One of the possible estimators for extreme value index is the Hill estimator, which was introduced by Bruce Hill in 1975 \cite{hill}. To this day it remains to be one of the most used estimators for $\gamma>0$. Reason for its popularity might be that it is simple to calculate and its asymptotic and finite sample properties are well known.
 

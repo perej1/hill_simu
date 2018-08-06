@@ -602,16 +602,23 @@ Suppose $f \in RV_{\alpha}$. If $\varepsilon, \delta>0$ are arbitrary, there exi
 
 \section{Hill Estimator}
 \label{hillEst}
+
+{\color{red}
+The Hill estimator is defined as follows:
+\begin{equation}
+\hat{\gamma} = \frac{1}{k} \sum_{}^{} \log () - \log (X_{})
+\end{equation}
+}
 \subsection{Consistency}
 
 The following theorem states that Hill estimator is consistent i.e. estimator converges in probability to extreme value index. \cite{hill}
 
 
 \begin{theorem}
-Let $X_1, X_2,...$ be i.d.d. variables with cdf $F_X$. Suppose $F_X \in D(G_{\gamma})$ with $\gamma > 0$. Then as $n \rightarrow \infty$, $k=k(n)  \rightarrow \infty$, $\frac{k}{n} \rightarrow 0$,
+Let $X_1, X_2,...$ be i.d.d. variables with cdf $F_X$. Suppose $F_X \in D(G_{\gamma})$ with $\gamma > 0$. Then as $n \rightarrow \infty$, $k=k(n)  \rightarrow \infty$, $k/n \rightarrow 0$,
 
 \begin{equation*}
-\hat{\gamma}_H \xrightarrow{p} \gamma.
+\hat{\gamma} \xrightarrow{p} \gamma.
 \end{equation*}
 \label{hillcons}
 \end{theorem}
@@ -631,9 +638,9 @@ where $E_1^*,E_2^*,...$ are i.d.d. random variables from standard exponential di
 \label{renrep}
 \end{lemma}
 
-With Renyi's representation complicated joint distribution of dependent order statistics can be represented with more simple joint distribution of independent random variables. Proof of the Renyi's representation is omitted here.
+With Renyi's representation the complicated joint distribution of dependent order statistics can be represented in terms of independent random variables. Proof of the Renyi's representation is omitted here.
 
-Secondly the lemma about the order statistics of Pareto distribution is necessary \cite{deHaan}.
+Secondly a lemma about the order statistics of Pareto distribution is necessary \cite{deHaan}.
 
 \begin{lemma}
 Let $Y_1, Y_2, ...$ be i.d.d. random variables from Pareto distribution $F_Y(y)=1-\frac{1}{y}$, $y \geq 0$ and let $Y_{1,n} \geq Y_{2,n} \geq ... \geq Y_{n,n}$ be the nth order statistics. Then with such $k=k(n)$ that $k \rightarrow \infty$, $\frac{k}{n} \rightarrow 0$ as $n \rightarrow \infty$,
@@ -644,10 +651,8 @@ Let $Y_1, Y_2, ...$ be i.d.d. random variables from Pareto distribution $F_Y(y)=
 \label{asconv}
 \end{lemma}
 
-Actually above lemma could be generalized for all unbounded distributions but for our needs Pareto distribution is sufficient.
 
-
-Last lemma we need says that U(Y) is equal in distribution to X, where Y is random variable from Pareto distribution and X is random variable from some distribution $F_X$.
+Finally we need the fact that U(Y) is equal in distribution to X, where Y is random variable from Pareto distribution and X is random variable from some distribution $F_X$.
 
 \begin{lemma}
 Let $Y$ be random variable from Pareto distribution $F_Y=1-\frac{1}{y}$, $y \geq 0$ Let X be random variable with cdf $F_X$ then $U(Y) \overset{d}{=} X$.
@@ -657,7 +662,7 @@ Let $Y$ be random variable from Pareto distribution $F_Y=1-\frac{1}{y}$, $y \geq
 
 
 
-To note there is also converse version of the theorem \ref{hillcons} \cite{mason}. Proof is omitted here.
+Notably, there is also converse version of the theorem \ref{hillcons} \cite{mason}. Proof is omitted here.
 
 \begin{theorem}
 Let $X_1, X_2,...$ be i.i.d. variables from cdf F. Suppose that for some sequence of integers $k=k(n) \rightarrow \infty$, $k(n)/n \rightarrow 0$ and $k(n+1)/k(n) \rightarrow 1$ as $n \rightarrow \infty$
@@ -667,22 +672,24 @@ Let $X_1, X_2,...$ be i.i.d. variables from cdf F. Suppose that for some sequenc
 Then $F \in D(G_{\gamma})$
 \end{theorem}
 
-Furthermore almost sure convergence of Hill estimator is proved in the same article \cite{mason} as above theorem.
+The almost sure convergence of the Hill estimator is also proved in \cite{mason}.
 
-{ \color{red}
-In addition to first-order regular variation \ref{regularDef} there is a second-order condition for regular variation, which allows to examine the rates of converge of the first-order condition. Second-order regular variation is needed for the asymptotic normality of Hill estimator. We define second-order regular variation for case $\gamma > 0$, since it is sufficient considering the Hill estimator.
+\subsection{Asymptotic Normality}
+
+
+In addition to the first-order regular variation \ref{regularDef} there is a second-order condition for regular variation, which allows to examine the rates of converge of the first-order condition. Second-order regular variation is needed for the asymptotic normality of Hill estimator. We define second-order regular variation for case $\gamma > 0$, since it is sufficient for our purposes.
 
 \begin{definition}
 f is second-order regularly varying function for parameters $\gamma>0$ and $\rho \leq 0$ if for $x>0$
 \begin{equation*}
 \lim_{t \rightarrow \infty} \frac{\frac{f(tx)}{f(t)}-x^{\gamma}}{A(t)} = x^{\gamma} \frac{x^{\rho}-1}{\rho},
 \end{equation*}
-where $A$ is a one-signed function with $\lim_{t \rightarrow \infty} A(t)=0$.
+where $A$ is a one-signed function with $\lim\limits_{t \rightarrow \infty} A(t)=0$, with the right-hand side interpreted as $x^\gamma \log x$ for $\rho = 0$.
 \label{2RV}
 \end{definition}
-}
 
-Lastly we formulate the condition for asymptotic normality for $\hat{\gamma}$ \cite{peng}.
+
+The asymptotic normality of $\hat{\gamma}$ can be formulated using the second-order condition \cite{peng}.
 
 \begin{theorem}
 Suppose that cdf $F$ satisfies the second-order condition \ref{2RV} and $k=k(n)$ with $k(n)\rightarrow \infty$, $k(n)/n \rightarrow \infty$ when $n\rightarrow \infty$. Then
@@ -695,7 +702,7 @@ where
 \end{equation*}
 \label{normality}
 \end{theorem}
-From theorem \ref{normality} it can be seen that for Hill estimator to be asymptotically normal $U$ of the distribution has to satisfy the second-order regular variation. Furthermore, the bias of the hill Estimator is dependent on the choice of $k(n)$ and on the underlying distribution itself.
+From theorem \ref{normality} it can be seen that for Hill estimator to be asymptotically normal $U$ of the distribution has to satisfy the second-order regular variation. Furthermore, there is an asymptotic bias that depends on the second-order parameter $\rho$ and $\lambda$.
 
 
 
@@ -703,7 +710,7 @@ From theorem \ref{normality} it can be seen that for Hill estimator to be asympt
 \section{Simulations}
 \label{simut}
 
-The consistency of the Hill estimator is tested with a Monte Carlo simulation. We simulate from Pareto and Cauchy distributions. Cdf of the Pareto distribution is $F(x)=1-\left( \frac{1}{x} \right)^3, x \geq 1$ and the cdf of the Cauchy distribution is $F(x)=\frac{1}{\pi}\arctan(x) + \frac{1}{2}$. Corresponding extreme value indexes are 1/3 for Pareto distribution and 1 for Cauchy distribution. This can be checked with equation \ref{tail} or \ref{Utail}.We simulate $N$ sets of $n_i$ observations from both distributions where $n_i=100+50(i-1), i=1,2,...,399$. Hence the sample size is a vector from 100 to 20000 with steps of 50. We mark this vector with $\textbf{n}=(100,150,...,20000)$. The number of samples $N$ is set to 2000. So for each $n_i$ we calculate N number of estimates $\hat{\gamma}$ with $k=k(n)=o(n)$. For k we chose $k(n)=\sqrt{n}$, thus the condition $k=o(n)$ is fulfilled. Results are shown in figures \ref{pareto} and \ref{cauchy}. Below is a summary of simulation settings.
+The consistency of the Hill estimator is studied with a Monte Carlo simulation. We simulate observations from the Pareto distribution with an extreme value index $\gamma=1/3$ and Cauchy distribution ($\gamma=1$, as can be checked with equation \ref{tail} or \ref{Utail}). We simulate $N=2000$ sets of $n_i$ observations from both distributions where $n_i=100+50(i-1), i=1,2,...,399$. Hence the sample size is a vector from 100 to 20000 with steps of 50. We denote this vector with $\textbf{n}=(100,150,...,20000)$. So for each $n_i$ we calculate $N$ number of estimates $\hat{\gamma}$ with $k=k(n)=o(n)$. For k we chose $k(n)=\sqrt{n}$, thus the condition $k=o(n)$ is fulfilled. Results are shown in figures \ref{pareto} and \ref{cauchy}. Below is a summary of simulation settings.
 
 \ctable[caption={Simulation settings.}, pos={H}, label={setup}, center]{ccccccc}{}{
 \toprule
@@ -716,9 +723,9 @@ Figure & Distribution & $\gamma$ & Estimator & $n$ & $N$ & $k(n)$ \\
 
 Both resulting graphs are constructed in the same manner. Real value of the extreme value index $\gamma$  is plotted as a dashed line. Black curve represents the medians, red curve 1st quartiles and blue curve 3rd quartiles of the N sized samples of estimates.
 
-In figure \ref{pareto} it seems that with small $n$ convergence is very fast and slows down after a while. This can be seen by looking at the quartiles. At the beginning the quartiles squeeze around $\gamma$ but eventually after about $n=12500$ it is hard to see any kind of convergence.
+In figure \ref{pareto} it seems that with small $n$ convergence is very fast and slows down after a while. This can be seen by looking at the quartiles. At the beginning the quartiles squeeze around $\gamma$ but eventually after about $n=12500$ it is hard to see any further convergence.
 
-In figure \ref{cauchy} we can conclude that convergence is fast with small numbers of observations but slows down eventually, as in figure \ref{pareto}. It seems that median is a little further from $\gamma$ than in figure \ref{pareto}. This suggests that for Cauchy distribution larger sample size is needed for accurate estimate for $\gamma$ than for Pareto distribution. In both figures \ref{pareto} and \ref{cauchy} quartiles are equally far away from median which suggests that asymptotical distribution of Hill estimator might be symmetrical.
+In figure \ref{cauchy} we can conclude that convergence is fast with small numbers of observations but slows down eventually, as in figure \ref{pareto}. It seems that the median is a little further from $\gamma$ than in figure \ref{pareto}. This suggests that for Cauchy distribution larger sample size is needed for an accurate estimate for $\gamma$ than for Pareto distribution. In both figures \ref{pareto} and \ref{cauchy} quartiles are equally far away from median which suggests that asymptotical distribution of Hill estimator might be symmetrical.
 
 
 \clearpage

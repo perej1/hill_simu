@@ -459,16 +459,16 @@ The rest of the article is organized as follows. Section \ref{backround} gives r
 \section{Backround}
 \label{backround}
 
-\subsection{Fisher-Tippett-Gnedenko Theorem and Domains of Attraction}
+\subsection{Fisher-Tippett-Gnedenko Theorem}
 \label{domains}
-First approach to study the behavior of extreme events could be to find limiting distribution of the sample maxima $M_n = \max(X_1, X_2, ..., X_n)$. Here $X_1, X_2, ..., X_n$ are i.d.d. random variables from cdf $F_X$. Function for the cdf of $M_n$ can be easily derived, since $X_1, X_2,..., X_3$ are i.d.d.
+
+Let $X_1, X_2, ..., X_n$ be i.d.d. random variables with a cdf $F$. Consider the  sample maxima $M_n = \max(X_1, X_2, ..., X_n)$. The limiting behavior of $M_n$ is trivial: Since $X_1, X_2,..., X_3$ are i.d.d.
 \begin{gather*}
-P(\max(X_1, X_2, ... , X_n) \leq x) = P(X_1 \leq x, X_2 \leq x,..., X_n \leq x) = \\
-P(X_1 \leq x) P(X_2 \leq x) ... P(X_n \leq x) =  F^n(x).
+P(\max(X_1, X_2, ... , X_n) \leq x) = P(X_1 \leq x, X_2 \leq x,..., X_n \leq x) \\ = 
+P(X_1 \leq x) P(X_2 \leq x) ... P(X_n \leq x)
+=F^n(x).
 \end{gather*}
-
-Now it can be shown that this approach is not very useful since
-
+Now,
 \begin{gather*}
 \lim_{n\to\infty} F^n(x) = 
 \begin{cases}
@@ -477,7 +477,9 @@ Now it can be shown that this approach is not very useful since
 \end{cases}
 \end{gather*}
 
-To achieve a nondegerate distribution it is necessary to normalize the sample maxima $M_n$. After normalization a nondegenate distribution is gained as stated in the Fisher-Tippett-Gnedenko Theorem \cite{fisher}, \cite{gnedenko}.
+
+
+To achieve a nondegerate distribution it is necessary to normalize the sample maxima $M_n$. The Fisher-Tippett-Gnedenko Theorem states that with a suitable normalization a nondegenate distribution is obtained \cite{fisher}, \cite{gnedenko}.
 
 \begin{theorem}
 There exists real constants $a_n>0$ and $b_n \in \mathbb{R}$ such that 
@@ -497,8 +499,9 @@ G_{\gamma}(x)=
 \end{equation*}
 for all x with $1+\gamma x > 0$ where $\gamma \in \mathbb{R}$.
 \end{theorem}
+If F satisfies the equation \ref{fisher} for some $\gamma \in \mathbb{R}$ then it is said that F is in the maximum domain of attraction of $G_{\gamma}$, denoted $F \in D(G_{\gamma})$.
 
-If F fullfills the equation \ref{fisher} for some $\gamma \in \mathbb{R}$ then it is said that F is in the maximum domain of attraction of $G_{\gamma}$ i.e. $F \in D(G_{\gamma})$. Considering the Hill estimator we are especially interested in the case $F \in D(G_{\gamma>0})$. It turns out that $F \in D(G_{\gamma>0})$ is equivalent to the fact that function $1-F$ is regularly varying with index $-\frac{1}{\gamma}$. For the definition of regularly varying function see \ref{regularDef}. In other words if the tail function $1-F$ of a distribution is regularly varying then the distribution $F$ is heavy tailed and vice versa .\cite{deHaan}
+We are especially interested in heavy-tailed distributions, i.e. the case $F \in D(G_{\gamma})$, with $\gamma>0$. It turns out that $F$ being heavy-tailed is equivalent to the function $1-F$ being regularly varying with index $-\frac{1}{\gamma}$. In other words, if the tail function $1-F$ of a distribution is regularly varying then the distribution $F$ is heavy tailed and vice versa. \cite{deHaan}
 
 \begin{theorem}
 Cdf F is in the maximum domain of attraction of the extreme value distribution $G_{\gamma}$ with $\gamma>0$ if and only if $x^*=\infty$ and
@@ -508,7 +511,7 @@ Cdf F is in the maximum domain of attraction of the extreme value distribution $
 \end{equation}
 \end{theorem}
 
-In addition, condition \ref{tail} can be written in different form with the $U$ function \cite{deHaan}.
+In addition, condition \eqref{tail} can be written in different form with the $U$ function \cite{deHaan}.
 
 \begin{corollary}
 Condition \ref{tail} is equivalent to
@@ -518,7 +521,7 @@ Condition \ref{tail} is equivalent to
 \end{equation}
 \end{corollary}
 
-Relation \ref{Utail} is in more simple form than \ref{tail} and thus it is used in furher calculations. 
+Relation \eqref{Utail} turns out to be easier to work with than \eqref{tail} and thus it is used in furher calculations.
 %Above equation implies that U is regularly varying with index $\gamma$ if $F \in D(G_{\gamma>0})$.
 
 

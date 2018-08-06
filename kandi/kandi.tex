@@ -1,4 +1,4 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+﻿%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%                                                                            %%
 %% thesistemplate.tex version 3.10 (2018/04/24)                               %%
@@ -364,14 +364,13 @@ text must be identical to the text on the abstract page.
 %% Preface
 %%
 \mysection{Preface}
-I want to thank Professor Pirjo Professori and my instructor Dr Alan Advisor for 
-their good and poor guidance.\\
+Simulations were performed using computer resources within the Aalto University School of Science "Science-IT" project.\\
 
 \vspace{5cm}
-Otaniemi, 24.4.2018
+Otaniemi, 23.8.2018
 
 \vspace{5mm}
-{\hfill Eddie E.\ A.\ Engineer \hspace{1cm}}
+{\hfill Jaakko Pere \hspace{1cm}}
 
 %% Force a new page after the preface
 %%
@@ -389,7 +388,7 @@ Otaniemi, 24.4.2018
 \subsection*{Symbols}
 
 \begin{tabular}{ll}
-$x^*=\sup\{x : F(x)<1\}$  & right endpoint of the distribution  \\
+$x^*=\sup\{x : F(x)<1\}$  & the right endpoint of the distribution  \\
 $\gamma$ & extreme value index \\
 $F^{\leftarrow}(y) = \inf\{x:F(x) \geq y \}$ & left-continuous inverse \\
 U & left-continuous inverse of $\frac{1}{1-F}$ \\
@@ -397,14 +396,17 @@ $\mathbbm{1}(p)=
 \begin{cases}
 1 , \textrm{if p is true}\\
 0, \textrm{otherwise}
-\end{cases}$ & indicator fuction \\
-$X_{i,n}$ & ith order statistic \\
+\end{cases}$ & indicator function \\
+$X_{i,n}$ & $i$:th order statistic \\
 $\lambda$ & Lebesque measure \\
 $\lim \sup A_n = \bigcap_{k=1}^{\infty} \bigcup_{n=k}^{\infty} A_n$ & limit supremum of a sequence of sets $A_n$ \\
-$f \in RV_{\alpha}$ & f is an regularly varying function with index $\alpha$ \\
-$G$ & extreme value distribution \\
-$f \in D(G_{\gamma})$ & f is in the maximum domain of attraction of G
+$RV_{\alpha}$ & the set of regularly varying functions with index $\alpha$ \\
+$G_{\gamma}$ & extreme value distribution \\
+$f \in D(G_{\gamma})$ & f is in the maximum domain of attraction of G \\
+$f \sim g$ & $\lim_{x \rightarrow \infty} f(x)/g(x)=1$ \\
+$N(\mu, \sigma^2)$ & Normal distribution with expected value $\mu$ and variance $\sigma^2$
 \end{tabular}
+
 
 \subsection*{Abbreviations}
 
@@ -412,6 +414,7 @@ $f \in D(G_{\gamma})$ & f is in the maximum domain of attraction of G
 cdf         & cumulative distribution function \\
 i.d.d.     & independent and identically distributed \\
 a.s.         & almost surely\\
+EVT & extreme value theory
 \end{tabular}
 
 
@@ -427,6 +430,22 @@ a.s.         & almost surely\\
 %%
 \section{Introduction}
 
+Heavy-tailed distributions appear in many fields of science like insurance and finance. E.g. loss returns of a speculative asset or insurance are often heavy-tailed. One example of such a data set is danish fire insurance loss data \cite{mcneil}  \cite{resnickFire}. As in these articles often the focus is on risk evaluation and thus in the tail of the distribution. For examples see \cite{resnick}, \cite{deHaan} or \cite{embrechts}.
+
+Analyzing the tail presents a problem. Using classical methods such as empirical quantiles it is impossible to extrapolate beyond available data but still often there is only little data from extremes. This motivates the use of extreme value theory (EVT), that provides rigorous mathematical theory to study extremes.  In EVT there is a parameter called extreme value index $\gamma$, which characterizes the behaviour of the distribution's tail. Hence focus in tail estimation is often on $\gamma$. E.g. for heavy-tailed distribution extreme value index is always positive $\gamma>0$. To be able to estimate $\gamma$ it is necessary to develop an estimator $\hat{\gamma}$.
+
+One of the possible estimators for extreme value index is the Hill estimator, which was introduced by Bruce Hill in 1975 \cite{hill}. To this day it remains to be one of the most used estimators for $\gamma>0$. Reason for its popularity might be that it is simple to calculate and its asymptotic and finite sample properties are well known.
+
+In this article we will study asymptotic properties of the Hill estimator and particularly its consistency. By consistency we mean convergence in probability. We will show that regularly varying functions form the mathematical foundation for the heavy tailed distributions. Consequently regularly varying functions play an important role in the proof of the Hill estimator. Thus in addition to consistency of Hill estimator we will provide pedantic proofs for properties of the regularly varying functions. We also examine consistency of the Hill estimator with Monte Carlo simulations from Pareto and Cauchy distributions. Results for asymptotic normality of the Hill estimator are provided but further scrutiny of the conditions is not in the scope of this paper.
+
+The rest of the article is composed as follows. Section \ref{backround} gives requisites for the proofs and theory of the Hill estimator including properties of heavy tailed functions. Section \ref{hillEst} represents the main result, which is consistency and necessary lemmas for the proof of the consistency. Simulations are presented in section \ref{simut} and section \ref{conclusion} gives conclusion and last remarks. Lastly, all the proofs and figures are found in Appendixes \ref{proofs} and \ref{figures}.
+
+%\begin{definition}
+%\begin{equation*}
+%\hat{\gamma} = \frac{1}{k} \sum_{i=0}^{k-1} \log(X_{n-1,n}) - \log(X_{n-k,n}), \quad 1 \leq k \leq n-1
+%\end{equation*}
+%\end{definition}
+
 %% Leave page number of the first page empty
 %% 
 \thispagestyle{empty}
@@ -440,6 +459,7 @@ a.s.         & almost surely\\
 \clearpage
 
 \section{Backround}
+\label{backround}
 
 \subsection{Fisher-Tippett-Gnedenko Theorem and Domains of Attraction}
 \label{domains}
@@ -480,7 +500,7 @@ G_{\gamma}(x)=
 for all x with $1+\gamma x > 0$ where $\gamma \in \mathbb{R}$.
 \end{theorem}
 
-If F fullfills the equation \ref{fisher} for some $\gamma \in \mathbb{R}$ then it is said that F is in the maximum domain of attraction of $G_{\gamma}$ i.e. $F \in D(G_{\gamma})$. Considering the Hill estimator we are especially interested in the case $F \in D(G_{\gamma>0})$. It turns out that $F \in D(G_{\gamma>0})$ is equivalent to the fact that function $1-F$ is regularly varying with index $-\frac{1}{\gamma}$. \cite{deHaan} 
+If F fullfills the equation \ref{fisher} for some $\gamma \in \mathbb{R}$ then it is said that F is in the maximum domain of attraction of $G_{\gamma}$ i.e. $F \in D(G_{\gamma})$. Considering the Hill estimator we are especially interested in the case $F \in D(G_{\gamma>0})$. It turns out that $F \in D(G_{\gamma>0})$ is equivalent to the fact that function $1-F$ is regularly varying with index $-\frac{1}{\gamma}$. For the definition of regularly varying function see \ref{regularDef}. In other words if the tail function $1-F$ of a distribution is regularly varying then the distribution $F$ is heavy tailed and vice versa .\cite{deHaan}
 
 \begin{theorem}
 Cdf F is in the maximum domain of attraction of the extreme value distribution $G_{\gamma}$ with $\gamma>0$ if and only if $x^*=\infty$ and
@@ -500,21 +520,23 @@ Condition \ref{tail} is equivalent to
 \end{equation}
 \end{corollary}
 
-Above equation implies that U is regularly varying with index $\gamma$ if $F \in D(G_{\gamma>0})$ .
+Relation \ref{Utail} is in more simple form than \ref{tail} and thus it is used in furher calculations. 
+%Above equation implies that U is regularly varying with index $\gamma$ if $F \in D(G_{\gamma>0})$.
 
 
 \subsection{Regularly Varying Functions}
 
-In section \ref{domains} we saw that if $F \in D(G_{\gamma>0})$ then U is regularly varying function. Regularly varying functions have some useful properties that are needed to prove the consistency of the Hill estimator. Let's define regularly varying functions properly \cite{deHaan}:
+In section \ref{domains} we saw that if $F \in D(G_{\gamma>0})$ then U is regularly varying function. Regularly varying functions have some useful properties that are needed for the proof of the Hill estimator's consistency. Let's define regularly varying functions properly \cite{deHaan}:
 \begin{definition}
 A Lebesque measurable function $f: \mathbb{R}^{+} \rightarrow \mathbb{R}$ that is eventually positive is regularly varying if for some index $\alpha \in \mathbb{R}$,
 \begin{equation}
 \lim_{x \rightarrow \infty} \frac{f(tx)}{f(t)} = x^{\alpha}, \quad x>0.
 \label{regular}
 \end{equation}
+\label{regularDef}
 \end{definition}
 
-If function $f$  is regularly varying with index $\alpha=0$ then f is called slowly varying. For a slowly varying function the limit relation \ref{regular} can be written in different form with function $F=\log f(e^x)$:
+If function $f$  is regularly varying with index $\alpha=0$ then f is called slowly varying. One property of regularly varying functions is that all of them can be written in form $f(x)=l(x)x^{\alpha}$ where $l(x)$ is slowly varying function. This supports the intuition that heavy tailed distributions behave like pareto distribution after a high threshold. For a slowly varying function the limit relation \ref{regular} can be written in different form with function $F=\log f(e^x)$:
 \begin{equation}
 \lim_{t \rightarrow \infty} F(t+x)-F(x) = 0.
 \label{F}
@@ -524,6 +546,17 @@ The above argument is true, since
 F(t+x)-F(t) = \log f(e^{t+x}) - \log f(e^{t}) = \log \left(\underbrace{\frac{f(e^te^x)}{f(e^t)}}_{\rightarrow 1}\right) \rightarrow 0
 \end{equation*}
 as $t \rightarrow \infty$. The alternative form for slow variation \ref{F} is used in the proof of the uniform convergence.
+
+In addition to first-order regular variation \ref{regularDef} there is a second-order condition for regular variation, which allows to examine the rates of converge of the first-order condition. Second-order regular variation is needed for the asymptotic normality of Hill estimator. We define second-order regular variation for case $\gamma > 0$, since it is sufficient considering the Hill estimator.
+
+\begin{definition}
+f is second-order regularly varying function for parameters $\gamma>0$ and $\rho \leq 0$ if for $x>0$
+\begin{equation*}
+\lim_{t \rightarrow \infty} \frac{\frac{f(tx)}{f(t)}-x^{\gamma}}{A(t)} = x^{\gamma} \frac{x^{\rho}-1}{\rho},
+\end{equation*}
+where $A$ is a one-signed function with $\lim_{t \rightarrow \infty} A(t)=0$.
+\label{2RV}
+\end{definition}
 
 
 \begin{theorem}
@@ -535,6 +568,197 @@ for $0<a<b<\infty$.
 \label{uniform}
 \end{theorem}
 
+
+
+With uniform convergence it can be proved that all the regularly varying functions can be represented in certain form:
+
+\begin{theorem}[Karamata's representation theorem]
+If $f \in RV_{\alpha}$ then there exists measurable functions $a: \mathbb{R} \rightarrow \mathbb{R^+}$ and $c: \mathbb{R} \rightarrow \mathbb{R^+}$ with
+\begin{equation*}
+\lim_{t \rightarrow \infty} c(t) = c_0 \  \text{and} \  \lim_{t \rightarrow \infty} a(t) = \alpha
+\end{equation*}
+and $t_0 \in \mathbb{R^+}$ such that for $t > t_0$
+\begin{equation}
+f(t) = c(t) \exp \left(\int_{t_0}^{t}  \frac{a(s)}{s} ds \right)
+\end{equation}
+Conversely, if \ref{karamata} holds, then $f \in RV_{\alpha}$.
+\label{karamata}
+\end{theorem}
+
+For the proof of the above theorem following lemma about the integrals of the regularly varying functions is needed.
+
+\begin{lemma}
+Suppose $f \in RV_{\alpha}$. There exists $t_0 > 0$ such that $f(t)$ is positive and locally bounded for $t \geq t_0$. If $\alpha \geq -1$ then
+\begin{equation}
+\lim_{t \rightarrow \infty} \frac{tf(t)}{\int_{t_0}^{t}f(s)ds} = \alpha + 1.
+\label{>-1}
+\end{equation}
+If $\alpha<-1$ or $\alpha= -1$ and $\int_{0}^{\infty}f(s)ds<\infty$, then
+\begin{equation}
+\lim_{t \rightarrow \infty} \frac{tf(t)}{\int_{t}^{\infty} f(s) ds} = -\alpha - 1.
+\label{<-1}
+\end{equation}
+Conversely, if \ref{>-1} holds for $-1\leq \alpha < \infty$ or \ref{<-1} holds for $-\infty<\alpha<-1$, then $f \in RV_{\alpha}$.
+\label{karamlemma}
+\end{lemma}
+
+
+
+Next corollary will be the base in the proof of the Hill estimator. 
+
+\begin{corollary}
+Suppose $f \in RV_{\alpha}$. If $\varepsilon, \delta>0$ are arbitrary, there exists $t_0=t_0(\varepsilon, \delta)$ such that for $t\geq t_0$, $tx \geq t_0$,
+\begin{equation*}
+(1-\varepsilon)x^{\alpha-\delta}<\frac{f(tx)}{f(t)}<(1+\varepsilon)x^{\alpha+\delta}
+\end{equation*}
+\label{inequality}
+\end{corollary}
+
+Above corollary follows from the theorem \ref{karamata}. So all previously introduced properties of the regularly varying functions are needed before the corollary \label{inequality} can be proved. 
+
+
+
+
+
+
+\clearpage
+
+\section{Hill Estimator}
+\label{hillEst}
+\subsection{Consistency}
+
+The following theorem states that Hill estimator is consistent i.e. estimator converges in probability to extreme value index. \cite{hill}
+
+
+\begin{theorem}
+Let $X_1, X_2,...$ be i.d.d. variables with cdf $F_X$. Suppose $F_X \in D(G_{\gamma})$ with $\gamma > 0$. Then as $n \rightarrow \infty$, $k=k(n)  \rightarrow \infty$, $\frac{k}{n} \rightarrow 0$,
+
+\begin{equation*}
+\hat{\gamma}_H \xrightarrow{p} \gamma.
+\end{equation*}
+\label{hillcons}
+\end{theorem}
+
+For the proof of the above theorem following lemmas and corollary \ref{inequality} are needed, firstly the Renyi's representation \cite{renyi}.
+\begin{lemma}
+If $E_1, E_2,...$ are i.d.d. random variables from the standard exponential distribution and $E_{1,n} \leq E_{2,n} \leq ... \leq E_{n,n}$ then for $k \leq n$ we have
+\begin{multline*}
+%\begin{equation*}
+%\begin{split}
+\big(E_{1,n}, E_{2,n}, ... , E_{k,n}\big) 
+\overset{d}{=} \Big(\frac{E_1^*}{n}, \frac{E_1^*}{n}+\frac{E_2^*}{n-1}, ... , \frac{E_1^*}{n}+\frac{E_2^*}{n-1}+...+ \frac{E_k^*}{n-k+1}\Big),
+%\end{split}
+%\end{equation*}
+\end{multline*}
+where $E_1^*,E_2^*,...$ are i.d.d. random variables from standard exponential distribution.
+\label{renrep}
+\end{lemma}
+
+With Renyi's representation complicated joint distribution of dependent order statistics can be represented with more simple joint distribution of independent random variables. Proof of the Renyi's representation is omitted here.
+
+Secondly the lemma about the order statistics of Pareto distribution is necessary \cite{deHaan}.
+
+\begin{lemma}
+Let $Y_1, Y_2, ...$ be i.d.d. random variables from Pareto distribution $F_Y(y)=1-\frac{1}{y}$, $y \geq 0$ and let $Y_{1,n} \geq Y_{2,n} \geq ... \geq Y_{n,n}$ be the nth order statistics. Then with such $k=k(n)$ that $k \rightarrow \infty$, $\frac{k}{n} \rightarrow 0$ as $n \rightarrow \infty$,
+
+\begin{equation*}
+\lim_{n\to\infty} Y_{n-k,n} = \infty  \quad  \text{a.s}.
+\end{equation*}
+\label{asconv}
+\end{lemma}
+
+Actually above lemma could be generalized for all unbounded distributions but for our needs Pareto distribution is sufficient.
+
+
+Last lemma we need says that U(Y) is equal in distribution to X, where Y is random variable from Pareto distribution and X is random variable from some distribution $F_X$.
+
+\begin{lemma}
+Let $Y$ be random variable from Pareto distribution $F_Y=1-\frac{1}{y}$, $y \geq 0$ Let X be random variable with cdf $F_X$ then $U(Y) \overset{d}{=} X$.
+\label{U}
+\end{lemma}
+
+
+
+
+To note there is also converse version of the theorem \ref{hillcons} \cite{mason}. Proof is omitted here.
+
+\begin{theorem}
+Let $X_1, X_2,...$ be i.i.d. variables from cdf F. Suppose that for some sequence of integers $k=k(n) \rightarrow \infty$, $k(n)/n \rightarrow 0$ and $k(n+1)/k(n) \rightarrow 1$ as $n \rightarrow \infty$
+\begin{equation*}
+\hat{\gamma}_H \rightarrow \gamma > 0.
+\end{equation*}
+Then $F \in D(G_{\gamma})$
+\end{theorem}
+
+Furthermore almost sure convergence of Hill estimator is proved in the same article \cite{mason} as above theorem.
+
+Lastly we formulate the condition for asymptotic normality for $\hat{\gamma}$ \cite{peng}.
+
+\begin{theorem}
+Suppose that cdf $F$ satisfies the second-order condition \ref{2RV} and $k=k(n)$ with $k(n)\rightarrow \infty$, $k(n)/n \rightarrow \infty$ when $n\rightarrow \infty$. Then
+\begin{equation*}
+\sqrt{k}(\hat{\gamma} - \gamma) \xrightarrow{d} N \left( \frac{\lambda}{1- \rho}, \gamma^2 \right)
+\end{equation*}
+where
+\begin{equation*}
+\lim_{t \rightarrow \infty} \sqrt{k}A \left(\frac{n}{k} \right) = \lambda, \quad \lambda \in \mathbb{R}.
+\end{equation*}
+\label{normality}
+\end{theorem}
+From theorem \ref{normality} it can be seen that for Hill estimator to be asymptotically normal $U$ of the distribution has to satisfy the second-order regular variation. Furthermore, the bias of the hill Estimator is dependent on the choice of $k(n)$ and on the underlying distribution itself.
+
+
+
+\clearpage
+\section{Simulations}
+\label{simut}
+
+The consistency of the Hill estimator is tested with a Monte Carlo simulation. We simulate from Pareto and Cauchy distributions. Cdf of the Pareto distribution is $F(x)=1-\left( \frac{1}{x} \right)^3, x \geq 1$ and the cdf of the Cauchy distribution is $F(x)=\frac{1}{\pi}\arctan(x) + \frac{1}{2}$. Corresponding extreme value indexes are 1/3 for Pareto distribution and 1 for Cauchy distribution. This can be checked with equation \ref{tail} or \ref{Utail}.We simulate $N$ sets of $n_i$ observations from both distributions where $n_i=100+50(i-1), i=1,2,...,399$. Hence the sample size is a vector from 100 to 20000 with steps of 50. We mark this vector with $\textbf{n}=(100,150,...,20000)$. The number of samples $N$ is set to 2000. So for each $n_i$ we calculate N number of estimates $\hat{\gamma}$ with $k=k(n)=o(n)$. For k we chose $k(n)=\sqrt{n}$, thus the condition $k=o(n)$ is fulfilled. Results are shown in figures \ref{pareto} and \ref{cauchy}. Below is a summary of simulation settings.
+
+\ctable[caption={Simulation settings.}, pos={H}, label={setup}, center]{ccccccc}{}{
+\toprule
+Figure & Distribution & $\gamma$ & Estimator & $n$ & $N$ & $k(n)$ \\
+\midrule
+\ref{pareto} & Pareto & 1/3 & Hill & \textbf{n} & 2000 & $\sqrt{n}$ \\
+\ref{cauchy} & Cauchy & 1 & Hill & \textbf{n} & 2000 & $\sqrt{n}$ \\
+\bottomrule
+}
+
+Both resulting graphs are constructed in the same manner. Real value of the extreme value index $\gamma$  is plotted as a dashed line. Black curve represents the medians, red curve 1st quartiles and blue curve 3rd quartiles of the N sized samples of estimates.
+
+In figure \ref{pareto} it seems that with small $n$ convergence is very fast and slows down after a while. This can be seen by looking at the quartiles. At the beginning the quartiles squeeze around $\gamma$ but eventually after about $n=12500$ it is hard to see any kind of convergence.
+
+In figure \ref{cauchy} we can conclude that convergence is fast with small numbers of observations but slows down eventually, as in figure \ref{pareto}. It seems that median is a little further from $\gamma$ than in figure \ref{pareto}. This suggests that for Cauchy distribution larger sample size is needed for accurate estimate for $\gamma$ than for Pareto distribution. In both figures \ref{pareto} and \ref{cauchy} quartiles are equally far away from median which suggests that asymptotical distribution of Hill estimator might be symmetrical.
+
+
+\clearpage
+\section{Conclusion}
+\label{conclusion}
+
+We reviewed the proof if the Hill estimator's consistency. Properties of the regularly varying functions played a crucial role in the proof of the consistency. Consistency was also studied with simulations, which also showed that Hill estimator has good finite sample properties. Other properties of the Hill estimator such as asymptotic normality and bias are not in the scope of this article. However, these properties are studied in other articles such as \cite{peng}, \cite{hausler} and \cite{haanResnick}.
+
+Lastly we note that  Hill estimator can be extended in various cases. E.g. There are estimators similar to Hill estimator  for the case $\gamma \in \mathbb{R}$. Examples of these kind of estimators are Pickands estimator \cite{pickands} and Moment estimator \cite{dekkers}. Hill estimator can also be extended to multivariate case \cite{ilmonen}.
+
+\clearpage
+
+
+%% L\"ahdeluettelo
+
+\phantomsection
+\addcontentsline{toc}{section}{\refname}
+\bibliographystyle{abbrv}
+\bibliography{bib}
+
+%% Appendices
+%% If you don't have appendices, remove \clearpage and \thesisappendix below.
+\clearpage
+
+\thesisappendix
+\counterwithin{figure}{section}
+
+\section{Proofs}
+\label{proofs}
+\subsection{Proof of Theorem \ref{uniform}}
 
 \begin{proof}
 For the proof it can be assumed that $\alpha=0$. If this isn't the case replace $f(x)$ by $f(x)x^{-\alpha}$. Suppose there exists sequences $t_n \rightarrow \infty$, $x_n \rightarrow 0$ as $n \rightarrow \infty$ such that
@@ -590,39 +814,8 @@ Additionally $Y_{1,n}$, $Y_{2,n}$ and $J$ are measurable sets. So by subadditivi
 Since at least one of the measures $\lambda(\lim \sup Y_{1,n})$ or $\lambda(\lim \sup Z_{n})$ is greater than zero, we have some $x_0$ that is contained in infinitely many $Y_{1,n}$ or $Z_n$. This was the desired contradiction.
 \end{proof}
 
-With uniform convergence it can be proved that all the regularly varying functions are in certain form:
+\subsection{Proof of Lemma \ref{karamlemma}}
 
-\begin{theorem}[Karamata's representation theorem]
-If $f \in RV_{\alpha}$ then there exists measurable functions $a: \mathbb{R} \rightarrow \mathbb{R^+}$ and $c: \mathbb{R} \rightarrow \mathbb{R^+}$ with
-\begin{equation*}
-\lim_{t \rightarrow \infty} c(t) = c_0 \  \text{and} \  \lim_{t \rightarrow \infty} a(t) = \alpha
-\end{equation*}
-and $t_0 \in \mathbb{R^+}$ such that for $t > t_0$
-\begin{equation}
-f(t) = c(t) \exp \left(\int_{t_0}^{t}  \frac{a(s)}{s} ds \right)
-\end{equation}
-Conversely, if \ref{karamata} holds, then $f \in RV_{\alpha}$.
-\label{karamata}
-\end{theorem}
-
-For the proof of the above theorem following lemma is needed.
-
-\begin{lemma}
-Suppose $f \in RV_{\alpha}$. There exists $t_0 > 0$ such that $f(t)$ is positive and locally bounded for $t \geq t_0$. If $\alpha \geq -1$ then
-\begin{equation}
-\lim_{t \rightarrow \infty} \frac{tf(t)}{\int_{t_0}^{t}f(s)ds} = \alpha + 1.
-\label{>-1}
-\end{equation}
-If $\alpha<-1$ or $\alpha= -1$ and $\int_{0}^{\infty}f(s)ds<\infty$, then
-\begin{equation}
-\lim_{t \rightarrow \infty} \frac{tf(t)}{\int_{t}^{\infty} f(s) ds} = -\alpha - 1.
-\label{<-1}
-\end{equation}
-Conversely, if \ref{>-1} holds for $-1\leq \alpha < \infty$ or \ref{<-1} holds for $-\infty<\alpha<-1$, then $f \in RV_{\alpha}$.
-\label{karamlemma}
-\end{lemma}
-
-Next we prove the above lemma.
 \begin{proof}
 First we prove the equation \ref{>-1}. Suppose that $f \in RV_{\alpha}$. Then by theorem \ref{uniform} there exists $t_0$ and $c$ such that $f(tx)/t<c$ when $t \geq t_0$, $x \in [1,2]$. Then for $t \in [2^nt_0, 2^{n+1}t_0]$ we have
 \begin{equation}
@@ -719,14 +912,14 @@ by the change of variables. By the assumption (equation \ref{>-1}) $b(t) \righta
 The last statement (equation \ref{<-1} implies that $F \in RV_{\alpha}$) can be proved in a similar way.
 \end{proof}
 
-Next we prove the theorem \ref{karamata}.
+\subsection{Proof of Theorem \ref{karamata}}
+
 \begin{proof}
 Suppose $f \in RV_{\alpha}$. The function $t^{-\alpha}f(t)$ is slowly varying and
 \begin{equation*}
 t^{-\alpha}f(t) = cb(t) \exp \left( \int_{1}^{t} \frac{b(s)-1}{s}ds \right)
 \end{equation*}
 by the equation \ref{frep}. Now by lemma \ref{karamlemma} $b(t) \rightarrow 1$ and function $t^{-\alpha}f(t)$ has the representation as in theorem \ref{karamata} with $a(t)=b(t)-1$ and $c(t)=cb(t)$. Then
-
 \begin{equation*}
 f(t) = c(t)t^{\alpha} \exp \left(  \int_{t_0}^{t} \frac{a(s)}{s}ds  \right)
 \end{equation*}
@@ -743,30 +936,9 @@ f(t) = c(t) \exp \left(  \int_{t_0}^{t} \frac{a(s)}{s}ds + \int_{1}^{t} \frac{\a
 \label{fkaramata}
 \end{equation}
 From the equation \ref{fkaramata} it can be seen that $f(t)$ has the same representation as in the theorem \ref{karamata} when $a$ is replaced by $a'$ and $c$ is replaced by $c'$.
-
-
-
-
-
-
-
-
-
-
-
-
-
 \end{proof}
-Next corollary will be crucial in the proof of the consistency of the Hill estimator.
 
-\begin{corollary}
-Suppose $f \in RV_{\alpha}$. If $\varepsilon, \delta>0$ are arbitrary, there exists $t_0=t_0(\varepsilon, \delta)$ such that for $t\geq t_0$, $tx \geq t_0$,
-\begin{equation*}
-(1-\varepsilon)x^{\alpha-\delta}<\frac{f(tx)}{f(t)}<(1+\varepsilon)x^{\alpha+\delta}
-\end{equation*}
-\end{corollary}
-
-Above corollary follows from the theorem \ref{karamata}.
+\subsection{Proof of Corollary \ref{inequality}}
 
 \begin{proof}
 By the theorem \ref{karamata}
@@ -781,70 +953,10 @@ The function c(t) converges to a constant. Hence $c \in RV_0$ so $c(tx)/c(t)\rig
 \Rightarrow (1-\varepsilon)x^{\alpha-\delta}<\frac{f(tx)}{f(t)}<(1+\varepsilon)x^{\alpha+\delta}
 \end{split}
 \end{equation*}
-
-
-
-
-
-
 \end{proof}
 
 
-
-
-
-\clearpage
-
-\section{Hill Estimator}
-
-\subsection{Consistency}
-
-The following theorem states that Hill estimator is consistent i.e. estimator converges in probability to extreme value index. \cite{hill}
-
-
-\begin{theorem}
-Let $X_1, X_2,...$ be i.d.d. variables with cdf $F_X$. Suppose $F_X \in D(G_{\gamma})$ with $\gamma > 0$. Then as $n \rightarrow \infty$, $k=k(n)  \rightarrow \infty$, $\frac{k}{n} \rightarrow 0$,
-
-\begin{equation*}
-\hat{\gamma}_H \xrightarrow{p} \gamma.
-\end{equation*}
-\label{hillcons}
-\end{theorem}
-
-For the proof of the above theorem following lemmas are needed, firstly the Renyi's representation \cite{renyi}.
-\begin{lemma}
-If $E_1, E_2,...$ are i.d.d. random variables from the standard exponential distribution and $E_{1,n} \leq E_{2,n} \leq ... \leq E_{n,n}$ then for $k \leq n$ we have
-\begin{multline*}
-%\begin{equation*}
-%\begin{split}
-\big(E_{1,n}, E_{2,n}, ... , E_{k,n}\big) 
-\overset{d}{=} \Big(\frac{E_1^*}{n}, \frac{E_1^*}{n}+\frac{E_2^*}{n-1}, ... , \frac{E_1^*}{n}+\frac{E_2^*}{n-1}+...+ \frac{E_k^*}{n-k+1}\Big),
-%\end{split}
-%\end{equation*}
-\end{multline*}
-where $E_1^*,E_2^*,...$ are i.d.d. random variables from standard exponential distribution.
-\label{renrep}
-\end{lemma}
-
-Secondly the lemma about the order statistics of Pareto distribution is necessary \cite{deHaan}.
-
-\begin{lemma}
-Let $Y_1, Y_2, ...$ be i.d.d. random variables from Pareto distribution $F_Y(y)=1-\frac{1}{y}$, $y \geq 0$ and let $Y_{1,n} \geq Y_{2,n} \geq ... \geq Y_{n,n}$ be the nth order statistics. Then with such $k=k(n)$ that $k \rightarrow \infty$, $\frac{k}{n} \rightarrow 0$ as $n \rightarrow \infty$,
-
-\begin{equation*}
-\lim_{n\to\infty} Y_{n-k,n} = \infty  \quad  \text{a.s}.
-\end{equation*}
-\label{asconv}
-\end{lemma}
-
-Last lemma we need says that U(Y) is equal in distribution to X, where Y is random variable from Pareto distribution and X is random variable from some distribution $F_X$.
-
-\begin{lemma}
-Let $Y$ be random variable from Pareto distribution $F_Y=1-\frac{1}{y}$, $y \geq 0$ Let X be random variable with cdf $F_X$ then $U(Y) \overset{d}{=} X$.
-\label{U}
-\end{lemma}
-
-Next we prove the lemma \ref{asconv}. Proof of the lemma \ref{renrep} is omitted here.
+\subsection{Proof of Lemma \ref{asconv}}
 
 \begin{proof}
 Let us assume that $Y_{n-k,n} < r$ for some $r > 0$ infinitely often. In other words
@@ -870,7 +982,7 @@ P(\lim_{n\to\infty} Y_{n-k,n} = \infty)=1.
 \end{equation*}
 \end{proof}
 
-Now we prove the last lemma \ref{U} that is needed for the proof of theorem \ref{hillcons}
+\subsection{Proof of Lemma \ref{U}}
 
 \begin{proof}
 Let's study the condition $U(Y) \leq a, a \in \mathbb{R} $.
@@ -899,9 +1011,7 @@ F_{U(Y)} = P(U(Y) \leq x) = P\Big(Y \leq \frac{1}{1-F_X(x)}\Big) = F_Y\Big(\frac
 \end{equation*}
 \end{proof}
 
-
-
-Now we are equipped to prove the theorem \ref{hillcons}.
+\subsection{Proof of Theorem \ref{hillcons}}
 
 \begin{proof}
 
@@ -999,61 +1109,13 @@ by the weak law of large numbers \cite{rosenthal}. Notice that the expected valu
 
 \end{proof}
 
-To note there is also converse version of the theorem \ref{hillcons} \cite{Mason}. Proof is omitted here.
-
-\begin{theorem}
-Let $X_1, X_2,...$ be i.i.d. variables from cdf F. Suppose that for some sequence of integers $k=k(n) \rightarrow \infty$, $k(n)/n \rightarrow 0$ and $k(n+1)/k(n) \rightarrow 1$ as $n \rightarrow \infty$
-\begin{equation*}
-\hat{\gamma}_H \rightarrow \gamma > 0.
-\end{equation*}
-Then $F \in D(G_{\gamma})$
-\end{theorem}
-
-\clearpage
-\section{Simulations}
-
-The consistency of the Hill estimator is tested with simulations. We simulate from Pareto and Cauchy distributions. Cdf of the Pareto distribution is $F(x)=1-\left( \frac{1}{x} \right) ^3$ and the cdf of the Cauchy distribution is $F(x)=\frac{1}{\pi}\arctan(x)$. Corresponding extreme value indexes are 1/3 for Pareto distribution and 1 for Cauchy distribution. This can be checked with equation \ref{tail} or \ref{Utail}.We simulate $N$ sets of $n_i$ observations from both distributions where $n_i=100+50(i-1), i=1,2,...,399$. Hence the sample size is a vector from 100 to 20000 with steps of 50. We mark this vector with $\textbf{n}=(100,150,...,20000)$. The number of samples $N$ is set to 2000. So for each $n_i$ we calculate N number of estimates $\hat{\gamma}$ with $k=k(n)=o(n)$. For k we chose $k(n)=\sqrt{n}$, thus the condition $k=o(n)$ is fulfilled. Results are shown in figures \ref{pareto} and \ref{cauchy}. Below is a summary of simulation settings.
-
-\ctable[caption={Simulation settings.}, pos={H}, label={setup}, center]{ccccccc}{}{
-\toprule
-Figure & Distribution & $\gamma$ & Estimator & $n$ & $N$ & $k(n)$ \\
-\midrule
-\ref{pareto} & Pareto & 1/3 & Hill & \textbf{n} & 2000 & $\sqrt{n}$ \\
-\ref{cauchy} & Cauchy & 1 & Hill & \textbf{n} & 2000 & $\sqrt{n}$ \\
-\bottomrule
-}
-
-Both resulting graphs are constructed in the same manner. Real value of the extreme value index $\gamma$  is plotted as a dashed line. Black curve represents the medians, red curve 1st quartiles and blue curve 3rd quartiles of the N sized samples of estimates. In both figures \ref{pareto} and \ref{cauchy} it is evident that estimates converge to the $\gamma$ as $n$ grows. Simulations were performed using computer resources within the Aalto University School of Science "Science-IT" project.
-
-
-
-\clearpage
-\section{Conclusions}
-
-
-\clearpage
-
-
-%% L\"ahdeluettelo
-
-\phantomsection
-\addcontentsline{toc}{section}{\refname}
-\bibliographystyle{abbrv}
-\bibliography{bib}
-
-%% Appendices
-%% If you don't have appendices, remove \clearpage and \thesisappendix below.
-\clearpage
-
-\thesisappendix
-\counterwithin{figure}{section}
-
 \section{Figures}
+\label{figures}
 
 \begin{figure}[H]
 \begin{center}
 \includegraphics[width=\textwidth]{pareto.pdf}
-\caption{}
+\caption{Results of Monte Carlo simulation from Pareto distribution.}
 \label{pareto}
 \end{center}
 \end{figure}
@@ -1061,10 +1123,12 @@ Both resulting graphs are constructed in the same manner. Real value of the extr
 \begin{figure}[H]
 \begin{center}
 \includegraphics[width=\textwidth]{cauchy.pdf}
-\caption{testi}
+\caption{Results of Monte Carlo simulation from Cauchy  distribution.}
 \label{cauchy}
 \end{center}
 \end{figure}
+
+
 
 
 \end{document}

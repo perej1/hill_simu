@@ -1,7 +1,4 @@
-﻿%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%                                                                            %%
-%% thesistemplate.tex version 3.10 (2018/04/24)                               %%
+﻿%% thesistemplate.tex version 3.10 (2018/04/24)                               %%
 %% The LaTeX template file to be used with the aaltothesis.sty (version 3.10) %%
 %% style file.                                                                %%
 %% This package requires pdfx.sty v. 1.5.84 (2017/05/18) or newer.            %%
@@ -256,7 +253,7 @@
 %% \uselogo{aaltoRed|aaltoBlue|aaltoYellow|aaltoGray|aaltoGrayScale}{?|!|''}
 %% The logo language is set to be the same as the thesis language.
 %%
-\uselogo{aaltoRed}{?}
+\uselogo{aaltoBlue}{?}
 %%
 
 %% The English abstract:
@@ -312,7 +309,7 @@ text must be identical to the text on the abstract page.
 %\setboolean{writexmpdatafile}{false}
 
 %% All that is printed on paper starts here
-%%
+
 \begin{document}
 
 %% Create the coverpage
@@ -605,9 +602,11 @@ Suppose $f \in RV_{\alpha}$. If $\varepsilon, \delta>0$ are arbitrary, there exi
 
 {\color{red}
 The Hill estimator is defined as follows:
-\begin{equation}
-\hat{\gamma} = \frac{1}{k} \sum_{}^{} \log () - \log (X_{})
-\end{equation}
+\begin{equation*}
+\hat{\gamma} = \frac{1}{k} \sum_{i=0}^{k-1} \log (X_{n-i,n}) - \log (X_{n-k,n}), \quad 1 \leq k  \leq n-1
+\end{equation*}
+
+where $k$ is a free parameter and $X_{1,n} \leq X_{2,n}\leq ...  \leq X_{n,n}$ are order statistics. So essentially Hill estimator is mean of logarithm of distances between order statistics and the threshold $X_{n-k,n}$.
 }
 \subsection{Consistency}
 

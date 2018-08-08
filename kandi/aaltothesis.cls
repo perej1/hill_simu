@@ -136,9 +136,9 @@
   \ifthenelse{\boolean{ONLINE}}{\hypersetup{%
 		colorlinks=true, urlcolor=blue, linkcolor=blue, citecolor=blue}}{}%
 }{
-  \AtBeginDocument{\RequirePackage[colorlinks=false]{hyperref}%
-  	\hypersetup{bookmarksnumbered=true}%
-  }%
+ % \AtBeginDocument{\RequirePackage[colorlinks=true]{hyperref}%
+  %	\hypersetup{bookmarksnumbered=true}%
+ % }%
 }%
 %
 \RequirePackage[T1]{fontenc}%

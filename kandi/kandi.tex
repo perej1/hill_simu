@@ -1,4 +1,7 @@
-﻿%% thesistemplate.tex version 3.10 (2018/04/24)                               %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                                            %%
+%% thesistemplate.tex version 3.10 (2018/04/24)                               %%
 %% The LaTeX template file to be used with the aaltothesis.sty (version 3.10) %%
 %% style file.                                                                %%
 %% This package requires pdfx.sty v. 1.5.84 (2017/05/18) or newer.            %%
@@ -164,6 +167,12 @@
 \usepackage{chngcntr} % Appendixista etuliite figureihin
 \usepackage{ctable}
 
+\usepackage{hyperref}
+\hypersetup{
+hidelinks,
+bookmarksnumbered=true
+}
+
 %% Math fonts, symbols, and formatting; these are usually needed
 \usepackage{amsfonts,amssymb,amsbsy,amsmath,amsthm}
 
@@ -253,7 +262,7 @@
 %% \uselogo{aaltoRed|aaltoBlue|aaltoYellow|aaltoGray|aaltoGrayScale}{?|!|''}
 %% The logo language is set to be the same as the thesis language.
 %%
-\uselogo{aaltoBlue}{?}
+\uselogo{aaltoRed}{?}
 %%
 
 %% The English abstract:
@@ -262,22 +271,14 @@
 %% Thesis keywords:
 %% Note! The keywords are separated using the \spc macro
 %%
-\keywords{For keywords choose\spc concepts that are\spc central to your\spc thesis}
+\keywords{Hill estimator\spc extreme value theory\spc asymptotic properties\spc statistics}
 %%
 
 %% The abstract text. This text is included in the metadata of the pdf file as well
 %% as the abstract page.
 %%
 \thesisabstract{
-Your abstract in English. Keep the abstract short. The abstract explains your 
-research topic, the methods you have used, and the results you obtained. In the 
-PDF/A format of this thesis, in addition to the abstract page, the abstract text is 
-written into the pdf file's metadata. Write here the text that goes into the 
-metadata. The metadata cannot contain special characters, linebreak or paragraph 
-break characters, so these must not be used here. If your abstract does not contain 
-special characters and it does not require paragraphs, you may take advantage of 
-the abstracttext macro (see the comment below). Otherwise, the metadata abstract 
-text must be identical to the text on the abstract page.
+We review asymptotic properties of the Hill estimator. Focus is on consistency of the estimator but also result for the asymptotic normality is provided. Furthermore we review properties of heavy tailed functions since they play an important role in the theory of the heavy-tailed functions. Asymptotic behavior is examined by Monte Carlo simulations.
 }
 
 %% Copyright text. Copyright of a work is with the creator/author of the work
@@ -332,18 +333,7 @@ text must be identical to the text on the abstract page.
 %% above.
 %%
 \begin{abstractpage}[english]
-  Your abstract in English. Keep the abstract short. The abstract explains your
-  research topic, the methods you have used, and the results you obtained.  
-  
-  The abstract text of this thesis is written on the readable abstract page as
-  well as into the pdf file's metadata via the $\backslash$thesisabstract macro
-  (see above). Write here the text that goes onto the readable abstract page.
-  You can have special characters, linebreaks, and paragraphs here. Otherwise,
-  this abstract text must be identical to the metadata abstract text.
-  
-  If your abstract does not contain special characters and it does not require
-  paragraphs, you may take advantage of the abstracttext macro (see the comment
-  below).
+ \abstracttext{}
 \end{abstractpage}
 
 %% The text in the \thesisabstract macro is stored in the macro \abstractext, so
@@ -399,7 +389,7 @@ $\lambda$ & Lebesque measure \\
 $\lim \sup A_n = \bigcap_{k=1}^{\infty} \bigcup_{n=k}^{\infty} A_n$ & limit supremum of a sequence of sets $A_n$ \\
 $RV_{\alpha}$ & the set of regularly varying functions with index $\alpha$ \\
 $D(G_{\gamma})$ & the maximum domain of attraction of $G_{\gamma}$ \\
-$f \sim g$ & $\lim_{x \rightarrow \infty} f(x)/g(x)=1$ \\
+$f \sim g$ & $\lim\limits_{x \rightarrow \infty} f(x)/g(x)=1$ \\
 \end{tabular}
 
 
@@ -496,7 +486,7 @@ G_{\gamma}(x)=
 \end{equation*}
 for all x with $1+\gamma x > 0$ where $\gamma \in \mathbb{R}$.
 \end{theorem}
-If F satisfies the equation \ref{fisher} for some $\gamma \in \mathbb{R}$ then it is said that F is in the maximum domain of attraction of $G_{\gamma}$, denoted $F \in D(G_{\gamma})$.
+If F satisfies the equation \eqref{fisher} for some $\gamma \in \mathbb{R}$ then it is said that F is in the maximum domain of attraction of $G_{\gamma}$, denoted $F \in D(G_{\gamma})$.
 
 We are especially interested in heavy-tailed distributions, i.e. the case $F \in D(G_{\gamma})$, with $\gamma>0$. It turns out that $F$ being heavy-tailed is equivalent to the function $1-F$ being regularly varying with index $-1/ \gamma$. In other words, if the tail function $1-F$ of a distribution is regularly varying then the distribution $F$ is heavy tailed and vice versa. \cite{deHaan}
 
@@ -511,7 +501,7 @@ Cdf F is in the maximum domain of attraction of the extreme value distribution $
 In addition, condition \eqref{tail} can be written in different form with the $U$ function \cite{deHaan}.
 
 \begin{corollary}
-Condition \ref{tail} is equivalent to
+Condition \eqref{tail} is equivalent to
 \begin{equation}
 \lim_{t \rightarrow \infty} \frac{U(tx)}{U(t)} = x^{\gamma}, x>0.
 \label{Utail}
@@ -539,7 +529,7 @@ If a function $f$  is regularly varying with index $\alpha=0$ then $f$ is said t
 
 
 \begin{theorem}
-If $f \in RV_{\alpha}$ then the convergence in the equation \ref{regular} is uniform .
+If $f \in RV_{\alpha}$ then the convergence in the equation \eqref{regular} is uniform .
 \begin{equation*}
 \lim_{t \rightarrow \infty} \sup_{x  \in [a,b]} \left| \frac{f(tx)}{f(t)} - x^{\alpha} \right| = 0,
 \end{equation*}
@@ -577,13 +567,13 @@ If $\alpha<-1$ or $\alpha= -1$ and $\int_{0}^{\infty}f(s)ds<\infty$, then
 \lim_{t \rightarrow \infty} \frac{tf(t)}{\int_{t}^{\infty} f(s) ds} = -\alpha - 1.
 \label{<-1}
 \end{equation}
-Conversely, if \ref{>-1} holds for $-1\leq \alpha < \infty$ or \ref{<-1} holds for $-\infty<\alpha<-1$, then $f \in RV_{\alpha}$.
+Conversely, if \eqref{>-1} holds for $-1\leq \alpha < \infty$ or \eqref{<-1} holds for $-\infty<\alpha<-1$, then $f \in RV_{\alpha}$.
 \label{karamlemma}
 \end{lemma}
 
 
 
-The following corollary of the Karamata’s representation theorem will play a key role in the proof of the consistency of the Hill estimator. 
+The following corollary \cite{potter} of the Karamata’s representation theorem will play a key role in the proof of the consistency of the Hill estimator. 
 
 \begin{corollary}
 Suppose $f \in RV_{\alpha}$. If $\varepsilon, \delta>0$ are arbitrary, there exists $t_0=t_0(\varepsilon, \delta)$ such that for $t\geq t_0$, $tx \geq t_0$,
@@ -603,10 +593,9 @@ Suppose $f \in RV_{\alpha}$. If $\varepsilon, \delta>0$ are arbitrary, there exi
 {\color{red}
 The Hill estimator is defined as follows:
 \begin{equation*}
-\hat{\gamma} = \frac{1}{k} \sum_{i=0}^{k-1} \log (X_{n-i,n}) - \log (X_{n-k,n}), \quad 1 \leq k  \leq n-1
+\hat{\gamma} = \frac{1}{k} \sum_{i=0}^{k-1} \log X_{n-i,n} - \log X_{n-k,n}, \quad 1 \leq k \leq n-1
 \end{equation*}
-
-where $k$ is a free parameter and $X_{1,n} \leq X_{2,n}\leq ...  \leq X_{n,n}$ are order statistics. So essentially Hill estimator is mean of logarithm of distances between order statistics and the threshold $X_{n-k,n}$.
+where $k \in \mathbb{N}$ is a free parameter and $X_{1,n} \leq X_{2,n} \leq ...  \leq X_{n,n}$ are order statistics.
 }
 \subsection{Consistency}
 
@@ -709,14 +698,14 @@ From theorem \ref{normality} it can be seen that for Hill estimator to be asympt
 \section{Simulations}
 \label{simut}
 
-The consistency of the Hill estimator is studied with a Monte Carlo simulation. We simulate observations from the Pareto distribution with an extreme value index $\gamma=1/3$ and Cauchy distribution ($\gamma=1$, as can be checked with equation \ref{tail} or \ref{Utail}). We simulate $N=2000$ sets of $n_i$ observations from both distributions where $n_i=100+50(i-1), i=1,2,...,399$. Hence the sample size is a vector from 100 to 20000 with steps of 50. We denote this vector with $\textbf{n}=(100,150,...,20000)$. So for each $n_i$ we calculate $N$ number of estimates $\hat{\gamma}$ with $k=k(n)=o(n)$. For k we chose $k(n)=\sqrt{n}$, thus the condition $k=o(n)$ is fulfilled. Results are shown in figures \ref{pareto} and \ref{cauchy}. Below is a summary of simulation settings.
+The consistency of the Hill estimator is studied with a Monte Carlo simulation. We simulate observations from the Pareto distribution with an extreme value index $\gamma=1/3$ and Cauchy distribution ($\gamma=1$, as can be checked with equation \eqref{tail} or \eqref{Utail}). We simulate $N=2000$ sets of $n_i$ observations from both distributions where $n_i=100+50(i-1), i=1,2,...,399$. Hence the sample size is a vector from 100 to 20000 with steps of 50. We denote this vector with $\textbf{n}=(100,150,...,20000)$. So for each $n_i$ we calculate $N$ number of estimates $\hat{\gamma}$ with $k=k(n)=o(n)$. For k we chose $k(n)=\left \lfloor \sqrt{n} \right \rfloor$, thus the condition $k=o(n)$ is fulfilled. Results are shown in figures \ref{pareto} and \ref{cauchy}. Below is a summary of simulation settings.
 
 \ctable[caption={Simulation settings.}, pos={H}, label={setup}, center]{ccccccc}{}{
 \toprule
 Figure & Distribution & $\gamma$ & Estimator & $n$ & $N$ & $k(n)$ \\
 \midrule
-\ref{pareto} & Pareto & 1/3 & Hill & \textbf{n} & 2000 & $\sqrt{n}$ \\
-\ref{cauchy} & Cauchy & 1 & Hill & \textbf{n} & 2000 & $\sqrt{n}$ \\
+\ref{pareto} & Pareto & 1/3 & Hill & \textbf{n} & 2000 & $\left \lfloor \sqrt{n} \right \rfloor$ \\
+\ref{cauchy} & Cauchy & 1 & Hill & \textbf{n} & 2000 & $\left \lfloor \sqrt{n} \right \rfloor$ \\
 \bottomrule
 }
 
@@ -740,8 +729,11 @@ Finally, we note that the Hill estimator can be extended in various ways. For ex
 
 %% L\"ahdeluettelo
 
-\phantomsection
-\addcontentsline{toc}{section}{\refname}
+%\phantomsection
+%\addcontentsline{toc}{section}{\refname}
+
+\thesisbibliography
+
 \bibliographystyle{abbrv}
 \bibliography{bib}
 
@@ -750,7 +742,7 @@ Finally, we note that the Hill estimator can be extended in various ways. For ex
 \clearpage
 
 \thesisappendix
-\counterwithin{figure}{section}
+%\counterwithin{figure}{section}
 
 \section{Proofs}
 \label{proofs}

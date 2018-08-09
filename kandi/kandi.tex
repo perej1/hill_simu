@@ -278,7 +278,7 @@ bookmarksnumbered=true
 %% as the abstract page.
 %%
 \thesisabstract{
-We review asymptotic properties of the Hill estimator. Focus is on consistency of the estimator but also result for the asymptotic normality is provided. Furthermore we review properties of heavy tailed functions since they play an important role in the theory of the heavy-tailed functions. Asymptotic behavior is examined by Monte Carlo simulations.
+We review asymptotic properties of the Hill estimator, that is one of the most popular tail estimators for heavy tailed functions. Focus is on the consistency of the estimator. We provide result for asymptotic normality but detailed analysis is not in the scope of this paper. Additionally we carefully review  properties of the regularly varying functions since they are closely related to the theory of heavy tailed functions. Lastly, asymptotic behavior of the Hill estimator is examined with Monte Carlo simulations.
 }
 
 %% Copyright text. Copyright of a work is with the creator/author of the work
@@ -539,7 +539,7 @@ for $0<a<b<\infty$.
 
 
 
-With uniform convergence it can be proved that all the regularly varying functions can be represented in certain form:
+With uniform convergence it can be proved that all the regularly varying functions can be represented in certain form \cite{deHaan}:
 
 \begin{theorem}[Karamata's representation theorem]
 If $f \in RV_{\alpha}$ then there exists measurable functions $a: \mathbb{R} \rightarrow \mathbb{R^+}$ and $c: \mathbb{R} \rightarrow \mathbb{R^+}$ with
@@ -554,7 +554,7 @@ Conversely, if \ref{karamata} holds, then $f \in RV_{\alpha}$.
 \label{karamata}
 \end{theorem}
 
-For the proof of the above theorem following lemma about the integrals of the regularly varying functions is needed.
+For the proof of the above theorem following lemma about the integrals of the regularly varying functions is needed \cite{deHaan}.
 
 \begin{lemma}
 Suppose $f \in RV_{\alpha}$. There exists $t_0 > 0$ such that $f(t)$ is positive and locally bounded for $t \geq t_0$. If $\alpha \geq -1$ then
@@ -655,7 +655,7 @@ Notably, there is also converse version of the theorem \ref{hillcons} \cite{maso
 \begin{theorem}
 Let $X_1, X_2,...$ be i.i.d. variables from cdf F. Suppose that for some sequence of integers $k=k(n) \rightarrow \infty$, $k(n)/n \rightarrow 0$ and $k(n+1)/k(n) \rightarrow 1$ as $n \rightarrow \infty$
 \begin{equation*}
-\hat{\gamma}_H \rightarrow \gamma > 0.
+\hat{\gamma} \rightarrow \gamma > 0.
 \end{equation*}
 Then $F \in D(G_{\gamma})$
 \end{theorem}
@@ -752,7 +752,7 @@ Finally, we note that the Hill estimator can be extended in various ways. For ex
 
 {\color{red}
 
-For a slowly varying function the limit relation \ref{regular} can be written in different form with function $F=\log f(e^x)$:
+For a slowly varying function the limit relation \eqref{regular} can be written in different form with function $F=\log f(e^x)$:
 \begin{equation}
 \lim_{t \rightarrow \infty} F(t+x)-F(x) = 0.
 \label{F}
@@ -761,7 +761,7 @@ The above argument is true, since
 \begin{equation*}
 F(t+x)-F(t) = \log f(e^{t+x}) - \log f(e^{t}) = \log \left(\underbrace{\frac{f(e^te^x)}{f(e^t)}}_{\rightarrow 1}\right) \rightarrow 0
 \end{equation*}
-as $t \rightarrow \infty$. The alternative form for slow variation \ref{F} is used in the proof of the uniform convergence.
+as $t \rightarrow \infty$. The alternative form for slow variation \eqref{F} is used in the proof of the uniform convergence.
 
 }
 
@@ -771,7 +771,7 @@ For the proof it can be assumed that $\alpha=0$. If this isn't the case replace 
 \begin{equation*}
 \left| \frac{f(t_nx_n)}{f(t_n)} - 1 \right| > \delta
 \end{equation*}
-for all $n \in \mathbb{N}$ and some $\delta>0$. An equivalent condition can be formulated with function $F(x) = \log f(e^x)$(see equation \ref{F}):
+for all $n \in \mathbb{N}$ and some $\delta>0$. An equivalent condition can be formulated with function $F(x) = \log f(e^x)$:
 \begin{equation}
 \left| F(t_n+x_n) - F(t_n) \right| > \delta
 \label{assumption}
@@ -784,13 +784,13 @@ Y_{2,n} = \left\{ \ y \in J: \left| F(t_n+x_n)-F(t_n+y) \right| > \frac{\delta}{
 Z_n = \left\{ \ z: \left| F(t_n+x_n)-F(t_n+x_n-z) \right| > \frac{\delta}{2}, x_n-z \in J \right\} \\
 = \left\{ z: x_n-z \in Y_{2,n} \right\}
 \end{align*}
-where $J \subset \mathbb{R}$ is a finite interval. Next we will prove that if the equation \ref{assumption} holds then pointwise convergence $\lim_{t \rightarrow \infty}F(t+x_0)-F(t)=0$ cannot hold. Pointwise convergence does not hold if some $x_0$ is included in infinitely many $Y_{1,n}$. Reason for this is that
+where $J \subset \mathbb{R}$ is a finite interval. Next we will prove that if the equation \eqref{assumption} holds then pointwise convergence $\lim_{t \rightarrow \infty}F(t+x_0)-F(t)=0$ cannot hold. Pointwise convergence does not hold if some $x_0$ is included in infinitely many $Y_{1,n}$. Reason for this is that
 
 \begin{equation}
 n \geq n_{\varepsilon} \Rightarrow \left| F(t+x_0) - F(t) \right| < \varepsilon, \forall \varepsilon>0, \exists n_{\varepsilon} \in \mathbb{N}
 \label{limit}
 \end{equation}
-cannot hold if $x_0$ is included in infinitely many $Y_{1,n}$. This can be noticed by comparing equation \ref{limit} and the condition of $Y_{1,n}$. Similarly if $x_0$ is included in infinitely many $Z_n$ then pointwise convergence cannot hold, since the condition in $Z_{n}$ can be written as
+cannot hold if $x_0$ is included in infinitely many $Y_{1,n}$. This can be noticed by comparing equation \eqref{limit} and the condition of $Y_{1,n}$. Similarly if $x_0$ is included in infinitely many $Z_n$ then pointwise convergence cannot hold, since the condition in $Z_{n}$ can be written as
 
 \begin{equation*}
 \begin{split}
@@ -800,7 +800,7 @@ cannot hold if $x_0$ is included in infinitely many $Y_{1,n}$. This can be notic
 \end{equation*}
 where $u_n \rightarrow \infty$.
 
-Notice that $Y_{1,n} \cup Y_{2,n}=J$, since by the equation \ref{assumption} and triangle inequality we have
+Notice that $Y_{1,n} \cup Y_{2,n}=J$, since by the equation \eqref{assumption} and triangle inequality we have
 
 \begin{equation*}
 \begin{split}
@@ -823,12 +823,12 @@ Since at least one of the measures $\lambda(\lim \sup Y_{1,n})$ or $\lambda(\lim
 \subsection{Proof of Lemma \ref{karamlemma}}
 
 \begin{proof}
-First we prove the equation \ref{>-1}. Suppose that $f \in RV_{\alpha}$. Then by theorem \ref{uniform} there exists $t_0$ and $c$ such that $f(tx)/t<c$ when $t \geq t_0$, $x \in [1,2]$. Then for $t \in [2^nt_0, 2^{n+1}t_0]$ we have
+First we prove the equation \eqref{>-1}. Suppose that $f \in RV_{\alpha}$. Then by theorem \ref{uniform} there exists $t_0$ and $c$ such that $f(tx)/t<c$ when $t \geq t_0$, $x \in [1,2]$. Then for $t \in [2^nt_0, 2^{n+1}t_0]$ we have
 \begin{equation}
 \frac{f(t)}{f(t_0)}=\frac{f(t)}{f(2^{-1}t)}\frac{f(2^{-1}t)}{f(2^{-2}t)} ... \frac{f(2^{-n}t)}{f(t_0)} < c^{n+1}.
 \label{fracs}
 \end{equation}
-Equation \ref{fracs} is true since every fraction can be written as $f(tx)/f(t)$. This implies that for $t\geq t_0$ $f(t)$ is both locally bounded and $\int_{t_0}^{t}f(s)ds<\infty$. Consider a function $F(t) = \int_{t_0}^{t}f(s)ds$.We start by proving that $\lim_{t \rightarrow \infty} F(t) = \infty$ when $\alpha>-1$. First notice that $f(2s) \geq 2^{-1}f(s)$ for sufficiently large $s$. For $n\geq n_0$
+Equation \eqref{fracs} is true since every fraction can be written as $f(tx)/f(t)$. This implies that for $t\geq t_0$ $f(t)$ is both locally bounded and $\int_{t_0}^{t}f(s)ds<\infty$. Consider a function $F(t) = \int_{t_0}^{t}f(s)ds$.We start by proving that $\lim_{t \rightarrow \infty} F(t) = \infty$ when $\alpha>-1$. First notice that $f(2s) \geq 2^{-1}f(s)$ for sufficiently large $s$. For $n\geq n_0$
 \begin{equation}
 \int_{2^n}^{2^{n+1}} f(s)ds = 2\int_{2^{n-1}}^{2^{n}} f(2s)ds \geq \int_{2^{n-1}}^{2^n} f(s)ds
 \label{varchange}
@@ -861,11 +861,11 @@ by the theorem \ref{uniform} and change of variables. On the other hand
 \Rightarrow \lim_{t \rightarrow \infty} \frac{tf(t)}{F(t)}= \alpha + 1
 \end{split}
 \end{equation*}
-Now we have proven \ref{>-1}. Next we prove equation \ref{<-1}. Let's define
+Now we have proven \eqref{>-1}. Next we prove equation \eqref{<-1}. Let's define
 \begin{equation*}
 G(t) = \int_{t}^{\infty} f(s)ds
 \end{equation*}
-In the case $\alpha<-1$ there exists $\delta>0$ such that $f(2s) \leq 2^{-1-\delta}f(s)$ for sufficiently large s. Now we can prove the finiteness of $\lim_{t \rightarrow \infty} G(t)$ in a similar way as the infinitess of $\lim_{t \rightarrow \infty} F(t)$ in equations \ref{varchange}, \ref{induction} and \ref{infinite}. For sufficiently large $n_1$
+In the case $\alpha<-1$ there exists $\delta>0$ such that $f(2s) \leq 2^{-1-\delta}f(s)$ for sufficiently large s. Now we can prove the finiteness of $\lim_{t \rightarrow \infty} G(t)$ in a similar way as the infinitess of $\lim_{t \rightarrow \infty} F(t)$ in equations \eqref{varchange}, \eqref{induction} and \eqref{infinite}. For sufficiently large $n_1$
 \begin{equation*}
 \begin{split}
 \int_{2^{n}}^{2^{n+1}} f(s)ds = 2 \int_{2^{n-1}}^{2^{n}} f(s)ds \leq 2^{-\delta} \int_{2^{n-1}}^{2^n} f(s)ds \leq \\ ... \leq 2^{-\delta(n-n_1)} \int_{2^{n_1}}^{2^{n_1+1}} f(s)ds = 2^{-\delta(n-n_1)} C'
@@ -891,7 +891,7 @@ since by change of variables
 \begin{equation*}
 \int_{1}^{x} \frac{f(t)}{F(t)}dt = \int_{F(1)}^{F(x)} \frac{1}{u}du = \log F(x) + \underbrace{\log F(1)}_{=c_1}.
 \end{equation*}
-From the equation \ref{int b/t} we have
+From the equation \eqref{int b/t} we have
 \begin{equation*}
 F(t) = \exp \left( \int_1^x \frac{b(t)}{t}dt-c_1 \right) =\underbrace{\exp(-c_1)}_{=c} \exp \left( \int_1^x \frac{b(t)}{t}dt\right) =c \exp \left( \int_1^x \frac{b(t)}{t}dt\right).
 \end{equation*}
@@ -911,11 +911,11 @@ for all $x>0$. Hence for all $x,t>0$
 = \frac{b(tx)}{b(t)} \exp \left( \int_{1}^{x} \frac{b(ts)-1}{s}ds\right),
 \end{split}
 \end{equation*}
-by the change of variables. By the assumption (equation \ref{>-1}) $b(t) \rightarrow \alpha + 1$ so $b(tx)/b(t) \rightarrow 1$. For sufficiently large $t$
+by the change of variables. By the assumption (equation \eqref{>-1}) $b(t) \rightarrow \alpha + 1$ so $b(tx)/b(t) \rightarrow 1$. For sufficiently large $t$
 \begin{equation*}
 \exp \left( \int_{1}^{x} \frac{b(ts)-1}{s}ds\right) \approx \exp \left( \int_{1}^{x} \frac{\alpha}{s}ds\right)=\exp \left(\alpha \log x \right) = x^{\alpha}
 \end{equation*}
-The last statement (equation \ref{<-1} implies that $F \in RV_{\alpha}$) can be proved in a similar way.
+The last statement (equation \eqref{<-1} implies that $F \in RV_{\alpha}$) can be proved in a similar way.
 \end{proof}
 
 \subsection{Proof of Theorem \ref{karamata}}
@@ -925,7 +925,7 @@ Suppose $f \in RV_{\alpha}$. The function $t^{-\alpha}f(t)$ is slowly varying an
 \begin{equation*}
 t^{-\alpha}f(t) = cb(t) \exp \left( \int_{1}^{t} \frac{b(s)-1}{s}ds \right)
 \end{equation*}
-by the equation \ref{frep}. Now by lemma \ref{karamlemma} $b(t) \rightarrow 1$ and function $t^{-\alpha}f(t)$ has the representation as in theorem \ref{karamata} with $a(t)=b(t)-1$ and $c(t)=cb(t)$. Then
+by the equation \eqref{frep}. Now by lemma \ref{karamlemma} $b(t) \rightarrow 1$ and function $t^{-\alpha}f(t)$ has the representation as in theorem \ref{karamata} with $a(t)=b(t)-1$ and $c(t)=cb(t)$. Then
 \begin{equation*}
 f(t) = c(t)t^{\alpha} \exp \left(  \int_{t_0}^{t} \frac{a(s)}{s}ds  \right)
 \end{equation*}
@@ -941,7 +941,7 @@ f(t) = c(t) \exp \left(  \int_{t_0}^{t} \frac{a(s)}{s}ds + \int_{1}^{t} \frac{\a
 = \underbrace{t_0^{\alpha}c(t)}_{=c'} \exp \left(  \int_{t_0}^{t} \frac{\overbrace{a(s)+\alpha}^{=a'}}{s}ds \right)
 \label{fkaramata}
 \end{equation}
-From the equation \ref{fkaramata} it can be seen that $f(t)$ has the same representation as in the theorem \ref{karamata} when $a$ is replaced by $a'$ and $c$ is replaced by $c'$.
+From the equation \eqref{fkaramata} it can be seen that $f(t)$ has the same representation as in the theorem \ref{karamata} when $a$ is replaced by $a'$ and $c$ is replaced by $c'$.
 \end{proof}
 
 \subsection{Proof of Corollary \ref{inequality}}
@@ -1004,7 +1004,7 @@ U(Y) \leq a \\
 \end{equation}
 
 
-Let $S=\big\{x: 1 - \frac{1}{Y} \leq F_X(x)\big\}$ and $b = \inf S$. Notice that F is increasing and right-continuous, since F is a cdf. So S is an interval of form $[b,\infty)$ or $(b, \infty)$, since F is increasing. Let's define a sequence $x_n=b+\frac{1}{n}, n\in \mathbb{N}$. Notice that $x_n \rightarrow b$ and $x_n \in S$ for all $n$. Now right-continuity implies that $b \in S$ i.e $S$ is an interval $[b, \infty)$. Additionally $a \in S$ since $a\geq b$ so $a$ satisfies the condition $1-\frac{1}{Y} \leq F(a)$. Therefore the equation \ref{infeq} implies
+Let $S=\big\{x: 1 - \frac{1}{Y} \leq F_X(x)\big\}$ and $b = \inf S$. Notice that F is increasing and right-continuous, since F is a cdf. So S is an interval of form $[b,\infty)$ or $(b, \infty)$, since F is increasing. Let's define a sequence $x_n=b+\frac{1}{n}, n\in \mathbb{N}$. Notice that $x_n \rightarrow b$ and $x_n \in S$ for all $n$. Now right-continuity implies that $b \in S$ i.e $S$ is an interval $[b, \infty)$. Additionally $a \in S$ since $a\geq b$ so $a$ satisfies the condition $1-\frac{1}{Y} \leq F(a)$. Therefore the equation \eqref{infeq} implies
 \begin{equation*}
 U(Y) \leq a \Leftrightarrow 1 - \frac{1}{Y} \leq F_X(a) \Leftrightarrow Y \leq \frac{1}{1-F(a)},
 \end{equation*}
@@ -1043,7 +1043,7 @@ for all $\varepsilon>0$ and $\delta>0$. By taking natural logarithm from both si
 \label{logRV}
 \end{equation}
 
-If $Y_1, Y_2,...$ are i.d.d random variables from Pareto distribution with cdf $F_Y(y) = 1 - \frac{1}{y}$ then $U(Y_i)  \overset{d}{=} X_i$  as stated in lemma \ref{U}. Hence it is sufficient to prove the result for $ \hat{\gamma}_H =  \frac{1}{k} \sum_{i=0}^{k-1} \log(U(Y_{n-i,n})) - \log(U(Y_{n-k,n})) $. For $t = Y_{n-k,n}$ and $x =\frac{Y_{n-i,n}}{Y_{n-k,n}}$ equation \ref{logRV} has the form
+If $Y_1, Y_2,...$ are i.d.d random variables from Pareto distribution with cdf $F_Y(y) = 1 - \frac{1}{y}$ then $U(Y_i)  \overset{d}{=} X_i$  as stated in lemma \ref{U}. Hence it is sufficient to prove the result for $ \hat{\gamma} =  \frac{1}{k} \sum_{i=0}^{k-1} \log(U(Y_{n-i,n})) - \log(U(Y_{n-k,n})) $. For $t = Y_{n-k,n}$ and $x =\frac{Y_{n-i,n}}{Y_{n-k,n}}$ equation \eqref{logRV} has the form
 
 
 \begin{equation}
@@ -1056,7 +1056,7 @@ If $Y_1, Y_2,...$ are i.d.d random variables from Pareto distribution with cdf $
 
 Notice that we can replace t with $Y_{n-k,n}$ because we can always find some $n_0$ such that $Y_{n_0-k,n_0} \geq t_0$ according to lemma \ref{asconv}. Furthermore, $Y_{n-i,n}$ is greater than $Y_{n-k,n}$ always when $i<k$. Therefore x can be replaced with $\frac{Y_{n-i,n}}{Y_{n-k,n}}$.
 
-Equation \ref{log} applies for every $i = 0,1,2,..., k-1$. Thus we can write
+Equation \eqref{log} applies for every $i = 0,1,2,..., k-1$. Thus we can write
 
 \begin{equation*}
 \begin{split}
@@ -1065,11 +1065,11 @@ Equation \ref{log} applies for every $i = 0,1,2,..., k-1$. Thus we can write
 \end{split}
 \end{equation*}
 
-The term in the middle is the hill estimator $\hat{\gamma}_H$, hence above becomes
+The term in the middle is the hill estimator $\hat{\gamma}$, hence above becomes
 
 \begin{equation*}
 \begin{split}
-\log(1 - \varepsilon) + (\gamma - \delta) \frac{1}{k} \sum_{i=0}^{k-1} \log\Big(\frac{Y_{n-i,n}}{Y_{n-k,n}}\Big) < \hat{\gamma}_H \\
+\log(1 - \varepsilon) + (\gamma - \delta) \frac{1}{k} \sum_{i=0}^{k-1} \log\Big(\frac{Y_{n-i,n}}{Y_{n-k,n}}\Big) < \hat{\gamma} \\
 < \log(1 + \varepsilon) + (\gamma + \delta) \frac{1}{k} \sum_{i=0}^{k-1} \log\Big(\frac{Y_{n-i,n}}{Y_{n-k,n}}\Big).
 \end{split}
 \end{equation*}

@@ -1,140 +1,3 @@
-﻿%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%                                                                            %%
-%% thesistemplate.tex version 3.10 (2018/04/24)                               %%
-%% The LaTeX template file to be used with the aaltothesis.sty (version 3.10) %%
-%% style file.                                                                %%
-%% This package requires pdfx.sty v. 1.5.84 (2017/05/18) or newer.            %%
-%%                                                                            %%
-%% This is licensed under the terms of the MIT license below.                 %%
-%%                                                                            %%
-%% Copyright 2017-2018, by Luis R.J. Costa, luis.costa@aalto.fi,              %%
-%% Copyright 2017-2018 documentation in Finnish in the template by Perttu     %%
-%% Puska, perttu.puska@aalto.fi                                               %%
-%% Copyright Swedish translations 2017-2018 by Elisabeth Nyberg,              %%
-%% elisabeth.nyberg@aalto.fi and Henrik Wallén, henrik.wallen@aalto.fi        %%
-%%                                                                            %%
-%% Permission is hereby granted, free of charge, to any person obtaining a    %%
-%% copy of this software and associated documentation files (the "Software"), %%
-%% to deal in the Software without restriction, including without limitation  %%
-%% the rights to use, copy, modify, merge, publish, distribute, sublicense,   %%
-%% and/or sell copies of the Software, and to permit persons to whom the      %%
-%% Software is furnished to do so, subject to the following conditions:       %%
-%% The above copyright notice and this permission notice shall be included in %%
-%% all copies or substantial portions of the Software.                        %%
-%% THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR %%
-%% IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,   %%
-%% FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL    %%
-%% THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER %%
-%% LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING    %%
-%% FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER        %%
-%% DEALINGS IN THE SOFTWARE.                                                  %%
-%%                                                                            %%
-%%                                                                            %%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%                                                                            %%
-%%                                                                            %%
-%% An example for writting your thesis using LaTeX                            %%
-%% Original version and development work by Luis Costa, changes by Perttu     %% 
-%% Puska.                                                                     %%
-%% Support for Swedish added 15092014                                         %%
-%% PDF/A-b support added on 15092017                                          %%
-%% PDF/A-2b and PDF/A-3b support added on 24042018                            %%
-%%                                                                            %%
-%% This example consists of the files                                         %%
-%%         thesistemplate.tex (versio 3.10)                                   %%
-%%         opinnaytepohja.tex (versio 3.10) (for text in Finnish)             %%
-%%         aaltothesis.cls (versio 3.10)                                      %%
-%%         kuva1.eps (graphics file)                                          %%
-%%         kuva2.eps (graphics file)                                          %%
-%%         kuva1.jpg (graphics file)                                          %%
-%%         kuva2.jpg (graphics file)                                          %%
-%%         kuva1.png (graphics file)                                          %%
-%%         kuva2.png (graphics file)                                          %%
-%%         kuva1.pdf (graphics file)                                          %%
-%%         kuva2.pdf (graphics file)                                          %%
-%%                                                                            %%
-%%                                                                            %%
-%% Typeset in Linux either with                                               %%
-%% pdflatex: (recommended method)                                             %%
-%%             $ pdflatex thesistemplate                                      %%
-%%             $ pdflatex thesistemplate                                      %%
-%%                                                                            %%
-%%   The result is the file thesistemplate.pdf that is PDF/A compliant, if    %%
-%%   you have chosen the proper \documenclass options (see comments below)    %%
-%%   and your included graphics files have no problems.
-%%                                                                            %%
-%% Or                                                                         %%
-%% latex:                                                                     %%
-%%             $ latex thesistemplate                                         %%
-%%             $ latex thesistemplate                                         %%
-%%                                                                            %%
-%%   The result is the file thesistemplate.dvi, which is converted to ps      %%
-%%   format as follows:                                                       %%
-%%                                                                            %%
-%%             $ dvips thesistemplate -o                                      %%
-%%                                                                            %%
-%%   and then to pdf as follows:                                              %%
-%%                                                                            %%
-%%             $ ps2pdf thesistemplate.ps                                     %%
-%%                                                                            %%
-%%   This pdf file is not PDF/A compliant. You must must make it so using,    %%
-%%   e.g., Acrobat Pro or PDF-XChange.                                        %%
-%%                                                                            %%
-%%                                                                            %%
-%% Explanatory comments in this example begin with the characters %%, and     %%
-%% changes that the user can make with the character %                        %%
-%%                                                                            %%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%
-%% WHAT is PDF/A
-%%
-%% PDF/A is the ISO-standardized version of the pdf. The standard's goal is to
-%% ensure that he file is reproducable even after a long time. PDF/A differs
-%% from pdf in that it allows only those pdf features that support long-term
-%% archiving of a file. For example, PDF/A requires that all used fonts are
-%% embedded in the file, whereas a normal pdf can contain only a link to the
-%% fonts in the system of the reader of the file. PDF/A also requires, among
-%% other things, data on colour definition and the encryption used.
-%% Currently three PDF/A standards exist:
-%% PDF/A-1: based on PDF 1.4, standard ISO19005-1, published in 2005.
-%%          Includes all the requirements essential for long-term archiving.
-%% PDF/A-2: based on PDF 1.7, standard ISO19005-2, published in 2011.
-%%          In addition to the above, it supports embedding of OpenType fonts,
-%%          transparency in the colour definition and digital signatures.
-%% PDF/A-3: based on PDF 1.7, standard ISO19005-3, published in 2012.
-%%          Differs from the above only in that it allows embedding of files in
-%%          any format (e.g., xml, csv, cad, spreadsheet or wordprocessing
-%%          formats) into the pdf file.
-%% PDF/A-1 files are not necessarily PDF/A-2 -compatible and PDF/A-2 are not
-%% necessarily PDF/A-1 -compatible.
-%% All of the above PDF/A standards have two levels:
-%% b: (basic) requires that the visual appearance of the document is reliably
-%%    reproduceable.
-%% a (accessible) in addition to the b-level requirements, specifies how
-%%   accessible the pdf file is to assistive software, say, for the physically
-%%   impaired.
-%% For more details on PDF/A, see, e.g., https://en.wikipedia.org/wiki/PDF/A
-%%
-%%
-%% WHICH PDF/A standard should my thesis conform to?
-%%
-%% Primarily to the PDF/A-1b standard. All the figures and graphs typically
-%% use in thesis work do not require transparency features, a basic '2-D'
-%% visualisation suffices. The font to be used are specified in this template
-%% and they should not be changed. However, if you have figures where
-%% transparency characteristics matter, use the PDF/A-2b standard. Do not use
-%% the PDF/A-3b standard for your thesis.
-%%
-%%
-%% WHAT graphics format can I use to produce my PDF/A compliant file?
-%%
-%% When using pdflatex to compile your work, use jpg, png or pdf files. You may
-%% have PDF/A compliance problems with figures in pdf format. Do not use PDF/A
-%% compliant graphics files.
-%% If you decide to use latex to compile your work, the only acceptable file
-%% format for your figure is eps. DO NOT use the ps format for your figures.
 
 %% USE one of these:
 %% * the first when using pdflatex, which directly typesets your document in the
@@ -161,19 +24,16 @@
 %% two-sided printing: twoside (default is one-sided printing)
 %%
 
-\usepackage{bbm}
-\usepackage{graphicx}
-\usepackage{float}
-\usepackage{chngcntr} % Appendixista etuliite figureihin
-\usepackage{ctable}
-
-\usepackage{hyperref}
+\usepackage{bbm} % bold indicator function
+\usepackage{graphicx, float} % graphics
+\usepackage{ctable} % for tables
+\usepackage{hyperref} % for the internal links
 \hypersetup{
 hidelinks,
 bookmarksnumbered=true
 }
 
-%% Math fonts, symbols, and formatting; these are usually needed
+%% Math fonts, symbols, and formatting
 \usepackage{amsfonts,amssymb,amsbsy,amsmath,amsthm}
 
 
@@ -486,7 +346,7 @@ G_{\gamma}(x)=
 \end{equation*}
 for all x with $1+\gamma x > 0$ where $\gamma \in \mathbb{R}$.
 \end{theorem}
-If F satisfies the equation \eqref{fisher} for some $\gamma \in \mathbb{R}$ then it is said that F is in the maximum domain of attraction of $G_{\gamma}$, denoted $F \in D(G_{\gamma})$.
+If F satisfies the Equation \eqref{fisher} for some $\gamma \in \mathbb{R}$ then it is said that F is in the maximum domain of attraction of $G_{\gamma}$, denoted $F \in D(G_{\gamma})$.
 
 We are especially interested in heavy-tailed distributions, i.e. the case $F \in D(G_{\gamma})$, with $\gamma>0$. It turns out that $F$ being heavy-tailed is equivalent to the function $1-F$ being regularly varying with index $-1/ \gamma$. In other words, if the tail function $1-F$ of a distribution is regularly varying then the distribution $F$ is heavy tailed and vice versa. \cite{deHaan}
 
@@ -498,7 +358,7 @@ Cdf F is in the maximum domain of attraction of the extreme value distribution $
 \end{equation}
 \end{theorem}
 
-In addition, condition \eqref{tail} can be written in different form in terms of a left-continuous inverse $U=(1/(1-F))^{\leftarrow}$ \cite{deHaan}.
+In addition, \eqref{tail} can be written in a different form in terms of a left-continuous inverse $U=(1/(1-F))^{\leftarrow}$ \cite{deHaan}.
 
 \begin{corollary}
 Condition \eqref{tail} is equivalent to
@@ -548,7 +408,7 @@ If $f \in RV_{\alpha}$ then there exists measurable functions $a: \mathbb{R} \ri
 \end{equation*}
 and $t_0 \in \mathbb{R^+}$ such that for $t > t_0$
 \begin{equation}
-f(t) = c(t) \exp \left(\int_{t_0}^{t}  \frac{a(s)}{s} ds \right)
+f(t) = c(t) \exp \left(\int_{t_0}^{t}  \frac{a(s)}{s} \, \mathrm{d}s \right)
 \end{equation}
 Conversely, if \ref{karamata} holds, then $f \in RV_{\alpha}$.
 \label{karamata}
@@ -559,12 +419,12 @@ For the proof of the above theorem following lemma about the integrals of the re
 \begin{lemma}
 Suppose $f \in RV_{\alpha}$. There exists $t_0 > 0$ such that $f(t)$ is positive and locally bounded for $t \geq t_0$. If $\alpha \geq -1$ then
 \begin{equation}
-\lim_{t \rightarrow \infty} \frac{tf(t)}{\int_{t_0}^{t}f(s)ds} = \alpha + 1.
+\lim_{t \rightarrow \infty} \frac{tf(t)}{\int_{t_0}^{t}f(s) \, \mathrm{d}s} = \alpha + 1.
 \label{>-1}
 \end{equation}
-If $\alpha<-1$ or $\alpha= -1$ and $\int_{0}^{\infty}f(s)ds<\infty$, then
+If $\alpha<-1$ or $\alpha= -1$ and $\int_{0}^{\infty}f(s) \, \mathrm{d}s<\infty$, then
 \begin{equation}
-\lim_{t \rightarrow \infty} \frac{tf(t)}{\int_{t}^{\infty} f(s) ds} = -\alpha - 1.
+\lim_{t \rightarrow \infty} \frac{tf(t)}{\int_{t}^{\infty} f(s) \, \mathrm{d}s} = -\alpha - 1.
 \label{<-1}
 \end{equation}
 Conversely, if \eqref{>-1} holds for $-1\leq \alpha < \infty$ or \eqref{<-1} holds for $-\infty<\alpha<-1$, then $f \in RV_{\alpha}$.
@@ -611,7 +471,7 @@ Let $X_1, X_2,...$ be i.d.d. variables with cdf $F_X$. Suppose $F_X \in D(G_{\ga
 \label{hillcons}
 \end{theorem}
 
-For the proof of the above theorem following lemmas and corollary \ref{inequality} are needed, firstly the Renyi's representation \cite{renyi}.
+For the proof of the above theorem following lemmas and Corollary \ref{inequality} are needed, firstly the Renyi's representation \cite{renyi}.
 \begin{lemma}
 If $E_1, E_2,...$ are i.d.d. random variables from the standard exponential distribution and $E_{1,n} \leq E_{2,n} \leq ... \leq E_{n,n}$ then for $k \leq n$ we have
 \begin{multline*}
@@ -650,7 +510,7 @@ Let $Y$ be random variable from Pareto distribution $F_Y=1-\frac{1}{y}$, $y \geq
 
 
 
-Notably, there is also converse version of the theorem \ref{hillcons} \cite{mason}. Proof is omitted here.
+Notably, there is also converse version of the Theorem \ref{hillcons} \cite{mason}. Proof is omitted here.
 
 \begin{theorem}
 Let $X_1, X_2,...$ be i.i.d. variables from cdf F. Suppose that for some sequence of integers $k=k(n) \rightarrow \infty$, $k(n)/n \rightarrow 0$ and $k(n+1)/k(n) \rightarrow 1$ as $n \rightarrow \infty$
@@ -690,7 +550,7 @@ where
 \end{equation*}
 \label{normality}
 \end{theorem}
-From theorem \ref{normality} it can be seen that for Hill estimator to be asymptotically normal $U$ of the distribution has to satisfy the second-order regular variation. Furthermore, there is an asymptotic bias that depends on the second-order parameter $\rho$ and $\lambda$.
+From Theorem \ref{normality} it can be seen that for Hill estimator to be asymptotically normal $U$ of the distribution has to satisfy the second-order regular variation. Furthermore, there is an asymptotic bias that depends on the second-order parameter $\rho$ and $\lambda$.
 
 
 
@@ -698,7 +558,7 @@ From theorem \ref{normality} it can be seen that for Hill estimator to be asympt
 \section{Simulations}
 \label{simut}
 
-The consistency of the Hill estimator is studied with a Monte Carlo simulation. We simulate observations from the Pareto distribution with an extreme value index $\gamma=1/3$ and Cauchy distribution ($\gamma=1$, as can be checked with equation \eqref{tail} or \eqref{Utail}). We simulate $N=2000$ sets of $n_i$ observations from both distributions where $n_i=100+50(i-1), i=1,2,...,399$. Hence the sample size is a vector from 100 to 20000 with steps of 50. We denote this vector with $\textbf{n}=(100,150,...,20000)$. For each $n_i$ we calculate $N$ number of estimates $\hat{\gamma}$ with $k=k(n)=o(n)$. For k we chose $k(n)=\left \lfloor \sqrt{n} \right \rfloor$, thus the condition $k=o(n)$ is fulfilled. Results are shown in figures \ref{pareto} and \ref{cauchy}. Below is a summary of simulation settings.
+The consistency of the Hill estimator is studied with a Monte Carlo simulation. We simulate observations from the Pareto distribution with an extreme value index $\gamma=1/3$ and Cauchy distribution ($\gamma=1$, as can be checked with Equation \eqref{tail} or \eqref{Utail}). We simulate $N=2000$ sets of $n_i$ observations from both distributions where $n_i=100+50(i-1), i=1,2,...,399$. Hence the sample size is a vector from 100 to 20000 with steps of 50. We denote this vector with $\textbf{n}=(100,150,...,20000)$. For each $n_i$ we calculate $N$ number of estimates $\hat{\gamma}$ with $k=k(n)=o(n)$. For k we chose $k(n)=\left \lfloor \sqrt{n} \right \rfloor$, thus the condition $k=o(n)$ is fulfilled. Results are shown in Figures \ref{pareto} and \ref{cauchy}. Below is a summary of simulation settings.
 
 \ctable[caption={Simulation settings.}, pos={H}, label={setup}, center]{ccccccc}{}{
 \toprule
@@ -713,7 +573,7 @@ Both resulting graphs are constructed in the same manner. Real value of the extr
 
 In Figure \ref{pareto} it seems that with small $n$ convergence is very fast and slows down after a while. This can be seen by looking at the quartiles. At the beginning the quartiles squeeze around $\gamma$ but eventually after about $n=12500$ it is hard to see any further convergence.
 
-In Figure \ref{cauchy} we can conclude that convergence is fast with small numbers of observations but slows down eventually, as in Figure \ref{pareto}. It seems that the median is a little further from $\gamma$ than in Figure \ref{pareto}. This suggests that for Cauchy distribution larger sample size is needed for an accurate estimate for $\gamma$ than for Pareto distribution. In both Figure \ref{pareto} and Figure \ref{cauchy} quartiles are equally far away from median which suggests that asymptotic distribution of the Hill estimator might be symmetrical.
+In Figure \ref{cauchy} we can conclude that convergence is fast with small numbers of observations but slows down eventually, as in Figure \ref{pareto}. It seems that the median is a little further from $\gamma$ than in Figure \ref{pareto}. This suggests that for Cauchy distribution larger sample size is needed for an accurate estimate for $\gamma$ than for Pareto distribution. In both Figures \ref{pareto} and \ref{cauchy} quartiles are equally far away from median which suggests that asymptotic distribution of the Hill estimator might be symmetrical.
 
 
 \clearpage
@@ -727,10 +587,9 @@ Finally, we note that the Hill estimator can be extended in various ways. For ex
 \clearpage
 
 
-%% L\"ahdeluettelo
+%% Lähdeluettelo
 
-%\phantomsection
-%\addcontentsline{toc}{section}{\refname}
+
 
 \thesisbibliography
 
@@ -738,11 +597,11 @@ Finally, we note that the Hill estimator can be extended in various ways. For ex
 \bibliography{bib}
 
 %% Appendices
-%% If you don't have appendices, remove \clearpage and \thesisappendix below.
+
 \clearpage
 
 \thesisappendix
-%\counterwithin{figure}{section}
+
 
 \section{Proofs}
 \label{proofs}
@@ -751,7 +610,7 @@ Finally, we note that the Hill estimator can be extended in various ways. For ex
 \begin{proof}
 
 
-For a slowly varying function the limit relation \eqref{regular} can be written in different form with function $F=\log f(e^x)$:
+For a slowly varying function the limit \eqref{regular} can be written in different form with function $F=\log f(e^x)$:
 \begin{equation}
 \lim_{t \rightarrow \infty} F(t+x)-F(x) = 0.
 \label{F}
@@ -783,7 +642,7 @@ Y_{2,n} = \left\{ \ y \in J: \left| F(t_n+x_n)-F(t_n+y) \right| > \frac{\delta}{
 Z_n = \left\{ \ z: \left| F(t_n+x_n)-F(t_n+x_n-z) \right| > \frac{\delta}{2}, x_n-z \in J \right\} \\
 = \left\{ z: x_n-z \in Y_{2,n} \right\}
 \end{align*}
-where $J \subset \mathbb{R}$ is a finite interval. Next we will prove that the equation \eqref{assumption} contradicts the pointwise convergence \eqref{F}. Pointwise convergence does not hold if some $x_0$ is included in infinitely many $Y_{1,n}$. This can be noticed by comparing the definition of pointwise convergence and condition in $Y_{1,n}$. Similarly if $x_0$ is included in infinitely many $Z_n$ then pointwise convergence cannot hold, since the condition in $Z_{n}$ can be written as
+where $J \subset \mathbb{R}$ is a finite interval. Next we will prove that the Equation \eqref{assumption} contradicts the pointwise convergence \eqref{F}. Pointwise convergence does not hold if some $x_0$ is included in infinitely many $Y_{1,n}$. This can be noticed by comparing the definition of pointwise convergence and condition in $Y_{1,n}$. Similarly if $x_0$ is included in infinitely many $Z_n$ then pointwise convergence cannot hold, since the condition in $Z_{n}$ can be written as
 
 \begin{equation*}
 \begin{split}
@@ -793,7 +652,7 @@ where $J \subset \mathbb{R}$ is a finite interval. Next we will prove that the e
 \end{equation*}
 where $u_n \rightarrow \infty$.
 
-Notice that $Y_{1,n} \cup Y_{2,n}=J$, since by the equation \eqref{assumption} and triangle inequality we have
+Notice that $Y_{1,n} \cup Y_{2,n}=J$, since by the Equation \eqref{assumption} and triangle inequality we have
 
 \begin{equation*}
 \begin{split}
@@ -816,35 +675,35 @@ Since at least one of the measures $\lambda(\lim \sup Y_{1,n})$ or $\lambda(\lim
 \subsection{Proof of Lemma \ref{karamlemma}}
 
 \begin{proof}
-First we prove the equation \eqref{>-1}. Suppose that $f \in RV_{\alpha}$. Then by theorem \ref{uniform} there exists $t_0$ and $c$ such that $f(tx)/t<c$ when $t \geq t_0$, $x \in [1,2]$. Then for $t \in [2^nt_0, 2^{n+1}t_0]$ we have
+First we prove the Equation \eqref{>-1}. Suppose that $f \in RV_{\alpha}$. Then by Theorem \ref{uniform} there exists $t_0$ and $c$ such that $f(tx)/t<c$ when $t \geq t_0$, $x \in [1,2]$. Then for $t \in [2^nt_0, 2^{n+1}t_0]$ we have
 \begin{equation}
 \frac{f(t)}{f(t_0)}=\frac{f(t)}{f(2^{-1}t)}\frac{f(2^{-1}t)}{f(2^{-2}t)} ... \frac{f(2^{-n}t)}{f(t_0)} < c^{n+1}.
 \label{fracs}
 \end{equation}
-Equation \eqref{fracs} is true since every fraction is of the form $f(tx)/f(t)$. This implies that for $t\geq t_0$ $f(t)$ is both locally bounded and $\int_{t_0}^{t}f(s)ds<\infty$. Consider a function $F(t) = \int_{t_0}^{t}f(s)ds$. We start by proving that $\lim_{t \rightarrow \infty} F(t) = \infty$ when $\alpha>-1$. First notice that $f(2s) \geq 2^{-1}f(s)$ for sufficiently large $s$. For $n\geq n_0$
+Equation \eqref{fracs} is true since every fraction is of the form $f(tx)/f(t)$. This implies that for $t\geq t_0$ $f(t)$ is both locally bounded and $\int_{t_0}^{t}f(s) \, \mathrm{d}s<\infty$. Consider a function $F(t) = \int_{t_0}^{t}f(s) \, \mathrm{d}s$. We start by proving that $\lim_{t \rightarrow \infty} F(t) = \infty$ when $\alpha>-1$. First notice that $f(2s) \geq 2^{-1}f(s)$ for sufficiently large $s$. For $n\geq n_0$
 \begin{equation}
-\int_{2^n}^{2^{n+1}} f(s)ds = 2\int_{2^{n-1}}^{2^{n}} f(2s)ds \geq \int_{2^{n-1}}^{2^n} f(s)ds
+\int_{2^n}^{2^{n+1}} f(s) \, \mathrm{d}s = 2\int_{2^{n-1}}^{2^{n}} f(2s) \, \mathrm{d}s \geq \int_{2^{n-1}}^{2^n} f(s) \, \mathrm{d}s
 \label{varchange}
 \end{equation}
 by a change of variables. Then by induction we have
 \begin{equation}
-\int_{2^n}^{2^{n+1}} f(s)ds \geq \int_{2^{n_0}}^{2^{n_0+1}} f(s)ds = C > 0.
+\int_{2^n}^{2^{n+1}} f(s)\, \mathrm{d}s \geq \int_{2^{n_0}}^{2^{n_0+1}} f(s) \, \mathrm{d}s = C > 0.
 \label{induction}
 \end{equation}
 Thus
 \begin{equation}
-\int_{2^{n_0}}^{\infty} f(s)ds = \sum_{n=n_0}^{\infty} \int_{2^n}^{2^{n+1}} f(s)ds \geq \sum_{n=n_0}^{\infty} \int_{2^n_0}^{2^{n_0+1}} f(s)ds = \sum_{n=n_0}^{\infty} C = \infty
+\int_{2^{n_0}}^{\infty} f(s) \, \mathrm{d}s = \sum_{n=n_0}^{\infty} \int_{2^n}^{2^{n+1}} f(s) \, \mathrm{d}s \geq \sum_{n=n_0}^{\infty} \int_{2^n_0}^{2^{n_0+1}} f(s)\, \mathrm{d}s = \sum_{n=n_0}^{\infty} C = \infty
 \label{infinite}
 \end{equation}
 Next we prove that $F \in RV_{\alpha+1}$ for $\alpha>-1$. Let $\varepsilon>0$ and $t_1=t_1(\varepsilon)$. Then $f(xt)<(1+\varepsilon)x^{\alpha}f(t)$ for $t>t_1$. Since $\lim_{t \rightarrow \infty} F(t)=\infty$,
 \begin{equation*}
-\frac{F(tx)}{F(t)} = \frac{\int_{t_0}^{tx} f(s)ds}{\int_{t_0}^{t} f(t)ds} \sim \frac{\int_{t_1x}^{tx} f(s)ds}{\int_{t_1}^{t} f(t)ds}=\frac{x\int_{t_1}^{t} f(xs)ds}{\int_{t_1}^{t} f(t)ds} < \frac{x\int_{t_1}^{t}(1+\varepsilon)x^{\alpha} f(s)ds}{\int_{t_1}^{t} f(t)ds} = (1+ \varepsilon)x^{\alpha+1}
+\frac{F(tx)}{F(t)} = \frac{\int_{t_0}^{tx} f(s) \, \mathrm{d}s}{\int_{t_0}^{t} f(t)\, \mathrm{d}s} \sim \frac{\int_{t_1x}^{tx} f(s)\, \mathrm{d}s}{\int_{t_1}^{t} f(t)\, \mathrm{d}s}=\frac{x\int_{t_1}^{t} f(xs)\, \mathrm{d}s}{\int_{t_1}^{t} f(t)\, \mathrm{d}s} < \frac{x\int_{t_1}^{t}(1+\varepsilon)x^{\alpha} f(s)\, \mathrm{d}s}{\int_{t_1}^{t} f(t)\, \mathrm{d}s} = (1+ \varepsilon)x^{\alpha+1}
 \end{equation*}
 by a change of variables. A similar lower bound for $F(tx)/F(t)$ can be derived using $f(xt)<(1-\varepsilon)x^{\alpha}f(t)$ as $t > t_1$. So we have $F \in RV_{\alpha+1}$ for $\alpha>-1$. In the case $\alpha=-1$ and $F(t) \rightarrow \infty$ same proof applies. If $\alpha=-1$ and $F(t)$ has a finite limit and $F \in RV_0$. Now for all $\alpha$
 \begin{equation*}
 \begin{split}
-\frac{F(xt)-F(t)}{tf(t)} = \frac{1}{tf(t)} \int_{t}^{tx}f(u)du = \frac{t}{tf(t)} \int_{1}^{x} f(ut)du = \int_1^x \frac{f(ut)}{f(t)}du \\
-\rightarrow \int_1^x u^{\alpha}du = \frac{x^{\alpha+1}-1}{\alpha+1}, \quad t \rightarrow \infty
+\frac{F(xt)-F(t)}{tf(t)} = \frac{1}{tf(t)} \int_{t}^{tx}f(u)\, \mathrm{d}u = \frac{t}{tf(t)} \int_{1}^{x} f(ut)\, \mathrm{d}u = \int_1^x \frac{f(ut)}{f(t)}\, \mathrm{d}u \\
+\rightarrow \int_1^x u^{\alpha}\, \mathrm{d}u = \frac{x^{\alpha+1}-1}{\alpha+1}, \quad t \rightarrow \infty
 \end{split}
 \end{equation*}
 by the Theorem \ref{uniform} and change of variables. On the other hand 
@@ -856,59 +715,59 @@ by the Theorem \ref{uniform} and change of variables. On the other hand
 \end{equation*}
 Now we have proven \eqref{>-1}. Next we prove Equation \eqref{<-1}. Let's define
 \begin{equation*}
-G(t) = \int_{t}^{\infty} f(s)ds.
+G(t) = \int_{t}^{\infty} f(s)\,\mathrm{d}s.
 \end{equation*}
-In the case $\alpha<-1$ there exists $\delta>0$ such that $f(2s) \leq 2^{-1-\delta}f(s)$ for sufficiently large s. Now we can prove the finiteness of $\lim_{t \rightarrow \infty} G(t)$ in a similar way as the infinitess of $\lim_{t \rightarrow \infty} F(t)$ in equations \eqref{varchange}, \eqref{induction} and \eqref{infinite}. For sufficiently large $n_1$
+In the case $\alpha<-1$ there exists $\delta>0$ such that $f(2s) \leq 2^{-1-\delta}f(s)$ for sufficiently large s. Now we can prove the finiteness of $\lim\limits_{t \rightarrow \infty} G(t)$ in a similar way as we proved that $\lim\limits_{t \rightarrow \infty} F(t)$ is infinite in Equations \eqref{varchange}, \eqref{induction} and \eqref{infinite}. For sufficiently large $n_1$
 \begin{equation*}
 \begin{split}
-\int_{2^{n}}^{2^{n+1}} f(s)ds = 2 \int_{2^{n-1}}^{2^{n}} f(s)ds \leq 2^{-\delta} \int_{2^{n-1}}^{2^n} f(s)ds \leq \\ ... \leq 2^{-\delta(n-n_1)} \int_{2^{n_1}}^{2^{n_1+1}} f(s)ds = 2^{-\delta(n-n_1)} C'
+\int_{2^{n}}^{2^{n+1}} f(s)\,\mathrm{d}s = 2 \int_{2^{n-1}}^{2^{n}} f(s)\,\mathrm{d}s \leq 2^{-\delta} \int_{2^{n-1}}^{2^n} f(s)\,\mathrm{d}s \leq \\ ... \leq 2^{-\delta(n-n_1)} \int_{2^{n_1}}^{2^{n_1+1}} f(s)\,\mathrm{d}s = 2^{-\delta(n-n_1)} C'
 \end{split}
 \end{equation*}
-by induction and change of variables. Then
+by induction and a change of variables. Then
 \begin{equation*}
 \begin{split}
-\int_{2^{n_1}}^{\infty} f(s)ds = \sum_{n=n_1}^{\infty} \int_{2^{n}}^{2^{n+1}} f(s)ds \leq C' \sum_{n=n_1}^{\infty} 2^{-\delta(n-n_1)} \\
+\int_{2^{n_1}}^{\infty} f(s)\,\mathrm{d}s = \sum_{n=n_1}^{\infty} \int_{2^{n}}^{2^{n+1}} f(s)\,\mathrm{d}s \leq C' \sum_{n=n_1}^{\infty} 2^{-\delta(n-n_1)} \\
 =C' \sum_{k=0}^{\infty} \left( \frac{1}{2^{\delta}}\right)^k = \frac{C'}{1-1/2^{\delta}}<\infty,
 \end{split}
 \end{equation*}
-Now rest of the proof is analogous. Next we prove the converse results. Suppose that equation \eqref{>-1} holds. Let's define a function
+Now rest of the proof is analogous. Next we prove the converse results. Suppose that Equation \eqref{>-1} holds. Let's define a function
 \begin{equation*}
 b(t) = t\frac{f(t)}{F(t)}
 \end{equation*}
 Without loss of generality we may suppose that $f(t)>0$ and $t>0$. Integrating both sides of $b(t)/t=f(t)/F(t)$ we obtain for some real $c_1$ and for all $x>0$
 \begin{equation}
-\int_{1}^{x} \frac{b(t)}{t}dt = \log F(x) + c_1,
+\int_{1}^{x} \frac{b(t)}{t}\,\mathrm{d}t = \log F(x) + c_1,
 \label{int b/t}
 \end{equation}
 since by change of variables
 \begin{equation*}
-\int_{1}^{x} \frac{f(t)}{F(t)}dt = \int_{F(1)}^{F(x)} \frac{1}{u}du = \log F(x) + \underbrace{\log F(1)}_{=c_1}.
+\int_{1}^{x} \frac{f(t)}{F(t)}\,\mathrm{d}t = \int_{F(1)}^{F(x)} \frac{1}{u}\,\mathrm{d}u = \log F(x) + \underbrace{\log F(1)}_{=c_1}.
 \end{equation*}
-From the equation \eqref{int b/t} we have
+From the Equation \eqref{int b/t} we have
 \begin{equation*}
-F(t) = \exp \left( \int_1^x \frac{b(t)}{t}dt-c_1 \right) =\underbrace{\exp(-c_1)}_{=c} \exp \left( \int_1^x \frac{b(t)}{t}dt\right) =c \exp \left( \int_1^x \frac{b(t)}{t}dt\right).
+F(t) = \exp \left( \int_1^x \frac{b(t)}{t}\,\mathrm{d}t-c_1 \right) =\underbrace{\exp(-c_1)}_{=c} \exp \left( \int_1^x \frac{b(t)}{t}\,\mathrm{d}t\right) =c \exp \left( \int_1^x \frac{b(t)}{t}\,\mathrm{d}t\right).
 \end{equation*}
 Then by using the definition of f again
 \begin{equation}
 \begin{split}
-f(x)=x^{-1}b(x)F(x)=cb(x)\exp \left( -\int_1^x \frac{1}{t} \right) \exp \left( \int_1^x \frac{b(t)}{t} \right)\\
-=cb(x)\exp \left( \int_1^x \frac{b(t)-1}{t}dt\right),
+f(x)=x^{-1}b(x)F(x)=cb(x)\exp \left( -\int_1^x \frac{1}{t} \,\mathrm{d}t\right) \exp \left( \int_1^x \frac{b(t)}{t} \,\mathrm{d}t\right)\\
+=cb(x)\exp \left( \int_1^x \frac{b(t)-1}{t}\,\mathrm{d}t\right),
 \label{frep}
 \end{split}
 \end{equation}
 for all $x>0$. Hence for all $x,t>0$
 \begin{equation*}
 \begin{split}
-\frac{f(tx)}{f(t)}=\frac{b(tx)\exp \left( \int_1^{tx} \frac{b(s)-1}{s}ds\right)}{b(tx)\exp \left( \int_1^{t} \frac{b(s)-1}{s}ds\right)} = \frac{b(tx)}{b(t)} \exp \left( \int_1^{tx} \frac{b(s)-1}{s}ds - \int_1^{t} \frac{b(s)-1}{s}ds\right) \\
-= \frac{b(tx)}{b(t)} \exp \left( \int_{t}^{tx} \frac{b(s)-1}{s}ds\right)
-= \frac{b(tx)}{b(t)} \exp \left( \int_{1}^{x} \frac{b(ts)-1}{s}ds\right),
+\frac{f(tx)}{f(t)}=\frac{b(tx)\exp \left( \int_1^{tx} \frac{b(s)-1}{s}\,\mathrm{d}s\right)}{b(tx)\exp \left( \int_1^{t} \frac{b(s)-1}{s}\,\mathrm{d}s\right)} = \frac{b(tx)}{b(t)} \exp \left( \int_1^{tx} \frac{b(s)-1}{s}\,\mathrm{d}s - \int_1^{t} \frac{b(s)-1}{s}\,\mathrm{d}s\right) \\
+= \frac{b(tx)}{b(t)} \exp \left( \int_{t}^{tx} \frac{b(s)-1}{s}\,\mathrm{d}s\right)
+= \frac{b(tx)}{b(t)} \exp \left( \int_{1}^{x} \frac{b(ts)-1}{s}\,\mathrm{d}s\right),
 \end{split}
 \end{equation*}
-by the change of variables. By the assumption (equation \eqref{>-1}) $b(t) \rightarrow \alpha + 1$ so $b(tx)/b(t) \rightarrow 1$. For sufficiently large $t$
+by the change of variables. By the assumption (Equation \eqref{>-1}) $b(t) \rightarrow \alpha + 1$ so $b(tx)/b(t) \rightarrow 1$. For sufficiently large $t$
 \begin{equation*}
-\exp \left( \int_{1}^{x} \frac{b(ts)-1}{s}ds\right) \approx \exp \left( \int_{1}^{x} \frac{\alpha}{s}ds\right)=\exp \left(\alpha \log x \right) = x^{\alpha}
+\exp \left( \int_{1}^{x} \frac{b(ts)-1}{s}\,\mathrm{d}s\right) \approx \exp \left( \int_{1}^{x} \frac{\alpha}{s}\,\mathrm{d}s\right)=\exp \left(\alpha \log x \right) = x^{\alpha}
 \end{equation*}
-The last statement (equation \eqref{<-1} implies that $F \in RV_{\alpha}$) can be proved in a similar way.
+The last statement (Equation \eqref{<-1} implies that $F \in RV_{\alpha}$) can be proved in a similar way.
 \end{proof}
 
 \subsection{Proof of Theorem \ref{karamata}}
@@ -916,38 +775,38 @@ The last statement (equation \eqref{<-1} implies that $F \in RV_{\alpha}$) can b
 \begin{proof}
 Suppose $f \in RV_{\alpha}$. The function $t^{-\alpha}f(t)$ is slowly varying and
 \begin{equation*}
-t^{-\alpha}f(t) = cb(t) \exp \left( \int_{1}^{t} \frac{b(s)-1}{s}ds \right)
+t^{-\alpha}f(t) = cb(t) \exp \left( \int_{1}^{t} \frac{b(s)-1}{s}\,\mathrm{d}s \right)
 \end{equation*}
-by the equation \eqref{frep}. Now by lemma \ref{karamlemma} $b(t) \rightarrow 1$ and function $t^{-\alpha}f(t)$ has the representation as in theorem \ref{karamata} with $a(t)=b(t)-1$ and $c(t)=cb(t)$. Then
+by the Equation \eqref{frep}. Now by Lemma \ref{karamlemma} $b(t) \rightarrow 1$ and function $t^{-\alpha}f(t)$ has the representation as in Theorem \ref{karamata} with $a(t)=b(t)-1$ and $c(t)=cb(t)$. Then
 \begin{equation*}
-f(t) = c(t)t^{\alpha} \exp \left(  \int_{t_0}^{t} \frac{a(s)}{s}ds  \right)
+f(t) = c(t)t^{\alpha} \exp \left(  \int_{t_0}^{t} \frac{a(s)}{s}\,\mathrm{d}s  \right)
 \end{equation*}
-Notice that $$t^{\alpha}=\exp \left( \log t^{\alpha} \right)=\exp \left(  \int_{1}^{t} \frac{\alpha}{s}\,ds  \right).$$ Then $f$ has the form
+Notice that $$t^{\alpha}=\exp \left( \log t^{\alpha} \right)=\exp \left(  \int_{1}^{t} \frac{\alpha}{s}\,\mathrm{d}s  \right).$$ Then $f$ has the form
 \begin{equation*}
 \begin{split}
-f(t) = c(t) \exp \left(  \int_{t_0}^{t} \frac{a(s)}{s}ds + \int_{1}^{t} \frac{\alpha}{s}ds  \right) \\
-= c(t) \exp \left(  \int_{t_0}^{t} \frac{a(s)+\alpha}{s}ds + \int_{1}^{t_0} \frac{\alpha}{s}ds  \right)\\
-= c(t) \exp \left(  \int_{t_0}^{t} \frac{a(s)+\alpha}{s}ds \right) \exp \left( \log t_0^{\alpha}  \right)
+f(t) = c(t) \exp \left(  \int_{t_0}^{t} \frac{a(s)}{s}\,\mathrm{d}s + \int_{1}^{t} \frac{\alpha}{s}\,\mathrm{d}s  \right) \\
+= c(t) \exp \left(  \int_{t_0}^{t} \frac{a(s)+\alpha}{s}\,\mathrm{d}s + \int_{1}^{t_0} \frac{\alpha}{s}\,\mathrm{d}s  \right)\\
+= c(t) \exp \left(  \int_{t_0}^{t} \frac{a(s)+\alpha}{s}\,\mathrm{d}s \right) \exp \left( \log t_0^{\alpha}  \right)
 \end{split}
 \end{equation*}
 \begin{equation}
-= \underbrace{t_0^{\alpha}c(t)}_{=c'} \exp \left(  \int_{t_0}^{t} \frac{\overbrace{a(s)+\alpha}^{=a'}}{s}ds \right)
+= \underbrace{t_0^{\alpha}c(t)}_{=c'} \exp \left(  \int_{t_0}^{t} \frac{\overbrace{a(s)+\alpha}^{=a'}}{s}\,\mathrm{d}s \right)
 \label{fkaramata}
 \end{equation}
-From the equation \eqref{fkaramata} it can be seen that $f(t)$ has the same representation as in the theorem \ref{karamata} when $a$ is replaced by $a'$ and $c$ is replaced by $c'$.
+From the Equation \eqref{fkaramata} it can be seen that $f(t)$ has the same representation as in the Theorem \ref{karamata} when $a$ is replaced by $a'$ and $c$ is replaced by $c'$.
 \end{proof}
 
 \subsection{Proof of Corollary \ref{inequality}}
 
 \begin{proof}
-By the theorem \ref{karamata}
+By the Theorem \ref{karamata}
 \begin{equation*}
-\frac{f(tx)}{f(t)}=\frac{c(tx)}{c(t)}\exp \left(\int_1^x \frac{a(st)}{s}ds \right)
+\frac{f(tx)}{f(t)}=\frac{c(tx)}{c(t)}\exp \left(\int_1^x \frac{a(st)}{s}\,\mathrm{d}s \right)
 \end{equation*}
 The function c(t) converges to a constant. Hence $c \in RV_0$ so $c(tx)/c(t)\rightarrow 1$ as $t \rightarrow \infty$. Furthermore, $a(s) \rightarrow \alpha$ as $t \rightarrow \infty$. Now we can choose such a $t_0$ that $\alpha-\delta<a(st)<\alpha-\delta$ and $1-\varepsilon<\frac{c(tx)}{c(t)}<1+\varepsilon$. This implies that
 \begin{equation*}
 \begin{split}
-(1-\varepsilon)\int_1^x \frac{\alpha-\delta}{s}ds<\frac{f(tx)}{f(t)}<(1+\varepsilon)\int_1^x \frac{\alpha+\delta}{s}ds \\
+(1-\varepsilon)\int_1^x \frac{\alpha-\delta}{s}\,\mathrm{d}s<\frac{f(tx)}{f(t)}<(1+\varepsilon)\int_1^x \frac{\alpha+\delta}{s}\,\mathrm{d}s \\
 \Rightarrow (1-\varepsilon)\exp \left( \log \left( x^{\alpha-\delta} \right) \right)<\frac{f(tx)}{f(t)}<(1+\varepsilon)\exp \left( \log \left( x^{\alpha+\delta} \right) \right) \\
 \Rightarrow (1-\varepsilon)x^{\alpha-\delta}<\frac{f(tx)}{f(t)}<(1+\varepsilon)x^{\alpha+\delta}
 \end{split}
@@ -996,7 +855,7 @@ U(Y) \leq a \\
 \end{equation}
 
 
-Let $S=\big\{x: 1 - \frac{1}{Y} \leq F_X(x)\big\}$ and $b = \inf S$. Notice that F is increasing and right-continuous, since F is a cumulative distribution function and S is an interval of form $[b,\infty)$ or $(b, \infty)$. Define a sequence $x_n=b+\frac{1}{n}, n\in \mathbb{N}$. Notice that $x_n \rightarrow b$ and $x_n \in S$ for all $n$. Now the right-continuity of F implies that $b \in S$ i.e $S$ is an interval $[b, \infty)$. Additionally $a \in S$ since $a\geq b$ so $a$ satisfies the condition $1-\frac{1}{Y} \leq F(a)$. Therefore the equation \eqref{infeq} implies
+Let $S=\big\{x: 1 - \frac{1}{Y} \leq F_X(x)\big\}$ and $b = \inf S$. Notice that F is increasing and right-continuous, since F is a cumulative distribution function and S is an interval of form $[b,\infty)$ or $(b, \infty)$. Define a sequence $x_n=b+\frac{1}{n}, n\in \mathbb{N}$. Notice that $x_n \rightarrow b$ and $x_n \in S$ for all $n$. Now the right-continuity of F implies that $b \in S$ i.e $S$ is an interval $[b, \infty)$. Additionally $a \in S$ since $a\geq b$ so $a$ satisfies the condition $1-\frac{1}{Y} \leq F(a)$. Therefore Equation \eqref{infeq} implies
 \begin{equation*}
 U(Y) \leq a \Leftrightarrow 1 - \frac{1}{Y} \leq F_X(a) \Leftrightarrow Y \leq \frac{1}{1-F(a)}.
 \end{equation*}
@@ -1035,7 +894,7 @@ for all $\varepsilon>0$ and $\delta>0$. By taking the natural logarithm from bot
 \label{logRV}
 \end{equation}
 
-If $Y_1, Y_2,...$ are i.d.d random variables from Pareto distribution with a cumulative distribution function $F_Y(y) = 1 - \frac{1}{y}$ then $U(Y_i)  \overset{d}{=} X_i$  as stated in lemma \ref{U}. Hence it is sufficient to prove the result for $ \hat{\gamma} =  \frac{1}{k} \sum_{i=0}^{k-1} \log(U(Y_{n-i,n})) - \log(U(Y_{n-k,n})) $. Substituting $t = Y_{n-k,n}$ and $x =\frac{Y_{n-i,n}}{Y_{n-k,n}}$ Equation \eqref{logRV} yields
+If $Y_1, Y_2,...$ are i.d.d random variables from Pareto distribution with a cumulative distribution function $F_Y(y) = 1 - \frac{1}{y}$ then $U(Y_i)  \overset{d}{=} X_i$  as stated in Lemma \ref{U}. Hence it is sufficient to prove the result for $ \hat{\gamma} =  \frac{1}{k} \sum_{i=0}^{k-1} \log(U(Y_{n-i,n})) - \log(U(Y_{n-k,n})) $. Substituting $t = Y_{n-k,n}$ and $x =\frac{Y_{n-i,n}}{Y_{n-k,n}}$ Equation \eqref{logRV} yields
 
 
 \begin{equation}

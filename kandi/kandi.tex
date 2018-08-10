@@ -1,4 +1,4 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+﻿%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%                                                                            %%
 %% thesistemplate.tex version 3.10 (2018/04/24)                               %%
@@ -414,14 +414,14 @@ a.s.         & almost surely\\
 %%
 \section{Introduction}
 
-Heavy-tailed distributions appear in many fields of science such as insurance and finance. For example the loss returns of a speculative asset or insurance are often heavy-tailed and in practice the focus is often on risk evaluation. One example of such data set is Danish fire insurance loss data \cite{mcneil}  \cite{resnickFire}, while \cite{resnick}, \cite{deHaan} and \cite{embrechts} contain further examples.
+Heavy-tailed distributions appear in many fields of science such as insurance and finance. For example the loss returns of a speculative asset or insurance are often heavy-tailed and in practice the focus is often on risk evaluation. One example of such data set is Danish fire insurance loss data \cite{mcneil}  \cite{resnickFire}. Further examples are given in \cite{resnick}, \cite{deHaan} and \cite{embrechts}.
 
 Analyzing the tail is challenging since using classical methods, such as empirical quantiles, it is impossible to extrapolate beyond the available data. This motivates the use of Extreme Value Theory (EVT), that provides a rigorous mathematical framework to study extremes. EVT characterizes the behavior of the distribution's tail and tail estimation is often of high practical importance.
 
 One of the possible estimators for extreme value index is the Hill estimator, which was introduced by Bruce Hill in 1975 \cite{hill} and remains one of the most used tail estimators for heavy-tailed distributions.
 In this article we will review asymptotic properties of the Hill estimator and particularly its consistency.
 
-Regularly varying functions form the mathematical foundation for the heavy-tailed distributions and consequently they play an important role in the theory of the Hill estimator. We carefully review their properties in addition to consistency of the Hill estimator. We also examine consistency of the Hill estimator by performing Monte Carlo simulations. Results for asymptotic normality of the Hill estimator are provided but won’t be discussed in detail.
+Regularly varying functions form the mathematical foundation for the theory of heavy-tailed distributions and consequently they play an important role in the theory of the Hill estimator. We carefully review their properties in addition to consistency of the Hill estimator. We also examine consistency of the Hill estimator by performing Monte Carlo simulations. Results for asymptotic normality of the Hill estimator are provided but won’t be discussed in detail.
 
 The rest of the article is organized as follows. Section \ref{backround} gives requisites for the proofs and theory of the Hill estimator including properties of heavy tailed functions. Section \ref{hillEst} represents the main result, which is consistency and necessary lemmas for the proof of the consistency. Simulations are presented in Section \ref{simut} and concluding remarks are given in Section \ref{conclusion}. Lastly, all the proofs and figures are found in Appendixes \ref{proofs} and \ref{figures}.
 
@@ -498,7 +498,7 @@ Cdf F is in the maximum domain of attraction of the extreme value distribution $
 \end{equation}
 \end{theorem}
 
-In addition, condition \eqref{tail} can be written in different form with the $U$ function \cite{deHaan}.
+In addition, condition \eqref{tail} can be written in different form in terms of a left-continuous inverse $U=(1/(1-F))^{\leftarrow}$ \cite{deHaan}.
 
 \begin{corollary}
 Condition \eqref{tail} is equivalent to
@@ -539,7 +539,7 @@ for $0<a<b<\infty$.
 
 
 
-With uniform convergence it can be proved that all the regularly varying functions can be represented in certain form \cite{deHaan}:
+By uniform convergence it can be proved that all the regularly varying functions can be represented in certain form \cite{deHaan}:
 
 \begin{theorem}[Karamata's representation theorem]
 If $f \in RV_{\alpha}$ then there exists measurable functions $a: \mathbb{R} \rightarrow \mathbb{R^+}$ and $c: \mathbb{R} \rightarrow \mathbb{R^+}$ with
@@ -590,20 +590,20 @@ Suppose $f \in RV_{\alpha}$. If $\varepsilon, \delta>0$ are arbitrary, there exi
 \section{Hill Estimator}
 \label{hillEst}
 
-{\color{red}
-The Hill estimator is defined as follows:
+
+The Hill estimator, proposed in \cite{hill}, is defined as follows:
 \begin{equation*}
-\hat{\gamma} = \frac{1}{k} \sum_{i=0}^{k-1} \log X_{n-i,n} - \log X_{n-k,n}, \quad  k \in \{1,2,...,n-1\}
+\hat{\gamma} = \frac{1}{k} \sum_{i=0}^{k-1} \log X_{n-i,n} - \log X_{n-k,n}, 
 \end{equation*}
-where $k$ is a free parameter and $X_{1,n} \leq X_{2,n} \leq ...  \leq X_{n,n}$ are order statistics.
-}
+where $1 \leq k \leq n-1$ is a free parameter and $X_{1,n} \leq X_{2,n} \leq ...  \leq X_{n,n}$ are order statistics. We proceed by reviewing its asymptotic properties.
+
 \subsection{Consistency}
 
-The following theorem states that Hill estimator is consistent i.e. estimator converges in probability to extreme value index. \cite{hill}
+The following theorem states that Hill estimator is consistent i.e. estimator converges in probability to the extreme value index. \cite{hill}
 
 
 \begin{theorem}
-Let $X_1, X_2,...$ be i.d.d. variables with cdf $F_X$. Suppose $F_X \in D(G_{\gamma})$ with $\gamma > 0$. Then as $n \rightarrow \infty$, $k=k(n)  \rightarrow \infty$, $k/n \rightarrow 0$,
+Let $X_1, X_2,...$ be i.d.d. variables with cdf $F_X$. Suppose $F_X \in D(G_{\gamma})$ with $\gamma > 0$. Then if $k=k(n)  \rightarrow \infty$, $k/n \rightarrow 0$ as $n \rightarrow \infty$,
 
 \begin{equation*}
 \hat{\gamma} \xrightarrow{p} \gamma.
@@ -631,7 +631,7 @@ With Renyi's representation the complicated joint distribution of dependent orde
 Secondly a lemma about the order statistics of Pareto distribution is necessary \cite{deHaan}.
 
 \begin{lemma}
-Let $Y_1, Y_2, ...$ be i.d.d. random variables from Pareto distribution $F_Y(y)=1-\frac{1}{y}$, $y \geq 0$ and let $Y_{1,n} \geq Y_{2,n} \geq ... \geq Y_{n,n}$ be the nth order statistics. Then with such $k=k(n)$ that $k \rightarrow \infty$, $\frac{k}{n} \rightarrow 0$ as $n \rightarrow \infty$,
+Let $Y_1, Y_2, ...$ be i.d.d. random variables from Pareto distribution $F_Y(y)=1-\frac{1}{y}$, $y \geq 0$ and let $Y_{1,n} \geq Y_{2,n} \geq ... \geq Y_{n,n}$ be the nth order statistics. Then if $k=k(n)  \rightarrow \infty$, $k/n \rightarrow 0$ as $n \rightarrow \infty$,
 
 \begin{equation*}
 \lim_{n\to\infty} Y_{n-k,n} = \infty  \quad  \text{a.s}.
@@ -665,7 +665,7 @@ The almost sure convergence of the Hill estimator is also proved in \cite{mason}
 \subsection{Asymptotic Normality}
 
 
-In addition to the first-order regular variation \ref{regularDef} there is a second-order condition for regular variation, which allows to examine the rates of converge of the first-order condition. Second-order regular variation is needed for the asymptotic normality of Hill estimator. We define second-order regular variation for case $\gamma > 0$, since it is sufficient for our purposes.
+In addition to the first-order regular variation \ref{regularDef} there is a second-order condition for regular variation, which allows to examine the rates of converge of the first-order condition. Second-order regular variation is needed for the asymptotic normality of the Hill estimator. We define second-order regular variation for case $\gamma > 0$, since it is sufficient for our purposes.
 
 \begin{definition}
 f is second-order regularly varying function for parameters $\gamma>0$ and $\rho \leq 0$ if for $x>0$
@@ -698,7 +698,7 @@ From theorem \ref{normality} it can be seen that for Hill estimator to be asympt
 \section{Simulations}
 \label{simut}
 
-The consistency of the Hill estimator is studied with a Monte Carlo simulation. We simulate observations from the Pareto distribution with an extreme value index $\gamma=1/3$ and Cauchy distribution ($\gamma=1$, as can be checked with equation \eqref{tail} or \eqref{Utail}). We simulate $N=2000$ sets of $n_i$ observations from both distributions where $n_i=100+50(i-1), i=1,2,...,399$. Hence the sample size is a vector from 100 to 20000 with steps of 50. We denote this vector with $\textbf{n}=(100,150,...,20000)$. So for each $n_i$ we calculate $N$ number of estimates $\hat{\gamma}$ with $k=k(n)=o(n)$. For k we chose $k(n)=\left \lfloor \sqrt{n} \right \rfloor$, thus the condition $k=o(n)$ is fulfilled. Results are shown in figures \ref{pareto} and \ref{cauchy}. Below is a summary of simulation settings.
+The consistency of the Hill estimator is studied with a Monte Carlo simulation. We simulate observations from the Pareto distribution with an extreme value index $\gamma=1/3$ and Cauchy distribution ($\gamma=1$, as can be checked with equation \eqref{tail} or \eqref{Utail}). We simulate $N=2000$ sets of $n_i$ observations from both distributions where $n_i=100+50(i-1), i=1,2,...,399$. Hence the sample size is a vector from 100 to 20000 with steps of 50. We denote this vector with $\textbf{n}=(100,150,...,20000)$. For each $n_i$ we calculate $N$ number of estimates $\hat{\gamma}$ with $k=k(n)=o(n)$. For k we chose $k(n)=\left \lfloor \sqrt{n} \right \rfloor$, thus the condition $k=o(n)$ is fulfilled. Results are shown in figures \ref{pareto} and \ref{cauchy}. Below is a summary of simulation settings.
 
 \ctable[caption={Simulation settings.}, pos={H}, label={setup}, center]{ccccccc}{}{
 \toprule
@@ -709,11 +709,11 @@ Figure & Distribution & $\gamma$ & Estimator & $n$ & $N$ & $k(n)$ \\
 \bottomrule
 }
 
-Both resulting graphs are constructed in the same manner. Real value of the extreme value index $\gamma$  is plotted as a dashed line. Black curve represents the medians, red curve 1st quartiles and blue curve 3rd quartiles of the N sized samples of estimates.
+Both resulting graphs are constructed in the same manner. Real value of the extreme value index $\gamma$  is plotted as a dashed line. In both figures we plot the median, the first quartile and the third quartile of the simulated values.
 
-In figure \ref{pareto} it seems that with small $n$ convergence is very fast and slows down after a while. This can be seen by looking at the quartiles. At the beginning the quartiles squeeze around $\gamma$ but eventually after about $n=12500$ it is hard to see any further convergence.
+In Figure \ref{pareto} it seems that with small $n$ convergence is very fast and slows down after a while. This can be seen by looking at the quartiles. At the beginning the quartiles squeeze around $\gamma$ but eventually after about $n=12500$ it is hard to see any further convergence.
 
-In figure \ref{cauchy} we can conclude that convergence is fast with small numbers of observations but slows down eventually, as in figure \ref{pareto}. It seems that the median is a little further from $\gamma$ than in figure \ref{pareto}. This suggests that for Cauchy distribution larger sample size is needed for an accurate estimate for $\gamma$ than for Pareto distribution. In both figures \ref{pareto} and \ref{cauchy} quartiles are equally far away from median which suggests that asymptotical distribution of Hill estimator might be symmetrical.
+In Figure \ref{cauchy} we can conclude that convergence is fast with small numbers of observations but slows down eventually, as in Figure \ref{pareto}. It seems that the median is a little further from $\gamma$ than in Figure \ref{pareto}. This suggests that for Cauchy distribution larger sample size is needed for an accurate estimate for $\gamma$ than for Pareto distribution. In both Figure \ref{pareto} and Figure \ref{cauchy} quartiles are equally far away from median which suggests that asymptotic distribution of the Hill estimator might be symmetrical.
 
 
 \clearpage
@@ -750,7 +750,6 @@ Finally, we note that the Hill estimator can be extended in various ways. For ex
 
 \begin{proof}
 
-{\color{red}
 
 For a slowly varying function the limit relation \eqref{regular} can be written in different form with function $F=\log f(e^x)$:
 \begin{equation}
@@ -761,17 +760,17 @@ The above argument is true, since
 \begin{equation*}
 F(t+x)-F(t) = \log f(e^{t+x}) - \log f(e^{t}) = \log \left(\underbrace{\frac{f(e^te^x)}{f(e^t)}}_{\rightarrow 1}\right) \rightarrow 0
 \end{equation*}
-as $t \rightarrow \infty$. The alternative form for slow variation \eqref{F} is used in the proof of the uniform convergence.
-
-}
+as $t \rightarrow \infty$.
 
 
 
-For the proof it can be assumed that $\alpha=0$. If this isn't the case replace $f(x)$ by $f(x)x^{-\alpha}$. Suppose there exists sequences $t_n \rightarrow \infty$, $x_n \rightarrow 0$ as $n \rightarrow \infty$ such that
+
+
+It can be assumed that $\alpha=0$. If this isn't the case replace $f(x)$ by $f(x)x^{-\alpha}$. Suppose there exists sequences $t_n \rightarrow \infty$, $x_n \rightarrow 0$ as $n \rightarrow \infty$ such that
 \begin{equation*}
 \left| \frac{f(t_nx_n)}{f(t_n)} - 1 \right| > \delta
 \end{equation*}
-for all $n \in \mathbb{N}$ and some $\delta>0$. An equivalent condition can be formulated with function $F(x) = \log f(e^x)$:
+for all $n \in \mathbb{N}$ and some $\delta>0$. An equivalent condition can be formulated in terms of function $F(x) = \log f(e^x)$:
 \begin{equation}
 \left| F(t_n+x_n) - F(t_n) \right| > \delta
 \label{assumption}
@@ -784,7 +783,7 @@ Y_{2,n} = \left\{ \ y \in J: \left| F(t_n+x_n)-F(t_n+y) \right| > \frac{\delta}{
 Z_n = \left\{ \ z: \left| F(t_n+x_n)-F(t_n+x_n-z) \right| > \frac{\delta}{2}, x_n-z \in J \right\} \\
 = \left\{ z: x_n-z \in Y_{2,n} \right\}
 \end{align*}
-where $J \subset \mathbb{R}$ is a finite interval. Next we will prove that if the equation \eqref{assumption} holds then pointwise convergence \eqref{F} cannot hold. Pointwise convergence does not hold if some $x_0$ is included in infinitely many $Y_{1,n}$. This can be noticed by comparing the definition of pointwise convergence and condition in $Y_{1,n}$. Similarly if $x_0$ is included in infinitely many $Z_n$ then pointwise convergence cannot hold, since the condition in $Z_{n}$ can be written as
+where $J \subset \mathbb{R}$ is a finite interval. Next we will prove that the equation \eqref{assumption} contradicts the pointwise convergence \eqref{F}. Pointwise convergence does not hold if some $x_0$ is included in infinitely many $Y_{1,n}$. This can be noticed by comparing the definition of pointwise convergence and condition in $Y_{1,n}$. Similarly if $x_0$ is included in infinitely many $Z_n$ then pointwise convergence cannot hold, since the condition in $Z_{n}$ can be written as
 
 \begin{equation*}
 \begin{split}
@@ -811,7 +810,7 @@ Additionally $Y_{1,n}$, $Y_{2,n}$ and $J$ are measurable sets. So by subadditivi
 \end{split}
 \label{fatouapply}
 \end{equation*}
-Since at least one of the measures $\lambda(\lim \sup Y_{1,n})$ or $\lambda(\lim \sup Z_{n})$ is greater than zero, we have some $x_0$ that is contained in infinitely many $Y_{1,n}$ or $Z_n$. This was the desired contradiction.
+Since at least one of the measures $\lambda(\lim \sup Y_{1,n})$ or $\lambda(\lim \sup Z_{n})$ is greater than zero, we have some $x_0$ that is contained in infinitely many $Y_{1,n}$ or $Z_n$. This completes the proof.
 \end{proof}
 
 \subsection{Proof of Lemma \ref{karamlemma}}
@@ -822,12 +821,12 @@ First we prove the equation \eqref{>-1}. Suppose that $f \in RV_{\alpha}$. Then 
 \frac{f(t)}{f(t_0)}=\frac{f(t)}{f(2^{-1}t)}\frac{f(2^{-1}t)}{f(2^{-2}t)} ... \frac{f(2^{-n}t)}{f(t_0)} < c^{n+1}.
 \label{fracs}
 \end{equation}
-Equation \eqref{fracs} is true since every fraction can be written as $f(tx)/f(t)$. This implies that for $t\geq t_0$ $f(t)$ is both locally bounded and $\int_{t_0}^{t}f(s)ds<\infty$. Consider a function $F(t) = \int_{t_0}^{t}f(s)ds$.We start by proving that $\lim_{t \rightarrow \infty} F(t) = \infty$ when $\alpha>-1$. First notice that $f(2s) \geq 2^{-1}f(s)$ for sufficiently large $s$. For $n\geq n_0$
+Equation \eqref{fracs} is true since every fraction is of the form $f(tx)/f(t)$. This implies that for $t\geq t_0$ $f(t)$ is both locally bounded and $\int_{t_0}^{t}f(s)ds<\infty$. Consider a function $F(t) = \int_{t_0}^{t}f(s)ds$. We start by proving that $\lim_{t \rightarrow \infty} F(t) = \infty$ when $\alpha>-1$. First notice that $f(2s) \geq 2^{-1}f(s)$ for sufficiently large $s$. For $n\geq n_0$
 \begin{equation}
 \int_{2^n}^{2^{n+1}} f(s)ds = 2\int_{2^{n-1}}^{2^{n}} f(2s)ds \geq \int_{2^{n-1}}^{2^n} f(s)ds
 \label{varchange}
 \end{equation}
-by the change on variables. Then by induction we have
+by a change of variables. Then by induction we have
 \begin{equation}
 \int_{2^n}^{2^{n+1}} f(s)ds \geq \int_{2^{n_0}}^{2^{n_0+1}} f(s)ds = C > 0.
 \label{induction}
@@ -841,23 +840,23 @@ Next we prove that $F \in RV_{\alpha+1}$ for $\alpha>-1$. Let $\varepsilon>0$ an
 \begin{equation*}
 \frac{F(tx)}{F(t)} = \frac{\int_{t_0}^{tx} f(s)ds}{\int_{t_0}^{t} f(t)ds} \sim \frac{\int_{t_1x}^{tx} f(s)ds}{\int_{t_1}^{t} f(t)ds}=\frac{x\int_{t_1}^{t} f(xs)ds}{\int_{t_1}^{t} f(t)ds} < \frac{x\int_{t_1}^{t}(1+\varepsilon)x^{\alpha} f(s)ds}{\int_{t_1}^{t} f(t)ds} = (1+ \varepsilon)x^{\alpha+1}
 \end{equation*}
-by the change of variables. A similar lower bound for $F(tx)/F(t)$ can be derived by using $f(xt)<(1-\varepsilon)x^{\alpha}f(t)$ as $t > t_1$. So we have that $F \in RV_{\alpha+1}$ for $\alpha>-1$. In the case $\alpha=-1$ and $F(t) \rightarrow \infty$ same proof applies. If $\alpha=-1$ and $F(t)$ has a finite limit and $F \in RV_0$. Now for all $\alpha$
+by a change of variables. A similar lower bound for $F(tx)/F(t)$ can be derived using $f(xt)<(1-\varepsilon)x^{\alpha}f(t)$ as $t > t_1$. So we have $F \in RV_{\alpha+1}$ for $\alpha>-1$. In the case $\alpha=-1$ and $F(t) \rightarrow \infty$ same proof applies. If $\alpha=-1$ and $F(t)$ has a finite limit and $F \in RV_0$. Now for all $\alpha$
 \begin{equation*}
 \begin{split}
 \frac{F(xt)-F(t)}{tf(t)} = \frac{1}{tf(t)} \int_{t}^{tx}f(u)du = \frac{t}{tf(t)} \int_{1}^{x} f(ut)du = \int_1^x \frac{f(ut)}{f(t)}du \\
 \rightarrow \int_1^x u^{\alpha}du = \frac{x^{\alpha+1}-1}{\alpha+1}, \quad t \rightarrow \infty
 \end{split}
 \end{equation*}
-by the theorem \ref{uniform} and change of variables. On the other hand 
+by the Theorem \ref{uniform} and change of variables. On the other hand 
 \begin{equation*}
 \begin{split}
 \frac{F(xt)-F(t)}{tf(t)} = \frac{F(t)}{tf(t)}\left(\underbrace{\frac{F(tx)}{F(t)}}_{\rightarrow x^{\alpha+1}} - 1\right) \rightarrow \frac{x^{\alpha+1}-1}{\alpha+1} \\
-\Rightarrow \lim_{t \rightarrow \infty} \frac{tf(t)}{F(t)}= \alpha + 1
+\Rightarrow \lim_{t \rightarrow \infty} \frac{tf(t)}{F(t)}= \alpha + 1.
 \end{split}
 \end{equation*}
-Now we have proven \eqref{>-1}. Next we prove equation \eqref{<-1}. Let's define
+Now we have proven \eqref{>-1}. Next we prove Equation \eqref{<-1}. Let's define
 \begin{equation*}
-G(t) = \int_{t}^{\infty} f(s)ds
+G(t) = \int_{t}^{\infty} f(s)ds.
 \end{equation*}
 In the case $\alpha<-1$ there exists $\delta>0$ such that $f(2s) \leq 2^{-1-\delta}f(s)$ for sufficiently large s. Now we can prove the finiteness of $\lim_{t \rightarrow \infty} G(t)$ in a similar way as the infinitess of $\lim_{t \rightarrow \infty} F(t)$ in equations \eqref{varchange}, \eqref{induction} and \eqref{infinite}. For sufficiently large $n_1$
 \begin{equation*}
@@ -872,7 +871,7 @@ by induction and change of variables. Then
 =C' \sum_{k=0}^{\infty} \left( \frac{1}{2^{\delta}}\right)^k = \frac{C'}{1-1/2^{\delta}}<\infty,
 \end{split}
 \end{equation*}
-Now rest of the proof is analogous. Next we prove the converse results. Suppose that equation \ref{>-1} holds. Let's define a function
+Now rest of the proof is analogous. Next we prove the converse results. Suppose that equation \eqref{>-1} holds. Let's define a function
 \begin{equation*}
 b(t) = t\frac{f(t)}{F(t)}
 \end{equation*}
@@ -923,7 +922,7 @@ by the equation \eqref{frep}. Now by lemma \ref{karamlemma} $b(t) \rightarrow 1$
 \begin{equation*}
 f(t) = c(t)t^{\alpha} \exp \left(  \int_{t_0}^{t} \frac{a(s)}{s}ds  \right)
 \end{equation*}
-Notice that we can write $t^{\alpha}$ as $\exp \left(  \int_{1}^{t} \frac{\alpha}{s}ds  \right)$. Then $f$ has the form
+Notice that $$t^{\alpha}=\exp \left( \log t^{\alpha} \right)=\exp \left(  \int_{1}^{t} \frac{\alpha}{s}\,ds  \right).$$ Then $f$ has the form
 \begin{equation*}
 \begin{split}
 f(t) = c(t) \exp \left(  \int_{t_0}^{t} \frac{a(s)}{s}ds + \int_{1}^{t} \frac{\alpha}{s}ds  \right) \\
@@ -959,7 +958,7 @@ The function c(t) converges to a constant. Hence $c \in RV_0$ so $c(tx)/c(t)\rig
 \subsection{Proof of Lemma \ref{asconv}}
 
 \begin{proof}
-Let us assume that $Y_{n-k,n} < r$ for some $r > 0$ infinitely often. In other words
+Assume that $Y_{n-k,n} < r$ for some $r > 0$ infinitely often. In other words
 \begin{equation*}
 \frac{k}{n} = \frac{1}{n} \sum_{i=1}^{n} \mathbbm{1}(Y_i>Y_{n-k,n}) > \frac{1}{n} \sum_{i=1}^{n} \mathbbm{1}(Y_i>r).
 \end{equation*}
@@ -969,13 +968,12 @@ Now the left side of the equation converges to zero, since
 \lim_{n\to\infty} \frac{1}{n} \sum_{i=1}^{n} \mathbbm{1}(Y_i>Y_{n-k,n}) = \lim_{n\to\infty} \frac{k}{n} =0.
 \end{equation*}
 
-But the right side converges to $1/r$ almost surely, since
+On the other hand the right side converges to $1/r$ almost surely, since
 
 \begin{equation*}
 \frac{1}{n} \sum_{i=1}^{n} \mathbbm{1}(Y_i>r) \xrightarrow{a.s} P(Y_i>r) = 1-F_Y(r) = \frac{1}{r}
 \end{equation*}
-by the strong law of large numbers \cite{rosenthal}.
-So the assumption cannot hold which implies that
+by the strong law of large numbers \cite{rosenthal}. This is a contradiction and 
 
 \begin{equation*}
 P(\lim_{n\to\infty} Y_{n-k,n} = \infty)=1.
@@ -985,7 +983,7 @@ P(\lim_{n\to\infty} Y_{n-k,n} = \infty)=1.
 \subsection{Proof of Lemma \ref{U}}
 
 \begin{proof}
-Let's study the condition $U(Y) \leq a, a \in \mathbb{R} $.
+Consider the condition $U(Y) \leq a, a \in \mathbb{R}$.
 \begin{equation*}
 \begin{split}
 U(Y) \leq a \\
@@ -998,11 +996,11 @@ U(Y) \leq a \\
 \end{equation}
 
 
-Let $S=\big\{x: 1 - \frac{1}{Y} \leq F_X(x)\big\}$ and $b = \inf S$. Notice that F is increasing and right-continuous, since F is a cdf. So S is an interval of form $[b,\infty)$ or $(b, \infty)$, since F is increasing. Let's define a sequence $x_n=b+\frac{1}{n}, n\in \mathbb{N}$. Notice that $x_n \rightarrow b$ and $x_n \in S$ for all $n$. Now right-continuity implies that $b \in S$ i.e $S$ is an interval $[b, \infty)$. Additionally $a \in S$ since $a\geq b$ so $a$ satisfies the condition $1-\frac{1}{Y} \leq F(a)$. Therefore the equation \eqref{infeq} implies
+Let $S=\big\{x: 1 - \frac{1}{Y} \leq F_X(x)\big\}$ and $b = \inf S$. Notice that F is increasing and right-continuous, since F is a cumulative distribution function and S is an interval of form $[b,\infty)$ or $(b, \infty)$. Define a sequence $x_n=b+\frac{1}{n}, n\in \mathbb{N}$. Notice that $x_n \rightarrow b$ and $x_n \in S$ for all $n$. Now the right-continuity of F implies that $b \in S$ i.e $S$ is an interval $[b, \infty)$. Additionally $a \in S$ since $a\geq b$ so $a$ satisfies the condition $1-\frac{1}{Y} \leq F(a)$. Therefore the equation \eqref{infeq} implies
 \begin{equation*}
-U(Y) \leq a \Leftrightarrow 1 - \frac{1}{Y} \leq F_X(a) \Leftrightarrow Y \leq \frac{1}{1-F(a)},
+U(Y) \leq a \Leftrightarrow 1 - \frac{1}{Y} \leq F_X(a) \Leftrightarrow Y \leq \frac{1}{1-F(a)}.
 \end{equation*}
-So now from the cdf of U(Y) we have
+Now from the cdf of U(Y) we have
 \begin{equation*}
 \begin{split}
 F_{U(Y)} = P(U(Y) \leq x) = P\Big(Y \leq \frac{1}{1-F_X(x)}\Big) = F_Y\Big(\frac{1}{1-F_X(x)}\Big) \\
@@ -1015,7 +1013,7 @@ F_{U(Y)} = P(U(Y) \leq x) = P\Big(Y \leq \frac{1}{1-F_X(x)}\Big) = F_Y\Big(\frac
 
 \begin{proof}
 
-$F \in D(G_{\gamma>0})$ is equivalent to the fact that $U \in RV_{\gamma}$ i.e.
+$F \in D(G_{\gamma>0})$ is equivalent to $U \in RV_{\gamma}$ i.e.
 
 \begin{equation*}
 \lim_{t\to\infty} \frac{U(tx)}{U(t)} = x^{\gamma}.
@@ -1027,7 +1025,7 @@ From the uniform convergence of the regularly varying functions follows that for
 (1-\varepsilon) x^{\gamma - \delta} < \frac{U(tx)}{U(t)} < (1+\varepsilon) x^{\gamma + \delta},
 \end{equation*}
 
-for all $\varepsilon>0$ and $\delta>0$. By taking natural logarithm from both sides of the equation above, it can be written as
+for all $\varepsilon>0$ and $\delta>0$. By taking the natural logarithm from both sides of the equation above, it can be written as
 
 \begin{equation}
 \begin{split}
@@ -1037,7 +1035,7 @@ for all $\varepsilon>0$ and $\delta>0$. By taking natural logarithm from both si
 \label{logRV}
 \end{equation}
 
-If $Y_1, Y_2,...$ are i.d.d random variables from Pareto distribution with cdf $F_Y(y) = 1 - \frac{1}{y}$ then $U(Y_i)  \overset{d}{=} X_i$  as stated in lemma \ref{U}. Hence it is sufficient to prove the result for $ \hat{\gamma} =  \frac{1}{k} \sum_{i=0}^{k-1} \log(U(Y_{n-i,n})) - \log(U(Y_{n-k,n})) $. For $t = Y_{n-k,n}$ and $x =\frac{Y_{n-i,n}}{Y_{n-k,n}}$ equation \eqref{logRV} has the form
+If $Y_1, Y_2,...$ are i.d.d random variables from Pareto distribution with a cumulative distribution function $F_Y(y) = 1 - \frac{1}{y}$ then $U(Y_i)  \overset{d}{=} X_i$  as stated in lemma \ref{U}. Hence it is sufficient to prove the result for $ \hat{\gamma} =  \frac{1}{k} \sum_{i=0}^{k-1} \log(U(Y_{n-i,n})) - \log(U(Y_{n-k,n})) $. Substituting $t = Y_{n-k,n}$ and $x =\frac{Y_{n-i,n}}{Y_{n-k,n}}$ Equation \eqref{logRV} yields
 
 
 \begin{equation}
@@ -1048,9 +1046,9 @@ If $Y_1, Y_2,...$ are i.d.d random variables from Pareto distribution with cdf $
 \label{log}
 \end{equation}
 
-Notice that we can replace t with $Y_{n-k,n}$ because we can always find some $n_0$ such that $Y_{n_0-k,n_0} \geq t_0$ according to lemma \ref{asconv}. Furthermore, $Y_{n-i,n}$ is greater than $Y_{n-k,n}$ always when $i<k$. Therefore x can be replaced with $\frac{Y_{n-i,n}}{Y_{n-k,n}}$.
+Notice that we can replace t with $Y_{n-k,n}$ because we can always find some $n_0$ such that $Y_{n_0-k,n_0} \geq t_0$ according to lemma \ref{asconv}. Furthermore, $Y_{n-i,n}$ is greater than $Y_{n-k,n}$ when $i<k$. Therefore x can be replaced with $\frac{Y_{n-i,n}}{Y_{n-k,n}}$.
 
-Equation \eqref{log} applies for every $i = 0,1,2,..., k-1$. Thus we can write
+Equation \eqref{log} holds for every $i = 0,1,2,..., k-1$. Thus we can write
 
 \begin{equation*}
 \begin{split}
@@ -1059,7 +1057,7 @@ Equation \eqref{log} applies for every $i = 0,1,2,..., k-1$. Thus we can write
 \end{split}
 \end{equation*}
 
-The term in the middle is the hill estimator $\hat{\gamma}$, hence above becomes
+Notice that this can be written as
 
 \begin{equation*}
 \begin{split}
@@ -1068,13 +1066,13 @@ The term in the middle is the hill estimator $\hat{\gamma}$, hence above becomes
 \end{split}
 \end{equation*}
 
-Now it is sufficient to only prove that 
+Now it is sufficient to prove that 
 
 \begin{equation*}
 \frac{1}{k} \sum_{i=0}^{k-1} \log\Big(\frac{Y_{n-i,n}}{Y_{n-k,n}}\Big) \xrightarrow{p} 1.
 \end{equation*}
 
-$\log(Y_i)$ has a standard exponential distribution, since 
+The random variable $\log(Y_i)$ has a standard exponential distribution, since 
 \begin{equation*}
 \begin{split}
 F_{\log(Y_i)}(x) = P(\log(Y_i) < x) = P(e^{\log(Y_i)} < e^x) = P(Y_i < e^x) = F_Y(e^x) = 1 - {e^{-x}}.
@@ -1085,7 +1083,7 @@ Therefore we can write
 \begin{equation*}
 \frac{1}{k} \sum_{i=0}^{k-1} \log\Big(\frac{Y_{n-i,n}}{Y_{n-k,n}}\Big) = \frac{1}{k} \sum_{i=0}^{k-1} E_{n-i,n} - E_{n-k,n},
 \end{equation*}
-where $E_1, E_2,...$ are i.d.d. random variables from standard exponential distribution. Now Renyi's representation \ref{renrep} implies
+where $E_1, E_2,...$ are i.d.d. random variables with a standard exponential distribution. Now Renyi's representation \ref{renrep} implies
 
 \begin{equation*}
 \begin{split}
@@ -1115,7 +1113,7 @@ by the weak law of large numbers \cite{rosenthal}. Notice that the expected valu
 \begin{figure}[H]
 \begin{center}
 \includegraphics[width=\textwidth]{pareto.pdf}
-\caption{Results of Monte Carlo simulation from Pareto distribution.}
+\caption{A plot of the median, the first quartile and the third quartile of simulated values of the Hill estimator under the Pareto distribution with extreme value index $\gamma=1/3$. The observed quantities are plotted against the sample size. The used threshold was $k(n) = \left\lfloor \sqrt{n} \right\rfloor$ and each sample size was simulated 2000 times. The correct value of the extreme value index is displayed as a dashed line.}
 \label{pareto}
 \end{center}
 \end{figure}
@@ -1123,7 +1121,7 @@ by the weak law of large numbers \cite{rosenthal}. Notice that the expected valu
 \begin{figure}[H]
 \begin{center}
 \includegraphics[width=\textwidth]{cauchy.pdf}
-\caption{Results of Monte Carlo simulation from Cauchy  distribution.}
+\caption{A plot of the median, the first quartile and the third quartile of simulated values of the Hill estimator under the Cauchy distribution. The observed quantities are plotted against the sample size. The used threshold was $k(n) = \left\lfloor \sqrt{n} \right\rfloor$ and each sample size was simulated 2000 times. The correct value of the extreme value index is displayed as a dashed line.}
 \label{cauchy}
 \end{center}
 \end{figure}

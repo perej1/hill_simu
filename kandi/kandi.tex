@@ -593,9 +593,9 @@ Suppose $f \in RV_{\alpha}$. If $\varepsilon, \delta>0$ are arbitrary, there exi
 {\color{red}
 The Hill estimator is defined as follows:
 \begin{equation*}
-\hat{\gamma} = \frac{1}{k} \sum_{i=0}^{k-1} \log X_{n-i,n} - \log X_{n-k,n}, \quad 1 \leq k \leq n-1
+\hat{\gamma} = \frac{1}{k} \sum_{i=0}^{k-1} \log X_{n-i,n} - \log X_{n-k,n}, \quad  k \in \{1,2,...,n-1\}
 \end{equation*}
-where $k \in \mathbb{N}$ is a free parameter and $X_{1,n} \leq X_{2,n} \leq ...  \leq X_{n,n}$ are order statistics.
+where $k$ is a free parameter and $X_{1,n} \leq X_{2,n} \leq ...  \leq X_{n,n}$ are order statistics.
 }
 \subsection{Consistency}
 
@@ -784,13 +784,7 @@ Y_{2,n} = \left\{ \ y \in J: \left| F(t_n+x_n)-F(t_n+y) \right| > \frac{\delta}{
 Z_n = \left\{ \ z: \left| F(t_n+x_n)-F(t_n+x_n-z) \right| > \frac{\delta}{2}, x_n-z \in J \right\} \\
 = \left\{ z: x_n-z \in Y_{2,n} \right\}
 \end{align*}
-where $J \subset \mathbb{R}$ is a finite interval. Next we will prove that if the equation \eqref{assumption} holds then pointwise convergence $\lim_{t \rightarrow \infty}F(t+x_0)-F(t)=0$ cannot hold. Pointwise convergence does not hold if some $x_0$ is included in infinitely many $Y_{1,n}$. Reason for this is that
-
-\begin{equation}
-n \geq n_{\varepsilon} \Rightarrow \left| F(t+x_0) - F(t) \right| < \varepsilon, \forall \varepsilon>0, \exists n_{\varepsilon} \in \mathbb{N}
-\label{limit}
-\end{equation}
-cannot hold if $x_0$ is included in infinitely many $Y_{1,n}$. This can be noticed by comparing equation \eqref{limit} and the condition of $Y_{1,n}$. Similarly if $x_0$ is included in infinitely many $Z_n$ then pointwise convergence cannot hold, since the condition in $Z_{n}$ can be written as
+where $J \subset \mathbb{R}$ is a finite interval. Next we will prove that if the equation \eqref{assumption} holds then pointwise convergence \eqref{F} cannot hold. Pointwise convergence does not hold if some $x_0$ is included in infinitely many $Y_{1,n}$. This can be noticed by comparing the definition of pointwise convergence and condition in $Y_{1,n}$. Similarly if $x_0$ is included in infinitely many $Z_n$ then pointwise convergence cannot hold, since the condition in $Z_{n}$ can be written as
 
 \begin{equation*}
 \begin{split}

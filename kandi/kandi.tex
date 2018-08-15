@@ -278,7 +278,7 @@ Heavy-tailed distributions appear in many fields of science such as insurance an
 
 Analyzing the tail is challenging since using classical methods, such as empirical quantiles, it is impossible to extrapolate beyond the available data. This motivates the use of Extreme Value Theory (EVT), that provides a rigorous mathematical framework to study extremes. EVT characterizes the behavior of the distribution's tail and tail estimation is often of high practical importance.
 
-One of the possible estimators for extreme value index is the Hill estimator, which was introduced by Bruce Hill in 1975 \cite{hill} and remains one of the most used tail estimators for heavy-tailed distributions.
+One of the possible estimators for extreme value index is the Hill estimator, which was introduced by Bruce M. Hill in 1975 \cite{hill} and remains one of the most used tail estimators for heavy-tailed distributions.
 In this article we will review asymptotic properties of the Hill estimator and particularly its consistency.
 
 Regularly varying functions form the mathematical foundation for the theory of heavy-tailed distributions and consequently they play an important role in the theory of the Hill estimator. We carefully review their properties in addition to consistency of the Hill estimator. We also examine consistency of the Hill estimator by performing Monte Carlo simulations. Results for asymptotic normality of the Hill estimator are provided but won’t be discussed in detail.
@@ -326,7 +326,7 @@ Now,
 
 
 
-To achieve a nondegerate distribution it is necessary to normalize the sample maxima $M_n$. The Fisher-Tippett-Gnedenko Theorem states that with a suitable normalization a nondegenate distribution is obtained \cite{fisher}, \cite{gnedenko}.
+To achieve a nondegerate distribution it is necessary to normalize the sample maxima $M_n$. The Fisher-Tippett-Gnedenko Theorem states that with a suitable normalization a nondegenate distribution is obtained \cite{fisher} \cite{gnedenko}.
 
 \begin{theorem}
 There exists real constants $a_n>0$ and $b_n \in \mathbb{R}$ such that 
@@ -378,13 +378,13 @@ In Section \ref{domains} we saw that $F \in D(G_{\gamma})$ with $\gamma>0$ and $
 \begin{definition}
 A Lebesque measurable function $f: \mathbb{R}^{+} \rightarrow \mathbb{R}$ that is eventually positive is regularly varying if for some index $\alpha \in \mathbb{R}$,
 \begin{equation}
-\lim_{x \rightarrow \infty} \frac{f(tx)}{f(t)} = x^{\alpha}, \quad x>0.
+\lim_{x \rightarrow \infty} \frac{f(tx)}{f(t)} = x^{\alpha}, x>0.
 \label{regular}
 \end{equation}
 \label{regularDef}
 \end{definition}
 
-If a function $f$  is regularly varying with index $\alpha=0$ then $f$ is said to be slowly varying. One property of regularly varying functions is that all of them can be written in form $f(x)=l(x)x^{\alpha}$ where $l(x)$ is slowly varying function. This supports the intuition that heavy tailed distributions behave like pareto distribution after a high threshold. 
+If a function $f$  is regularly varying with index $\alpha=0$ then $f$ is said to be slowly varying. One property of regularly varying functions is that all of them can be written in form $f(x)=l(x)x^{\alpha}$ where $l(x)$ is a slowly varying function. This supports the intuition that heavy tailed distributions behave like Pareto distribution after a high threshold. 
 
 
 
@@ -402,13 +402,13 @@ for $0<a<b<\infty$.
 By uniform convergence it can be proved that all the regularly varying functions can be represented in certain form \cite{deHaan}:
 
 \begin{theorem}[Karamata's representation theorem]
-If $f \in RV_{\alpha}$ then there exists measurable functions $a: \mathbb{R} \rightarrow \mathbb{R^+}$ and $c: \mathbb{R} \rightarrow \mathbb{R^+}$ with
+If $f \in RV_{\alpha}$ then there exists measurable functions $a: \mathbb{R^+} \rightarrow \mathbb{R}$ and $c: \mathbb{R^+} \rightarrow \mathbb{R}$ with
 \begin{equation*}
 \lim_{t \rightarrow \infty} c(t) = c_0 \  \text{and} \  \lim_{t \rightarrow \infty} a(t) = \alpha
 \end{equation*}
-and $t_0 \in \mathbb{R^+}$ such that for $t > t_0$
+and $t_0 \in \mathbb{R^+}$ such that for $t > t_0$,
 \begin{equation}
-f(t) = c(t) \exp \left(\int_{t_0}^{t}  \frac{a(s)}{s} \, \mathrm{d}s \right)
+f(t) = c(t) \exp \left(\int_{t_0}^{t}  \frac{a(s)}{s} \, \mathrm{d}s \right).
 \end{equation}
 Conversely, if \ref{karamata} holds, then $f \in RV_{\alpha}$.
 \label{karamata}
@@ -438,7 +438,7 @@ The following corollary \cite{potter} of the Karamata’s representation theorem
 \begin{corollary}
 Suppose $f \in RV_{\alpha}$. If $\varepsilon, \delta>0$ are arbitrary, there exists $t_0=t_0(\varepsilon, \delta)$ such that for $t\geq t_0$, $tx \geq t_0$,
 \begin{equation*}
-(1-\varepsilon)x^{\alpha-\delta}<\frac{f(tx)}{f(t)}<(1+\varepsilon)x^{\alpha+\delta}
+(1-\varepsilon)x^{\alpha-\delta}<\frac{f(tx)}{f(t)}<(1+\varepsilon)x^{\alpha+\delta}.
 \end{equation*}
 \label{inequality}
 \end{corollary}
@@ -463,7 +463,7 @@ The following theorem states that Hill estimator is consistent i.e. estimator co
 
 
 \begin{theorem}
-Let $X_1, X_2,...$ be i.d.d. variables with cdf $F_X$. Suppose $F_X \in D(G_{\gamma})$ with $\gamma > 0$. Then if $k=k(n)  \rightarrow \infty$, $k/n \rightarrow 0$ as $n \rightarrow \infty$,
+Let $X_1, X_2,...$ be i.d.d. random variables with cdf $F_X$. Suppose $F_X \in D(G_{\gamma})$ with $\gamma > 0$. Then if $k=k(n)  \rightarrow \infty$, $k/n \rightarrow 0$ as $n \rightarrow \infty$,
 
 \begin{equation*}
 \hat{\gamma} \xrightarrow{p} \gamma.
@@ -491,7 +491,7 @@ With Renyi's representation the complicated joint distribution of dependent orde
 Secondly a lemma about the order statistics of Pareto distribution is necessary \cite{deHaan}.
 
 \begin{lemma}
-Let $Y_1, Y_2, ...$ be i.d.d. random variables from Pareto distribution $F_Y(y)=1-\frac{1}{y}$, $y \geq 0$ and let $Y_{1,n} \geq Y_{2,n} \geq ... \geq Y_{n,n}$ be the nth order statistics. Then if $k=k(n)  \rightarrow \infty$, $k/n \rightarrow 0$ as $n \rightarrow \infty$,
+Let $Y_1, Y_2, ...$ be i.d.d. random variables from Pareto distribution $F_Y(y)=1-\frac{1}{y}$, $y \geq 1$ and let $Y_{1,n} \geq Y_{2,n} \geq ... \geq Y_{n,n}$ be the nth order statistics. Then if $k=k(n)  \rightarrow \infty$, $k/n \rightarrow 0$ as $n \rightarrow \infty$,
 
 \begin{equation*}
 \lim_{n\to\infty} Y_{n-k,n} = \infty  \quad  \text{a.s}.
@@ -503,7 +503,7 @@ Let $Y_1, Y_2, ...$ be i.d.d. random variables from Pareto distribution $F_Y(y)=
 Finally we need the fact that U(Y) is equal in distribution to X, where Y is random variable from Pareto distribution and X is random variable from some distribution $F_X$.
 
 \begin{lemma}
-Let $Y$ be random variable from Pareto distribution $F_Y=1-\frac{1}{y}$, $y \geq 0$ Let X be random variable with cdf $F_X$ then $U(Y) \overset{d}{=} X$.
+Let $Y$ be random variable from Pareto distribution $F_Y=1-\frac{1}{y}$, $y \geq 1$. Let X be random variable with cdf $F_X$ then $U(Y) \overset{d}{=} X$.
 \label{U}
 \end{lemma}
 
@@ -517,7 +517,7 @@ Let $X_1, X_2,...$ be i.i.d. variables from cdf F. Suppose that for some sequenc
 \begin{equation*}
 \hat{\gamma} \rightarrow \gamma > 0.
 \end{equation*}
-Then $F \in D(G_{\gamma})$
+Then $F \in D(G_{\gamma})$.
 \end{theorem}
 
 The almost sure convergence of the Hill estimator is also proved in \cite{mason}.
@@ -525,12 +525,12 @@ The almost sure convergence of the Hill estimator is also proved in \cite{mason}
 \subsection{Asymptotic Normality}
 
 
-In addition to the first-order regular variation \ref{regularDef} there is a second-order condition for regular variation, which allows to examine the rates of converge of the first-order condition. Second-order regular variation is needed for the asymptotic normality of the Hill estimator. We define second-order regular variation for case $\gamma > 0$, since it is sufficient for our purposes.
+In addition to the first-order regular variation \ref{regularDef} there is a second-order condition for regular variation, which allows to examine the rates of converge of the first-order condition. Second-order regular variation is needed for the asymptotic normality of the Hill estimator. We define second-order regular variation for case $\gamma > 0$, since it is sufficient for our purposes \cite{deHaan}.
 
 \begin{definition}
-f is second-order regularly varying function for parameters $\gamma>0$ and $\rho \leq 0$ if for $x>0$
+U is second-order regularly varying for parameters $\gamma>0$ and $\rho \leq 0$ if for $x>0$
 \begin{equation*}
-\lim_{t \rightarrow \infty} \frac{\frac{f(tx)}{f(t)}-x^{\gamma}}{A(t)} = x^{\gamma} \frac{x^{\rho}-1}{\rho},
+\lim_{t \rightarrow \infty} \frac{\frac{U(tx)}{U(t)}-x^{\gamma}}{A(t)} = x^{\gamma} \frac{x^{\rho}-1}{\rho},
 \end{equation*}
 where $A$ is a one-signed function with $\lim\limits_{t \rightarrow \infty} A(t)=0$, with the right-hand side interpreted as $x^\gamma \log x$ for $\rho = 0$.
 \label{2RV}
@@ -540,7 +540,7 @@ where $A$ is a one-signed function with $\lim\limits_{t \rightarrow \infty} A(t)
 The asymptotic normality of $\hat{\gamma}$ can be formulated using the second-order condition \cite{peng}.
 
 \begin{theorem}
-Suppose that cdf $F$ satisfies the second-order condition \ref{2RV} and $k=k(n)$ with $k(n)\rightarrow \infty$, $k(n)/n \rightarrow \infty$ when $n\rightarrow \infty$. Then
+Suppose that U satisfies the second-order condition \ref{2RV} and $k=k(n)$ with $k(n)\rightarrow \infty$, $k(n)/n \rightarrow \infty$ when $n\rightarrow \infty$. Then
 \begin{equation*}
 \sqrt{k}(\hat{\gamma} - \gamma) \xrightarrow{d} N \left( \frac{\lambda}{1- \rho}, \gamma^2 \right)
 \end{equation*}
@@ -680,7 +680,7 @@ First we prove the Equation \eqref{>-1}. Suppose that $f \in RV_{\alpha}$. Then 
 \frac{f(t)}{f(t_0)}=\frac{f(t)}{f(2^{-1}t)}\frac{f(2^{-1}t)}{f(2^{-2}t)} ... \frac{f(2^{-n}t)}{f(t_0)} < c^{n+1}.
 \label{fracs}
 \end{equation}
-Equation \eqref{fracs} is true since every fraction is of the form $f(tx)/f(t)$. This implies that for $t\geq t_0$ $f(t)$ is both locally bounded and $\int_{t_0}^{t}f(s) \, \mathrm{d}s<\infty$. Consider a function $F(t) = \int_{t_0}^{t}f(s) \, \mathrm{d}s$. We start by proving that $\lim_{t \rightarrow \infty} F(t) = \infty$ when $\alpha>-1$. First notice that $f(2s) \geq 2^{-1}f(s)$ for sufficiently large $s$. For $n\geq n_0$
+Equation \eqref{fracs} is true since every fraction is of the form $f(tx)/f(t)$. This implies that for $t\geq t_0$ $f(t)$ is both locally bounded and $\int_{t_0}^{t}f(s) \, \mathrm{d}s<\infty$. Consider a function $F(t) = \int_{t_0}^{t}f(s) \, \mathrm{d}s$. We start by proving that $\lim\limits_{t \rightarrow \infty} F(t) = \infty$ when $\alpha>-1$. First notice that $f(2s) \geq 2^{-1}f(s)$ for sufficiently large $s$. For $n\geq n_0$
 \begin{equation}
 \int_{2^n}^{2^{n+1}} f(s) \, \mathrm{d}s = 2\int_{2^{n-1}}^{2^{n}} f(2s) \, \mathrm{d}s \geq \int_{2^{n-1}}^{2^n} f(s) \, \mathrm{d}s
 \label{varchange}
@@ -692,10 +692,10 @@ by a change of variables. Then by induction we have
 \end{equation}
 Thus
 \begin{equation}
-\int_{2^{n_0}}^{\infty} f(s) \, \mathrm{d}s = \sum_{n=n_0}^{\infty} \int_{2^n}^{2^{n+1}} f(s) \, \mathrm{d}s \geq \sum_{n=n_0}^{\infty} \int_{2^n_0}^{2^{n_0+1}} f(s)\, \mathrm{d}s = \sum_{n=n_0}^{\infty} C = \infty
+\int_{2^{n_0}}^{\infty} f(s) \, \mathrm{d}s = \sum_{n=n_0}^{\infty} \int_{2^n}^{2^{n+1}} f(s) \, \mathrm{d}s \geq \sum_{n=n_0}^{\infty} \int_{2^n_0}^{2^{n_0+1}} f(s)\, \mathrm{d}s = \sum_{n=n_0}^{\infty} C = \infty.
 \label{infinite}
 \end{equation}
-Next we prove that $F \in RV_{\alpha+1}$ for $\alpha>-1$. Let $\varepsilon>0$ and $t_1=t_1(\varepsilon)$. Then $f(xt)<(1+\varepsilon)x^{\alpha}f(t)$ for $t>t_1$. Since $\lim_{t \rightarrow \infty} F(t)=\infty$,
+Next we prove that $F \in RV_{\alpha+1}$ for $\alpha>-1$. Let $\varepsilon>0$ and $t_1=t_1(\varepsilon)$. Then $f(xt)<(1+\varepsilon)x^{\alpha}f(t)$ for $t>t_1$. Since $\lim\limits_{t \rightarrow \infty} F(t)=\infty$,
 \begin{equation*}
 \frac{F(tx)}{F(t)} = \frac{\int_{t_0}^{tx} f(s) \, \mathrm{d}s}{\int_{t_0}^{t} f(t)\, \mathrm{d}s} \sim \frac{\int_{t_1x}^{tx} f(s)\, \mathrm{d}s}{\int_{t_1}^{t} f(t)\, \mathrm{d}s}=\frac{x\int_{t_1}^{t} f(xs)\, \mathrm{d}s}{\int_{t_1}^{t} f(t)\, \mathrm{d}s} < \frac{x\int_{t_1}^{t}(1+\varepsilon)x^{\alpha} f(s)\, \mathrm{d}s}{\int_{t_1}^{t} f(t)\, \mathrm{d}s} = (1+ \varepsilon)x^{\alpha+1}
 \end{equation*}
@@ -727,7 +727,7 @@ by induction and a change of variables. Then
 \begin{equation*}
 \begin{split}
 \int_{2^{n_1}}^{\infty} f(s)\,\mathrm{d}s = \sum_{n=n_1}^{\infty} \int_{2^{n}}^{2^{n+1}} f(s)\,\mathrm{d}s \leq C' \sum_{n=n_1}^{\infty} 2^{-\delta(n-n_1)} \\
-=C' \sum_{k=0}^{\infty} \left( \frac{1}{2^{\delta}}\right)^k = \frac{C'}{1-1/2^{\delta}}<\infty,
+=C' \sum_{k=0}^{\infty} \left( \frac{1}{2^{\delta}}\right)^k = \frac{C'}{1-1/2^{\delta}}<\infty.
 \end{split}
 \end{equation*}
 Now rest of the proof is analogous. Next we prove the converse results. Suppose that Equation \eqref{>-1} holds. Let's define a function
@@ -739,7 +739,7 @@ Without loss of generality we may suppose that $f(t)>0$ and $t>0$. Integrating b
 \int_{1}^{x} \frac{b(t)}{t}\,\mathrm{d}t = \log F(x) + c_1,
 \label{int b/t}
 \end{equation}
-since by change of variables
+since by a change of variables
 \begin{equation*}
 \int_{1}^{x} \frac{f(t)}{F(t)}\,\mathrm{d}t = \int_{F(1)}^{F(x)} \frac{1}{u}\,\mathrm{d}u = \log F(x) + \underbrace{\log F(1)}_{=c_1}.
 \end{equation*}
@@ -763,9 +763,9 @@ for all $x>0$. Hence for all $x,t>0$
 = \frac{b(tx)}{b(t)} \exp \left( \int_{1}^{x} \frac{b(ts)-1}{s}\,\mathrm{d}s\right),
 \end{split}
 \end{equation*}
-by the change of variables. By the assumption (Equation \eqref{>-1}) $b(t) \rightarrow \alpha + 1$ so $b(tx)/b(t) \rightarrow 1$. For sufficiently large $t$
+by a change of variables. By the assumption (Equation \eqref{>-1}) $b(t) \rightarrow \alpha + 1$ so $b(tx)/b(t) \rightarrow 1$. For sufficiently large $t$
 \begin{equation*}
-\exp \left( \int_{1}^{x} \frac{b(ts)-1}{s}\,\mathrm{d}s\right) \approx \exp \left( \int_{1}^{x} \frac{\alpha}{s}\,\mathrm{d}s\right)=\exp \left(\alpha \log x \right) = x^{\alpha}
+\exp \left( \int_{1}^{x} \frac{b(ts)-1}{s}\,\mathrm{d}s\right) \approx \exp \left( \int_{1}^{x} \frac{\alpha}{s}\,\mathrm{d}s\right)=\exp \left(\alpha \log x \right) = x^{\alpha}.
 \end{equation*}
 The last statement (Equation \eqref{<-1} implies that $F \in RV_{\alpha}$) can be proved in a similar way.
 \end{proof}
@@ -850,7 +850,7 @@ U(Y) \leq a \\
 \end{split}
 \end{equation*}
 \begin{equation}
-\Leftrightarrow \inf\big\{x: 1 - \frac{1}{Y} \leq F_X(x)\big\} \leq a
+\Leftrightarrow \inf\big\{x: 1 - \frac{1}{Y} \leq F_X(x)\big\} \leq a.
 \label{infeq}
 \end{equation}
 
@@ -878,7 +878,7 @@ $F \in D(G_{\gamma>0})$ is equivalent to $U \in RV_{\gamma}$ i.e.
 \lim_{t\to\infty} \frac{U(tx)}{U(t)} = x^{\gamma}.
 \end{equation*}
 
-From the uniform convergence of the regularly varying functions follows that for $x>1$ and $t \geq t_0$,
+From Corollary \ref{inequality} we have that for $x>1$ and $t \geq t_0$,
 
 \begin{equation*}
 (1-\varepsilon) x^{\gamma - \delta} < \frac{U(tx)}{U(t)} < (1+\varepsilon) x^{\gamma + \delta},
@@ -947,9 +947,9 @@ where $E_1, E_2,...$ are i.d.d. random variables with a standard exponential dis
 \begin{equation*}
 \begin{split}
 \big\{E_{n-i,n} - E_{n-k,n}\big\}_{i=0}^{k-1} \\ 
-\overset{d}{=} \bigg\{\Big( \frac{E_1^*}{n} + \frac{E_2^*}{n-1}+...+ \frac{E_{n-(i+1)}^*}{n-(n-(i+1))+1} + \frac{E_{n-i}^*}{n-(n-i)+1} \Big) \\
-- \Big(\frac{E_1^*}{n} + \frac{E_2^*}{n-1}+...+\frac{E_{n-k}^*}{n-(n-k)+1}\Big)\bigg\}_{i=0}^{k-1} \\
-= \bigg\{\frac{E_{n-i}^*}{i+1} + \frac{E_{n-(i+1)}^*}{i+2} +...+ \frac{E_{n-(k-2)}^*}{k-1} + \frac{E_{n-(k-1)}^*}{k}\bigg\}_{i=0}^{k-1} \\
+\overset{d}{=} \bigg\{\Big( \frac{E_1^*}{n} + \frac{E_2^*}{n-1}+...+ \frac{E_{n-(i+1)}^*}{i+2} + \frac{E_{n-i}^*}{i+1} \Big) \\
+- \Big(\frac{E_1^*}{n} + \frac{E_2^*}{n-1}+...+\frac{E_{n-k}^*}{k+1}\Big)\bigg\}_{i=0}^{k-1} \\
+= \bigg\{ \frac{E_{n-(k-1)}^*}{k} + \frac{E_{n-(k-2)}^*}{k-1}+...+  \frac{E_{n-(i+1)}^*}{i+2} + \frac{E_{n-i}^*}{i+1} \bigg\}_{i=0}^{k-1} \\
 \overset{d}{=} \big\{E_{k-i,k}\big\}_{i=0}^{k-1}.
 \end{split}
 \end{equation*}

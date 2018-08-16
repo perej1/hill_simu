@@ -403,14 +403,16 @@ By uniform convergence it can be proved that all the regularly varying functions
 
 \begin{theorem}[Karamata's representation theorem]
 If $f \in RV_{\alpha}$ then there exists measurable functions $a: \mathbb{R^+} \rightarrow \mathbb{R}$ and $c: \mathbb{R^+} \rightarrow \mathbb{R}$ with
-\begin{equation*}
+\begin{equation}
 \lim_{t \rightarrow \infty} c(t) = c_0 \  \text{and} \  \lim_{t \rightarrow \infty} a(t) = \alpha
-\end{equation*}
+\label{ac}
+\end{equation}
 and $t_0 \in \mathbb{R^+}$ such that for $t > t_0$,
 \begin{equation}
 f(t) = c(t) \exp \left(\int_{t_0}^{t}  \frac{a(s)}{s} \, \mathrm{d}s \right).
+\label{karam}
 \end{equation}
-Conversely, if \ref{karamata} holds, then $f \in RV_{\alpha}$.
+Conversely, if \eqref{karam} holds with $a$ and $c$ satisfying \eqref{ac}, then $f \in RV_{\alpha}$.
 \label{karamata}
 \end{theorem}
 
@@ -459,7 +461,7 @@ where $1 \leq k \leq n-1$ is a free parameter and $X_{1,n} \leq X_{2,n} \leq ...
 
 \subsection{Consistency}
 
-The following theorem states that Hill estimator is consistent i.e. estimator converges in probability to the extreme value index. \cite{hill}
+The following theorem states that Hill estimator is consistent i.e. estimator converges in probability to the extreme value index. \cite{mason}
 
 
 \begin{theorem}

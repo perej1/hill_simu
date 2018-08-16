@@ -60,7 +60,7 @@ bookmarksnumbered=true
 
 %% Major subject code
 %%
-\code{SCI3025}
+\code{SCI3029}
 %%
  
 %% Choose one of the three below
@@ -230,7 +230,7 @@ Otaniemi, 23.8.2018
 
 
 %% Symbols and abbreviations
-\mysection{Symbols and abbreviations}
+\mysection{Symbols and Abbreviations}
 
 \subsection*{Symbols}
 
@@ -525,7 +525,7 @@ The almost sure convergence of the Hill estimator is also proved in \cite{mason}
 \subsection{Asymptotic Normality}
 
 
-In addition to the first-order regular variation \ref{regularDef} there is a second-order condition for regular variation, which allows to examine the rates of converge of the first-order condition. Second-order regular variation is needed for the asymptotic normality of the Hill estimator. We define second-order regular variation for case $\gamma > 0$, since it is sufficient for our purposes \cite{deHaan}.
+In addition to the first-order regular variation \ref{regularDef} there is a second-order condition for regular variation, which allows to examine the rates of converge of the first-order condition. Second-order regular variation is needed for the asymptotic normality of the Hill estimator. For the complete definition of second-order regular variation see \cite{geluk}. We define second-order regular variation for case $\gamma > 0$, since it is sufficient for our purposes \cite{deHaan}.
 
 \begin{definition}
 U is second-order regularly varying for parameters $\gamma>0$ and $\rho \leq 0$ if for $x>0$
@@ -950,6 +950,7 @@ where $E_1, E_2,...$ are i.d.d. random variables with a standard exponential dis
 \overset{d}{=} \bigg\{\Big( \frac{E_1^*}{n} + \frac{E_2^*}{n-1}+...+ \frac{E_{n-(i+1)}^*}{i+2} + \frac{E_{n-i}^*}{i+1} \Big) \\
 - \Big(\frac{E_1^*}{n} + \frac{E_2^*}{n-1}+...+\frac{E_{n-k}^*}{k+1}\Big)\bigg\}_{i=0}^{k-1} \\
 = \bigg\{ \frac{E_{n-(k-1)}^*}{k} + \frac{E_{n-(k-2)}^*}{k-1}+...+  \frac{E_{n-(i+1)}^*}{i+2} + \frac{E_{n-i}^*}{i+1} \bigg\}_{i=0}^{k-1} \\
+= \bigg\{ \frac{E_1^*}{k} + \frac{E_2^*}{k-1}+...+\frac{E_{k-(i+1)}^*}{i+2} + \frac{E_{k-i}^*}{i+1} \bigg\}_{i=0}^{k-1}   \\
 \overset{d}{=} \big\{E_{k-i,k}\big\}_{i=0}^{k-1}.
 \end{split}
 \end{equation*}

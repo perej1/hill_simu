@@ -24,6 +24,7 @@
 %% two-sided printing: twoside (default is one-sided printing)
 %%
 
+%\usepackage{ntheorem}
 \usepackage{bbm} % bold indicator function
 \usepackage{graphicx, float} % graphics
 \usepackage{ctable} % for tables
@@ -36,6 +37,19 @@ bookmarksnumbered=true
 %% Math fonts, symbols, and formatting
 \usepackage{amsfonts,amssymb,amsbsy,amsmath,amsthm}
 
+% Poistaa () teoreeman jälkeen
+\makeatletter
+\def\thmhead@plain#1#2#3{%
+  \thmname{#1}\thmnumber{\@ifnotempty{#1}{ }\@upn{#2}}%
+  \thmnote{ {\the\thm@notefont#3}}}
+\let\thmhead\thmhead@plain
+\makeatother
+
+%Poistaa pisteen teoreeman jälkeen
+\usepackage{xpatch}
+\makeatletter
+\xpatchcmd{\@thm}{\thm@headpunct{.}}{\thm@headpunct{}}{}{}
+\makeatother
 
 % Theorems, corollaries and lemmas
 \newtheorem{theorem}{Theorem}[section]
@@ -107,7 +121,7 @@ bookmarksnumbered=true
 %% slightly longer space follows, but what is desired is a regular interword
 %% space.
 %%
-\supervisor{Prof.  Pauliina Ilmonen}
+\supervisor{Asst. Prof.  Pauliina Ilmonen}
 %%
 
 %% Advisor(s)---two at the most---of the thesis. Check with your supervisor how
@@ -138,7 +152,7 @@ bookmarksnumbered=true
 %% as the abstract page.
 %%
 \thesisabstract{
-We review the proof of the Hill estimator's consistency. Properties of the regularly varying functions play a crucial role in the theory. Consistency is also studied using simulations. Other properties of the Hill estimator such as asymptotic normality are also reviewed briefly.
+Often assessment of the tail behavior is important in risk management. However, analyzing the tail is challenging since there is often only little data available on extremes. One possible solution to the problem is Extreme Value Theory which provides mathematical theory for analyzing tail behavior. In extreme value theory there is a parameter called extreme value index that describes the thickness of the tail and evaluation of the extreme value index is often of high practical importance. One of the possible estimators for the extreme value index is Hill estimator that is one of the most popular estimators for heavy-tailed distributions. This thesis work reviews the asymptotic properties of the Hill estimator. Especially the focus is on the consistency. Firstly we review the connection between heavy tailed distributions and regularly varying functions that play a crucial role in proof of the consistency. Then we review the results for consistency and for asymptotic normality. Finally, finite sample properties of the Hill estimator are examined with Monte Carlo simulations.
 }
 
 %% Copyright text. Copyright of a work is with the creator/author of the work
@@ -193,7 +207,7 @@ We review the proof of the Hill estimator's consistency. Properties of the regul
 %% above.
 %%
 \begin{abstractpage}[english]
- \abstracttext{}
+ \abstracttext{} 
 \end{abstractpage}
 
 %% The text in the \thesisabstract macro is stored in the macro \abstractext, so
@@ -208,7 +222,7 @@ We review the proof of the Hill estimator's consistency. Properties of the regul
 %% Abstract in Finnish.  Delete if you don't need it. 
 %%
 \thesistitle{Hill-estimaattorin asymptoottiset ominaisuudet}
-\advisor{DI Matias Heikkilä}
+\advisor{FM Matias Heikkilä}
 \degreeprogram{Teknillinen fysiikka ja matematiikka}
 %\department{Elektroniikan ja nanotekniikan laitos}
 \major{Matematiikka ja systeemianalyysi}
@@ -216,9 +230,8 @@ We review the proof of the Hill estimator's consistency. Properties of the regul
 \keywords{Hill-estimaattori, ääriarvoteoria, asymptoottiset ominaisuudet, tilastotiede}
 %% Abstract text
 \begin{abstractpage}[finnish]
-  Tiivistelmässä on lyhyt selvitys
-  kirjoituksen tärkeimmästä sisällöstä: mitä ja miten on tutkittu,
-  sekä mitä tuloksia on saatu. 
+Usein riskienhallintaan liittyy jakauman hännän käyttäytymisen arviointi. Arviointi on kuitenkin haastavaa, koska saadussa datassa on usein vain vähän äärihavaintoja. Yksi ratkaisuvaihtoehto ongelmaan löytyy ääriarvoteoriasta (extreme value theory), joka tarjoaa matemaattisen teorian tutkia jakauman hännän käyttäytymistä. Ääriarvoteoriassa hännän muotoparametri kuvaa jakauman hännän paksuutta, ja muotoparametrin estimointi on usein tärkeää. Yksi mahdollisista estimaattoreista muotoparametrille on Hill-estimaattori, joka on yksi suosituimmista estimaattoreista paksuhäntäisille jakaumille. Opinnäytteessä käydään läpi Hill-estimaattorin asymptoottisia ominaisuuksia. Erityisesti huomio on estimaattorin tarkentuvuuden tutkimisessa. Aluksi tarkastellaan paksuhäntäisten jakaumien yhteyttä tasaisesti heilahteleviin funktioihin (regularly varying functions), joiden ominaisuudet ovat tärkeässä roolissa tarkentuvuuden todistuksessa. Tämän jälkeen esitetään tulokset tarkentuvuudelle ja asymptoottiselle normaaliudelle. Viimeiseksi Hill-estimaattorin äärellisen otoskoon ominaisuuksia tarkastellaan Monte Carlo -simulaatioiden avulla.
+
 \end{abstractpage}
 
 %\newpage
@@ -292,14 +305,14 @@ a.s.         & almost surely\\
 
 Heavy-tailed distributions appear in many fields of science such as insurance and finance. For example the loss returns of a speculative asset or insurance are often heavy-tailed and in practice the focus is often on risk evaluation. One example of such data set is Danish fire insurance loss data \cite{mcneil}  \cite{resnickFire}. Further examples are given in \cite{resnick}, \cite{deHaan} and \cite{embrechts}.
 
-Analyzing the tail is challenging since using classical methods, such as empirical quantiles, it is impossible to extrapolate beyond the available data. This motivates the use of Extreme Value Theory (EVT), that provides a rigorous mathematical framework to study extremes. EVT characterizes the behavior of the distribution's tail and tail estimation is often of high practical importance.
+Analyzing the tail is challenging since using classical methods, such as empirical quantiles, it is impossible to extrapolate beyond the available data. This motivates the use of Extreme Value Theory (EVT), that provides a rigorous mathematical framework to study extremes. In EVT there is a parameter called extreme value index that describes the thickness of the tail and estimation of the extreme value index is often of high practical importance.
 
 One of the possible estimators for extreme value index is the Hill estimator, which was introduced by Bruce M. Hill in 1975 \cite{hill} and remains one of the most used tail estimators for heavy-tailed distributions.
 In this thesis work we will review asymptotic properties of the Hill estimator and particularly its consistency.
 
 Regularly varying functions form the mathematical foundation for the theory of heavy-tailed distributions and consequently they play an important role in the theory of the Hill estimator. We carefully review their properties in addition to consistency of the Hill estimator. We also examine finite sample properties of the Hill estimator by performing Monte Carlo simulations. Results for asymptotic normality of the Hill estimator are provided but won’t be discussed in detail.
 
-The rest of the thesis is organized as follows. Section \ref{backround} gives requisites for the proofs and theory of the Hill estimator including properties of heavy tailed functions. Section \ref{hillEst} reviews the results of consistency and provides necessary lemmas for the proof of the consistency. Simulations are presented in Section \ref{simut} and concluding remarks are given in Section \ref{conclusion}. Lastly, all the proofs are found in Appendix \ref{proofs}.
+The rest of the thesis is organized as follows. Section \ref{backround} gives requisites for the proofs and theory of the Hill estimator including properties of heavy tailed functions. Section \ref{hillEst} reviews the result for consistency and provides necessary lemmas for the proof of the consistency. Simulations are presented in Section \ref{simut} and concluding remarks are given in Section \ref{conclusion}. Lastly, all the proofs are found in Appendix \ref{proofs}.
 
 %\begin{definition}
 %\begin{equation*}
@@ -325,7 +338,7 @@ The rest of the thesis is organized as follows. Section \ref{backround} gives re
 \subsection{Fisher-Tippett-Gnedenko Theorem}
 \label{domains}
 
-Let $X_1, X_2, ..., X_n$ be i.d.d. random variables with a cdf $F$. Consider the  sample maxima $M_n = \max(X_1, X_2, ..., X_n)$. The limiting behavior of $M_n$ can be derived since $X_1, X_2,..., X_3$ are i.d.d.
+Let $X_1, X_2, ..., X_n$ be i.d.d. random variables with a cdf $F$. Consider the sample maxima $M_n = \max(X_1, X_2, ..., X_n)$. The limiting behavior of $M_n$ is straightforward since $X_1, X_2,..., X_3$ are i.d.d.
 \begin{gather*}
 P(\max(X_1, X_2, ... , X_n) \leq x) = P(X_1 \leq x, X_2 \leq x,..., X_n \leq x) \\ = 
 P(X_1 \leq x) P(X_2 \leq x) ... P(X_n \leq x)
@@ -342,9 +355,9 @@ Now,
 
 
 
-To achieve a nondegerate distribution it is necessary to normalize the sample maxima $M_n$. The Fisher-Tippett-Gnedenko Theorem states that with a suitable normalization, a nondegenate distribution is obtained \cite{fisher} \cite{gnedenko}.
+To achieve a nondegenerate distribution it is necessary to normalize the sample maxima $M_n$. The Fisher-Tippett-Gnedenko Theorem states that with a suitable normalization, a nondegenerate distribution is obtained \cite{fisher} \cite{gnedenko}.
 
-\begin{theorem}
+\begin{theorem}[{\cite[Theorem 1.1.6]{deHaan}}]
 There exists real constants $a_n>0$ and $b_n \in \mathbb{R}$ such that 
 
 \begin{equation}
@@ -384,7 +397,7 @@ Condition \eqref{tail} is equivalent to
 \end{equation}
 \end{corollary}
 
-Relation \eqref{Utail} turns out to be easier to work with than \eqref{tail} and thus it is used in furher calculations.
+Relation \eqref{Utail} turns out to be easier to work with than \eqref{tail} and thus it is used in further calculations.
 %Above equation implies that U is regularly varying with index $\gamma$ if $F \in D(G_{\gamma>0})$.
 
 
@@ -453,7 +466,7 @@ Conversely, if \eqref{>-1} holds for $-1\leq \alpha < \infty$ or \eqref{<-1} hol
 
 The following corollary \cite{potter} of the Karamata’s representation theorem will play a key role in the proof of the consistency of the Hill estimator. 
 
-\begin{corollary}
+\begin{corollary}[{\cite[Proposition B.1.9]{deHaan}}]
 Suppose $f \in RV_{\alpha}$. If $\varepsilon, \delta>0$ are arbitrary, there exists $t_0=t_0(\varepsilon, \delta)$ such that for $t\geq t_0$, $tx \geq t_0$,
 \begin{equation*}
 (1-\varepsilon)x^{\alpha-\delta}<\frac{f(tx)}{f(t)}<(1+\varepsilon)x^{\alpha+\delta}.
@@ -480,7 +493,7 @@ where $1 \leq k \leq n-1$ is a free parameter and $X_{1,n} \leq X_{2,n} \leq ...
 The following theorem states that Hill estimator is consistent i.e. estimator converges in probability to the extreme value index. \cite{mason}
 
 
-\begin{theorem}
+\begin{theorem}[{\cite[Theorem 3.2.2]{deHaan}}]
 Let $X_1, X_2,...$ be i.d.d. random variables with cdf $F_X$. Suppose $F_X \in D(G_{\gamma})$ with $\gamma > 0$. Then if $k=k(n)  \rightarrow \infty$, $k/n \rightarrow 0$ as $n \rightarrow \infty$,
 
 \begin{equation*}
@@ -490,7 +503,7 @@ Let $X_1, X_2,...$ be i.d.d. random variables with cdf $F_X$. Suppose $F_X \in D
 \end{theorem}
 
 For the proof of the above theorem following lemmas and Corollary \ref{inequality} are needed, firstly the R{\'e}nyi's representation \cite{renyi}.
-\begin{lemma}
+\begin{lemma}[{\cite[Equation 1.9]{renyi}}]
 If $E_1, E_2,...$ are i.d.d. random variables from the standard exponential distribution and $E_{1,n} \leq E_{2,n} \leq ... \leq E_{n,n}$ then for $k \leq n$ we have
 \begin{multline*}
 %\begin{equation*}
@@ -528,9 +541,9 @@ Let $Y$ be random variable from Pareto distribution $F_Y=1-\frac{1}{y}$, $y \geq
 
 
 
-Notably, there is also converse version of the Theorem \ref{hillcons} \cite{mason}. Proof is omitted here.
+Notably, there is also converse version of the Theorem \ref{hillcons}. Proof is omitted here.
 
-\begin{theorem}
+\begin{theorem}[{\cite[Theorem 3.2.4]{deHaan}}]
 Let $X_1, X_2,...$ be i.i.d. variables from cdf F. Suppose that for some sequence of integers $k=k(n) \rightarrow \infty$, $k(n)/n \rightarrow 0$ and $k(n+1)/k(n) \rightarrow 1$ as $n \rightarrow \infty$
 \begin{equation*}
 \hat{\gamma} \rightarrow \gamma > 0.
@@ -557,7 +570,7 @@ where $A$ is a one-signed function with $\lim\limits_{t \rightarrow \infty} A(t)
 
 The asymptotic normality of $\hat{\gamma}$ can be formulated using the second-order condition \cite{peng}.
 
-\begin{theorem}
+\begin{theorem}[{\cite[Theorem 3.2.5]{deHaan}}]
 Suppose that U satisfies the second-order condition \ref{2RV} and $k=k(n)$ with $k(n)\rightarrow \infty$, $k(n)/n \rightarrow \infty$ when $n\rightarrow \infty$. Then
 \begin{equation*}
 \sqrt{k}(\hat{\gamma} - \gamma) \xrightarrow{d} N \left( \frac{\lambda}{1- \rho}, \gamma^2 \right)
@@ -638,7 +651,8 @@ Finally, we note that the Hill estimator can be extended in various ways. For ex
 
 
 \section{Proofs}
-All the proofs except the proof of Lemma \ref{U} follow proofs given in \cite{deHaan}. Some details are added.
+
+Proof of the Corollary \ref{inequality} follows the proof in \cite{resnick} and proof of \ref{U} is ours. All the other proofs follow proofs given in \cite{deHaan} with added details.
 
 \label{proofs}
 \subsection{Proof of Theorem \ref{uniform}}

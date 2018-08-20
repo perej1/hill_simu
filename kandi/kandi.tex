@@ -152,7 +152,7 @@ bookmarksnumbered=true
 %% as the abstract page.
 %%
 \thesisabstract{
-Often assessment of the tail behavior is important in risk management. However, analyzing the tail is challenging since there is often only little data available on extremes. One possible solution to the problem is Extreme Value Theory which provides mathematical theory for analyzing tail behavior. In extreme value theory there is a parameter called extreme value index that describes the thickness of the tail and evaluation of the extreme value index is often of high practical importance. One of the possible estimators for the extreme value index is Hill estimator that is one of the most popular estimators for heavy-tailed distributions. This thesis work reviews the asymptotic properties of the Hill estimator. Especially the focus is on the consistency. Firstly we review the connection between heavy tailed distributions and regularly varying functions that play a crucial role in proof of the consistency. Then we review the results for consistency and for asymptotic normality. Finally, finite sample properties of the Hill estimator are examined with Monte Carlo simulation.
+Assessment of the tail behavior is important for example in risk management. However, analyzing the tail is challenging since there is very little data available on extremes. One possible solution to the problem is extreme value theory which provides mathematical theory for analyzing tail behavior. In extreme value theory there is a parameter called extreme value index that describes the thickness of the tail and evaluation of the extreme value index is often of high practical importance. One of the possible estimators for the extreme value index is the Hill estimator that is one of the most popular estimators for heavy-tailed distributions. This thesis work reviews the asymptotic properties of the Hill estimator. The focus is on the consistency. First we review the connection between heavy tailed distributions and regularly varying functions that play a crucial role in proof of the consistency. Then we review the results for consistency and for asymptotic normality. Finally, finite sample properties of the Hill estimator are examined with Monte Carlo simulation.
 }
 
 %% Copyright text. Copyright of a work is with the creator/author of the work
@@ -230,7 +230,7 @@ Often assessment of the tail behavior is important in risk management. However, 
 \keywords{Hill-estimaattori, ääriarvoteoria, asymptoottiset ominaisuudet, tilastotiede}
 %% Abstract text
 \begin{abstractpage}[finnish]
-Usein riskienhallintaan liittyy jakauman hännän käyttäytymisen arviointi. Arviointi on kuitenkin haastavaa, koska saadussa datassa on usein vain vähän äärihavaintoja. Yksi ratkaisuvaihtoehto ongelmaan löytyy ääriarvoteoriasta (extreme value theory), joka tarjoaa matemaattisen teorian tutkia jakauman hännän käyttäytymistä. Ääriarvoteoriassa hännän muotoparametri kuvaa jakauman hännän paksuutta, ja muotoparametrin estimointi on usein tärkeää. Yksi mahdollisista estimaattoreista muotoparametrille on Hill-estimaattori, joka on yksi suosituimmista estimaattoreista paksuhäntäisille jakaumille. Opinnäytteessä käydään läpi Hill-estimaattorin asymptoottisia ominaisuuksia. Erityisesti huomio on estimaattorin tarkentuvuuden tutkimisessa. Aluksi tarkastellaan paksuhäntäisten jakaumien yhteyttä tasaisesti heilahteleviin funktioihin (regularly varying functions), joiden ominaisuudet ovat tärkeässä roolissa tarkentuvuuden todistuksessa. Tämän jälkeen esitetään tulokset tarkentuvuudelle ja asymptoottiselle normaaliudelle. Viimeiseksi Hill-estimaattorin äärellisen otoskoon ominaisuuksia tarkastellaan Monte Carlo -simulaatioiden avulla.
+Usein riskienhallintaan liittyy jakauman hännän käyttäytymisen arviointi. Arviointi on kuitenkin haastavaa, koska saadussa datassa on usein vain vähän äärihavaintoja. Yksi ratkaisuvaihtoehto ongelmaan löytyy ääriarvoteoriasta (extreme value theory), joka tarjoaa matemaattisen teorian tutkia jakauman hännän käyttäytymistä. Ääriarvoteoriassa ääriarvoindeksi kuvaa jakauman hännän paksuutta, ja ääriarvoindeksin estimointi on usein tärkeää. Yksi mahdollisista estimaattoreista ääriarvoindeksille on Hill-estimaattori, joka on yksi suosituimmista estimaattoreista paksuhäntäisille jakaumille. Opinnäytteessä käydään läpi Hill-estimaattorin asymptoottisia ominaisuuksia. Erityisesti huomio on estimaattorin tarkentuvuuden tutkimisessa. Aluksi tarkastellaan paksuhäntäisten jakaumien yhteyttä tasaisesti heilahteleviin funktioihin (regularly varying functions), joiden ominaisuudet ovat tärkeässä roolissa tarkentuvuuden todistuksessa. Tämän jälkeen esitetään tulokset tarkentuvuudelle ja asymptoottiselle normaaliudelle. Viimeiseksi Hill-estimaattorin äärellisen otoskoon ominaisuuksia tarkastellaan Monte Carlo -simulaatioiden avulla.
 
 \end{abstractpage}
 
@@ -303,7 +303,7 @@ a.s.         & almost surely\\
 %%
 \section{Introduction}
 
-Heavy-tailed distributions appear in many fields of science such as insurance and finance. For example the loss returns of a speculative asset or insurance are often heavy-tailed and in practice the focus is often on risk evaluation. One example of such data set is Danish fire insurance loss data \cite{mcneil}  \cite{resnickFire}. Further examples are given in \cite{resnick}, \cite{deHaan} and \cite{embrechts}.
+Heavy-tailed distributions appear in many fields of science such as in insurance and finance. For example the loss returns of a speculative asset or insurance are often heavy-tailed and in practice the focus is often on risk evaluation. One example of such data set is Danish fire insurance loss data \cite{mcneil}  \cite{resnickFire}. Further examples are given in \cite{resnick}, \cite{deHaan} and \cite{embrechts}.
 
 Analyzing the tail is challenging since using classical methods, such as empirical quantiles, it is impossible to extrapolate beyond the available data. This motivates the use of Extreme Value Theory (EVT), that provides a rigorous mathematical framework to study extremes. In EVT there is a parameter called extreme value index that describes the thickness of the tail and estimation of the extreme value index is often of high practical importance.
 
@@ -606,9 +606,9 @@ Figure & Distribution & $\gamma$ & Estimator & $n$ & $N$ & $k(n)$ \\
 
 Both resulting graphs are constructed in the same manner. Real value of the extreme value index $\gamma$  is plotted as a dashed line. In both figures we plot the median, the first quartile and the third quartile of the simulated values.
 
-In Figure \ref{pareto} it seems that with small $n$ convergence is very fast and slows down after a while. This can be seen by looking at the quartiles. At the beginning the quartiles squeeze around $\gamma$ but eventually after about $n=12500$ it is hard to see any further convergence.
+In both Figures \ref{pareto} and \ref{cauchy} it seems that with small sample sizes variance decreases rapidly but as the sample size increases the decrease of the variance slows down. This can be seen by looking at the quartiles. At the beginning the quartiles squeeze around the median but eventually after about $n=12500$ it is hard to see any further approach to the median.
 
-In Figure \ref{cauchy} we can conclude that convergence is fast with small numbers of observations but slows down eventually, as in Figure \ref{pareto}. It seems that the median is a little further from $\gamma$ than in Figure \ref{pareto}. This suggests that for Cauchy distribution larger sample size is needed for an accurate estimate for $\gamma$ than for Pareto distribution. In both Figures \ref{pareto} and \ref{cauchy} quartiles are equally far away from median which suggests that asymptotic distribution of the Hill estimator might be symmetrical.
+It seems that in Figure \ref{cauchy} the median is a little further from $\gamma$ than in Figure \ref{pareto}. This suggests that for Cauchy distribution larger sample size is needed for an accurate estimate for $\gamma$ than for Pareto distribution. In both Figures \ref{pareto} and \ref{cauchy} quartiles are equally far away from median which suggests that asymptotic distribution of the Hill estimator might be symmetrical.
 
 \begin{figure}[H]
 \begin{center}
@@ -857,7 +857,7 @@ By the Theorem \ref{karamata}
 \begin{equation*}
 \frac{f(tx)}{f(t)}=\frac{c(tx)}{c(t)}\exp \left(\int_1^x \frac{a(st)}{s}\,\mathrm{d}s \right)
 \end{equation*}
-The function c(t) converges to a constant. Hence $c \in RV_0$ so $c(tx)/c(t)\rightarrow 1$ as $t \rightarrow \infty$. Furthermore, $a(s) \rightarrow \alpha$ as $t \rightarrow \infty$. Now we can choose such a $t_0$ that $\alpha-\delta<a(st)<\alpha-\delta$ and $1-\varepsilon<\frac{c(tx)}{c(t)}<1+\varepsilon$. This implies that
+The function c(t) converges to a constant. Hence $c \in RV_0$ so $c(tx)/c(t)\rightarrow 1$ as $t \rightarrow \infty$. Furthermore, $a(s) \rightarrow \alpha$ as $t \rightarrow \infty$. Now we can choose such a $t_0$ that $\alpha-\delta<a(st)<\alpha+\delta$ and $1-\varepsilon<\frac{c(tx)}{c(t)}<1+\varepsilon$. This implies that
 \begin{equation*}
 \begin{split}
 (1-\varepsilon)\int_1^x \frac{\alpha-\delta}{s}\,\mathrm{d}s<\frac{f(tx)}{f(t)}<(1+\varepsilon)\int_1^x \frac{\alpha+\delta}{s}\,\mathrm{d}s \\

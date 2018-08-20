@@ -152,7 +152,7 @@ bookmarksnumbered=true
 %% as the abstract page.
 %%
 \thesisabstract{
-Often assessment of the tail behavior is important in risk management. However, analyzing the tail is challenging since there is often only little data available on extremes. One possible solution to the problem is Extreme Value Theory which provides mathematical theory for analyzing tail behavior. In extreme value theory there is a parameter called extreme value index that describes the thickness of the tail and evaluation of the extreme value index is often of high practical importance. One of the possible estimators for the extreme value index is Hill estimator that is one of the most popular estimators for heavy-tailed distributions. This thesis work reviews the asymptotic properties of the Hill estimator. Especially the focus is on the consistency. Firstly we review the connection between heavy tailed distributions and regularly varying functions that play a crucial role in proof of the consistency. Then we review the results for consistency and for asymptotic normality. Finally, finite sample properties of the Hill estimator are examined with Monte Carlo simulations.
+Often assessment of the tail behavior is important in risk management. However, analyzing the tail is challenging since there is often only little data available on extremes. One possible solution to the problem is Extreme Value Theory which provides mathematical theory for analyzing tail behavior. In extreme value theory there is a parameter called extreme value index that describes the thickness of the tail and evaluation of the extreme value index is often of high practical importance. One of the possible estimators for the extreme value index is Hill estimator that is one of the most popular estimators for heavy-tailed distributions. This thesis work reviews the asymptotic properties of the Hill estimator. Especially the focus is on the consistency. Firstly we review the connection between heavy tailed distributions and regularly varying functions that play a crucial role in proof of the consistency. Then we review the results for consistency and for asymptotic normality. Finally, finite sample properties of the Hill estimator are examined with Monte Carlo simulation.
 }
 
 %% Copyright text. Copyright of a work is with the creator/author of the work
@@ -338,7 +338,7 @@ The rest of the thesis is organized as follows. Section \ref{backround} gives re
 \subsection{Fisher-Tippett-Gnedenko Theorem}
 \label{domains}
 
-Let $X_1, X_2, ..., X_n$ be i.d.d. random variables with a cdf $F$. Consider the sample maxima $M_n = \max(X_1, X_2, ..., X_n)$. The limiting behavior of $M_n$ is straightforward since $X_1, X_2,..., X_3$ are i.d.d.
+Let $X_1, X_2, ..., X_n$ be i.d.d. random variables with a cdf $F$. Consider the sample maxima $M_n = \max(X_1, X_2, ..., X_n)$. The limiting behavior of $M_n$ is simple since $X_1, X_2,..., X_3$ are i.d.d.
 \begin{gather*}
 P(\max(X_1, X_2, ... , X_n) \leq x) = P(X_1 \leq x, X_2 \leq x,..., X_n \leq x) \\ = 
 P(X_1 \leq x) P(X_2 \leq x) ... P(X_n \leq x)
@@ -483,10 +483,14 @@ Suppose $f \in RV_{\alpha}$. If $\varepsilon, \delta>0$ are arbitrary, there exi
 
 
 The Hill estimator, proposed in \cite{hill}, is defined as follows:
+\begin{definition}
+
 \begin{equation*}
 \hat{\gamma} = \frac{1}{k} \sum_{i=0}^{k-1} \log X_{n-i,n} - \log X_{n-k,n}, 
 \end{equation*}
-where $1 \leq k \leq n-1$ is a free parameter and $X_{1,n} \leq X_{2,n} \leq ...  \leq X_{n,n}$ are order statistics. We proceed by reviewing its asymptotic properties.
+where $1 \leq k \leq n-1$ is a free parameter and $X_{1,n} \leq X_{2,n} \leq ...  \leq X_{n,n}$ are order statistics.
+\end{definition}
+We proceed by reviewing its asymptotic properties.
 
 \subsection{Consistency}
 
@@ -627,7 +631,7 @@ In Figure \ref{cauchy} we can conclude that convergence is fast with small numbe
 \section{Conclusion}
 \label{conclusion}
 
-We reviewed the proof of the Hill estimator's consistency. Properties of the regularly varying functions played a crucial role in the proof of the consistency. Consistency was also studied with simulations, which also showed that Hill estimator has good finite sample properties. Other properties of the Hill estimator such as asymptotic normality and bias are not in the scope of this article. However, these properties are studied in other articles such as \cite{peng}, \cite{hausler} and \cite{haanResnick}.
+We reviewed the proof of the Hill estimator's consistency. Properties of the regularly varying functions played a crucial role in the proof of the consistency. Simulations also showed that Hill estimator has good finite sample properties. Other properties of the Hill estimator such as asymptotic normality and bias are not in the scope of this thesis. However, these properties are studied in other articles such as \cite{peng}, \cite{hausler} and \cite{haanResnick}.
 
 Finally, we note that the Hill estimator can be extended in various ways. For example, there are estimators similar to Hill estimator for the general case $\gamma \in \mathbb{R}$. Examples of these estimators include the Pickands estimator \cite{pickands} and the Moment estimator \cite{dekkers}. The Hill estimator can also be extended to the multivariate case \cite{ilmonen}.
 

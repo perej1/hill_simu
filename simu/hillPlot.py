@@ -46,7 +46,7 @@ def pplot(n1, n2, s, f1, f2, r, g, d):
     ax.set_ylabel(r'$\hat{\gamma}$')
     ax.set_xlabel('n')
     ax.legend()
-    ax.set_title('Convergence of the Hill Estimator (%s)' % d.capitalize())
+    ax.set_title('Hill estimates with samples from %s distribution' % d.capitalize())
     plt.savefig(f2, format='pdf', dpi=1000)
 
 

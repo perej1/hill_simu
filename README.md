@@ -35,7 +35,7 @@ After this submit the job by running
 ```
 sbatch simujob.sh
 ```
-Results will appear in the folder `data`
+Results will appear in the folder `data`.
 
 Huge thanks for my thesis advisor Matias Heikkilä for all the advice both for mathematics and icoding. Simulations follow very closely the same format as Matias Heikkilä's code in repository https://github.com/mapehe/evt-ica-simu.
 

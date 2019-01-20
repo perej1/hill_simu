@@ -1,9 +1,9 @@
 ## Bachelor thesis and simulations
 This repository was for my bachelor thesis and simulations for the  thesis. My thesis is related to the field of extreme value theory. In the `kandi` folder there are all the files regarding the thesis itself: 
 
-- the LaTeX source code `kandi.tex` 
-- thesis as a pdf file `kandi.pdf`
-- figures `pareto.pdf` and `cauchy.pdf`
+- the LaTeX source code `kandi.tex`. 
+- thesis as a pdf file `kandi.pdf`.
+- figures `pareto.pdf` and `cauchy.pdf`.
 
 In the `simu` folder there are all the files concerning the simulations. Purpose of the simulations is to generate independent samples and calculate values for Hill estimator. Hill estimator estimates parameter called extreme value index, that describes the tail behaviour of a distribution. Simulated data is used for two figures which show finite sample behaviour of the Hill estimator. Simulations were executed with the Aalto University's Triton computing cluster.
 
@@ -37,5 +37,5 @@ sbatch simujob.sh
 ```
 Results will appear in the folder `data`.
 
-Huge thanks for my thesis advisor Matias Heikkilä for all the advice both for mathematics and icoding. Simulations follow very closely the same format as Matias Heikkilä's code in repository https://github.com/mapehe/evt-ica-simu.
+Huge thanks for my thesis advisor Matias Heikkilä for all the advice both for mathematics and coding. Simulations follow very closely the same format as Matias Heikkilä's code in repository https://github.com/mapehe/evt-ica-simu.
 

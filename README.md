@@ -9,15 +9,15 @@ In the `simu` folder there are all the files concerning the simulations. Purpose
 
 Here are all the files used for simulations:
 
-- `hillSim.py` contains the simulation code. It is run in fashion `hillSim.py [arguments]`, where `[arguments]` specify different simulation scenarios.
+- `hillSim.py` contains the simulation code. It is run in fashion `python hillSim.py [arguments]`, where `[arguments]` specify different simulation scenarios.
 
-- `gen_args.py` is used for creating command line arguments of form `hillSim.py [arguments]`.
+- `gen_args.py` is used for creating command line arguments of form `python hillSim.py [arguments]`.
 
 - `simujob.py` submits the job to the Triton and starts the execution.
 
 Following files are for plotting the figures in my thesis:
 
-- `hillPlot.py` contains code for plotting and is run in fashion `hillPlot.py [arguments]`.
+- `hillPlot.py` contains code for plotting and is run in fashion `python hillPlot.py [arguments]`.
 
 - `plot.sh` executes `hillPlot.py` with various arguments and produces the figures. Figures appear in the `kandi` folder.
 
